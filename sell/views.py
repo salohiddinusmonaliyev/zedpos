@@ -11,12 +11,13 @@ from django.contrib import messages
 def sale_list(request):
     return render(request, "page-list-sale.html")
 
-def sale_add(request):
+def sale_add(request, s):
     messages.success(request, 'This is a success message.')
-    # s = SellItem.objects.filter(sell_id=s)
+    s = SellItem.objects.filter(sell_id=s)
     data = {
         "products": Product.objects.all(),
         "clients": Client.objects.all(),
+        "sell": s,
 
     }
     return render(request, "page-add-sale.html", data)
@@ -25,9 +26,14 @@ def sale_add(request):
 # chat/views.py
 from django.shortcuts import render
 
-def add_sale(request):
-    # product = Product.objects.get(code=code)
-    # SellItem.objects.create(sell_id=sellid, product_id=product, date=datetime.now(), quantity=quantity)
+def add_sale(request, sellid, code, quantity):
+    product = Product.objects.get(code=code)
+    SellItem.objects.create(sell_id=sellid, product_id=product, date=datetime.now(), quantity=quantity)
+    data = {
+        "products": Product.objects.all(),
+        "clients": Client.objects.all(),
+
+    }
     return redirect('/sale-add/')
 
 

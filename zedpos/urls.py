@@ -27,5 +27,5 @@ urlpatterns = [
     path('', dashboard),
     path('product-list/', product_list),
     path('sale-list/s', sale_list),
-    path("saleadd/", sale_add),
+    path("saleadd/<int:s>", sale_add),
 ]
