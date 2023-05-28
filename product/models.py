@@ -1,6 +1,6 @@
 from django.db import models
 
-from dealer.models import Dealer
+from partner.models import Dealer
 
 # Create your models here.
 
@@ -9,7 +9,7 @@ class Measure(models.Model):
     name = models.CharField(max_length=50)
 
 class Product(models.Model):
-    code = models.IntegerField(null=True)
+    code = models.IntegerField(max_length=10000, null=True)
     name = models.CharField(max_length=50)
     incoming_price = models.IntegerField()
     price = models.IntegerField()
