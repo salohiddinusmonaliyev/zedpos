@@ -1,0 +1,581 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
+      <link rel="stylesheet" href="{% static 'assets/css/backend-plugin.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/backend.css?v=1.0.0' %}">
+      <link rel="stylesheet" href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/vendor/remixicon/fonts/remixicon.css' %}">  </head>
+  <body class="  ">
+
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+
+      <div class="iq-sidebar  sidebar-default ">
+          <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
+              <a href="" class="header-logo">
+                  <img src="{% static 'assets/images/logo.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">POSDash</h5>
+              </a>
+
+          </div>
+          <div class="data-scrollbar" data-scroll="1">
+              <nav class="iq-sidebar-menu">
+                  <ul id="iq-sidebar-toggle" class="iq-menu">
+                      <li class="active">
+                          <a href="/" class="svg-icon">
+                              <svg  class="svg-icon" id="p-dash1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+                              </svg>
+                              <span class="ml-4">Dashboards</span>
+                          </a>
+                      </li>
+                      <li class=" ">
+                          <a href="#product" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg class="svg-icon" id="p-dash2" width="20" height="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                              </svg>
+                              <span class="ml-4">Products</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                              <li class="">
+                                  <a href="/product-list/">
+                                      <span>List Product</span>
+                                  </a>
+                              </li>
+                              <li class="">
+                                  <a href="/product-add/">
+                                      <span>Add Product</span>
+                                  </a>
+                              </li>
+                              <li class="">
+                                  <a href="/archive/">
+                                      <span>Archive</span>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class=" ">
+                          <a href="#sale" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg class="svg-icon" id="p-dash4" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                              </svg>
+                              <span class="ml-4">Sale</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="sale" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                  <li class="">
+                                          <a href="/sale-list/">
+                                              <span>List Sale</span>
+                                          </a>
+                                  </li>
+                                  <li class="">
+                                          <a href="/sale-add/">
+                                              <span>Add Sale</span>
+                                          </a>
+                                  </li>
+                          </ul>
+                      </li>
+                      <li class=" ">
+                          <a href="#purchase" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg class="svg-icon" id="p-dash5" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                              </svg>
+                              <span class="ml-4">Purchases</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="purchase" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                  <li class="">
+                                          <a href="page-list-purchase.html">
+                                              <span>List Purchases</span>
+                                          </a>
+                                  </li>
+                                  <li class="">
+                                          <a href="page-add-purchase.html">
+                                              <span>Add purchase</span>
+                                          </a>
+                                  </li>
+                          </ul>
+                      </li>
+<!--                      <li class=" ">-->
+<!--                          <a href="#return" class="collapsed" data-toggle="collapse" aria-expanded="false">-->
+<!--                              <svg class="svg-icon" id="p-dash6" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
+<!--                                  <polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line>-->
+<!--                              </svg>-->
+<!--                              <span class="ml-4">Returns</span>-->
+<!--                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
+<!--                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>-->
+<!--                              </svg>-->
+<!--                          </a>-->
+<!--                          <ul id="return" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">-->
+<!--                                  <li class="">-->
+<!--                                          <a href="page-list-returns.html">-->
+<!--                                              <span>List Returns</span>-->
+<!--                                          </a>-->
+<!--                                  </li>-->
+<!--                                  <li class="">-->
+<!--                                          <a href="page-add-return.html">-->
+<!--                                              <span>Add Return</span>-->
+<!--                                          </a>-->
+<!--                                  </li>-->
+<!--                          </ul>-->
+<!--                      </li>-->
+                      <li class=" ">
+                          <a href="#people" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                              </svg>
+                              <span class="ml-4">Customers</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                  <li class="">
+                                          <a href="page-list-customers.html">
+                                              <span>List Customers</span>
+                                          </a>
+                                  </li>
+                                  <li class="">
+                                          <a href="page-add-customers.html">
+                                              <span>Add Customers</span>
+                                          </a>
+                                  </li>
+                          </ul>
+                      </li>
+                  </ul>
+              </nav>
+
+          </div>
+          </div>
+        <div class="iq-top-navbar">
+          <div class="iq-navbar-custom">
+              <nav class="navbar navbar-expand-lg navbar-light p-0">
+                  <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
+                      <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
+                      <a href="#" class="header-logo">
+                          <img src="assets/images/logo.png" class="img-fluid rounded-normal" alt="logo">
+                          <h5 class="logo-title ml-3">POSDash</h5>
+
+                      </a>
+                  </div>
+              </nav>
+          </div>
+      </div>
+      <div class="content-page">
+     <div class="container-fluid">
+
+         <br>
+         <div class="card-header-toolbar d-flex align-items-center">
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="card card-block card-stretch card-height" style="background-color: #28C76F">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4 card-total-sale">
+                                    <div class="icon iq-icon-box-2 bg-info-light" style="background-color: white !important;">
+
+<svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 4H3C2.73478 4 2.48043 4.10536 2.29289 4.29289C2.10536 4.48043 2 4.73478 2 5V19C2 19.2652 2.10536 19.5196 2.29289 19.7071C2.48043 19.8946 2.73478 20 3 20H21C21.2652 20 21.5196 19.8946 21.7071 19.7071C21.8946 19.5196 22 19.2652 22 19V5C22 4.73478 21.8946 4.48043 21.7071 4.29289C21.5196 4.10536 21.2652 4 21 4ZM20 15C19.2044 15 18.4413 15.3161 17.8787 15.8787C17.3161 16.4413 17 17.2044 17 18H7C7 17.2044 6.68393 16.4413 6.12132 15.8787C5.55871 15.3161 4.79565 15 4 15V9C4.79565 9 5.55871 8.68393 6.12132 8.12132C6.68393 7.55871 7 6.79565 7 6H17C17 6.79565 17.3161 7.55871 17.8787 8.12132C18.4413 8.68393 19.2044 9 20 9V15Z" fill="#28C76F"/>
+<path d="M12 8C9.794 8 8 9.794 8 12C8 14.206 9.794 16 12 16C14.206 16 16 14.206 16 12C16 9.794 14.206 8 12 8ZM12 14C10.897 14 10 13.103 10 12C10 10.897 10.897 10 12 10C13.103 10 14 10.897 14 12C14 13.103 13.103 14 12 14Z" fill="#28C76F"/>
+</svg>
+
+
+                                    </div>
+                                    <div>
+                                        <p class="mb-2" style="color: white">Umumiy Savdo</p>
+                                        <h4 style="color: white">{{ daromad }} UZS</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="card card-block card-stretch card-height" style="background-color: #ff9f43;">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4 card-total-sale">
+                                    <div class="icon iq-icon-box-2 bg-success-light" style="background-color: white !important;">
+
+                                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 20H6V10C6 9.73478 6.10536 9.48043 6.29289 9.29289C6.48043 9.10536 6.73478 9 7 9H19V7C19 6.73478 18.8946 6.48043 18.7071 6.29289C18.5196 6.10536 18.2652 6 18 6H14.949C14.697 3.756 12.81 2 10.5 2C8.19 2 6.303 3.756 6.051 6H3C2.73478 6 2.48043 6.10536 2.29289 6.29289C2.10536 6.48043 2 6.73478 2 7V18C2 18.5304 2.21071 19.0391 2.58579 19.4142C2.96086 19.7893 3.46957 20 4 20ZM10.5 4C11.707 4 12.718 4.86 12.95 6H8.05C8.282 4.86 9.293 4 10.5 4Z" fill="#FF9F43"/>
+                                        <path d="M21 11H9C8.73478 11 8.48043 11.1054 8.29289 11.2929C8.10536 11.4804 8 11.7348 8 12V20C8 20.5304 8.21071 21.0391 8.58579 21.4142C8.96086 21.7893 9.46957 22 10 22H20C20.5304 22 21.0391 21.7893 21.4142 21.4142C21.7893 21.0391 22 20.5304 22 20V12C22 11.7348 21.8946 11.4804 21.7071 11.2929C21.5196 11.1054 21.2652 11 21 11ZM15 18C12.243 18 10 15.757 10 13H12C12 14.654 13.346 16 15 16C16.654 16 18 14.654 18 13H20C20 15.757 17.757 18 15 18Z" fill="#FF9F43"/>
+                                        </svg>
+
+
+                                    </div>
+                                    <div>
+                                        <p class="mb-2" style="color: white">Sotuvlar soni</p>
+                                        <h4 style="color: white">{{ sotuvlar }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="card card-block card-stretch card-height" style="background-color: #00cfe8">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4 card-total-sale">
+                                    <div class="icon iq-icon-box-2 bg-danger-light" style="background-color: white !important;">
+
+
+                                    <svg width="36" height="38" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0H12V2H0V0ZM5 4V10H0L6 16L12 10H7V4H5Z" fill="#00cfe8"/>
+                                    </svg>
+
+
+                                    </div>
+                                    <div>
+                                        <p class="mb-2" style="color: white">Foyda</p>
+                                        <h4 style="color: white">{{ foyda }} UZS</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="card card-block card-stretch card-height" style="background-color: #EA5455">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4 card-total-sale">
+                                    <div class="icon iq-icon-box-2 bg-success-light" style="background-color: white !important;">
+
+<svg width="36" height="38" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 14H12V16H0V14ZM6 0L0 6H5V12H7V6H12L6 0Z" fill="#EA5455"/>
+</svg>
+
+                                    </div>
+                                    <div>
+                                        <p class="mb-2" style="color: white">Umumiy Xarajat</p>
+                                        <h4 style="color: white">{{ xarajat }} UZS</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-3">
+                        <div class="card card-block card-stretch card-height">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4 card-total-sale">
+                                    <div class="icon iq-icon-box-2 bg-success-light" style="background-color: #28C76F !important;">
+
+                                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 4H3C2.73478 4 2.48043 4.10536 2.29289 4.29289C2.10536 4.48043 2 4.73478 2 5V19C2 19.2652 2.10536 19.5196 2.29289 19.7071C2.48043 19.8946 2.73478 20 3 20H21C21.2652 20 21.5196 19.8946 21.7071 19.7071C21.8946 19.5196 22 19.2652 22 19V5C22 4.73478 21.8946 4.48043 21.7071 4.29289C21.5196 4.10536 21.2652 4 21 4ZM20 15C19.2044 15 18.4413 15.3161 17.8787 15.8787C17.3161 16.4413 17 17.2044 17 18H7C7 17.2044 6.68393 16.4413 6.12132 15.8787C5.55871 15.3161 4.79565 15 4 15V9C4.79565 9 5.55871 8.68393 6.12132 8.12132C6.68393 7.55871 7 6.79565 7 6H17C17 6.79565 17.3161 7.55871 17.8787 8.12132C18.4413 8.68393 19.2044 9 20 9V15Z" fill="#fff"/>
+<path d="M12 8C9.794 8 8 9.794 8 12C8 14.206 9.794 16 12 16C14.206 16 16 14.206 16 12C16 9.794 14.206 8 12 8ZM12 14C10.897 14 10 13.103 10 12C10 10.897 10.897 10 12 10C13.103 10 14 10.897 14 12C14 13.103 13.103 14 12 14Z" fill="#fff"/>
+</svg>
+
+                                    </div>
+                                    <div>
+                                        <p class="mb-2">Mijozlar</p>
+                                        <h4>4589 M</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="card card-block card-stretch card-height">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4 card-total-sale">
+                                    <div class="icon iq-icon-box-2 bg-success-light" style="background-color: #FF9F43 !important;">
+                                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 20H6V10C6 9.73478 6.10536 9.48043 6.29289 9.29289C6.48043 9.10536 6.73478 9 7 9H19V7C19 6.73478 18.8946 6.48043 18.7071 6.29289C18.5196 6.10536 18.2652 6 18 6H14.949C14.697 3.756 12.81 2 10.5 2C8.19 2 6.303 3.756 6.051 6H3C2.73478 6 2.48043 6.10536 2.29289 6.29289C2.10536 6.48043 2 6.73478 2 7V18C2 18.5304 2.21071 19.0391 2.58579 19.4142C2.96086 19.7893 3.46957 20 4 20ZM10.5 4C11.707 4 12.718 4.86 12.95 6H8.05C8.282 4.86 9.293 4 10.5 4Z" fill="#fff"/>
+                                        <path d="M21 11H9C8.73478 11 8.48043 11.1054 8.29289 11.2929C8.10536 11.4804 8 11.7348 8 12V20C8 20.5304 8.21071 21.0391 8.58579 21.4142C8.96086 21.7893 9.46957 22 10 22H20C20.5304 22 21.0391 21.7893 21.4142 21.4142C21.7893 21.0391 22 20.5304 22 20V12C22 11.7348 21.8946 11.4804 21.7071 11.2929C21.5196 11.1054 21.2652 11 21 11ZM15 18C12.243 18 10 15.757 10 13H12C12 14.654 13.346 16 15 16C16.654 16 18 14.654 18 13H20C20 15.757 17.757 18 15 18Z" fill="#fff"/>
+                                        </svg>
+
+                                    </div>
+                                    <div>
+                                        <p class="mb-2">Umumiy Xarajat</p>
+                                        <h4>4589 M</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="card card-block card-stretch card-height">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4 card-total-sale">
+                                    <div class="icon iq-icon-box-2 bg-success-light" style="background-color: #00cfe8 !important;">
+
+<svg width="36" height="38" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0H12V2H0V0ZM5 4V10H0L6 16L12 10H7V4H5Z" fill="#fff"/>
+</svg>
+
+
+                                    </div>
+                                    <div>
+                                        <p class="mb-2"></p>
+                                        <h4>4589 M</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="card card-block card-stretch card-height">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4 card-total-sale">
+                                    <div class="icon iq-icon-box-2 bg-success-light" style="background-color: #EA5455 !important;">
+
+<svg width="36" height="38" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 14H12V16H0V14ZM6 0L0 6H5V12H7V6H12L6 0Z" fill="#fff"/>
+</svg>
+
+                                    </div>
+                                    <div>
+                                        <p class="mb-2">Umumiy Xarajat</p>
+                                        <h4>4589 M</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card card-block card-stretch card-height">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">10 kam qolgan mahsulotlar</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled row top-product mb-0">
+                            <li class="col-lg-3">
+                                <div class="card card-block card-stretch card-height mb-0">
+                                    <div class="card-body">
+                                        <div class="bg-warning-light rounded">
+                                            <img src="assets/images/product/01.png" class="style-img img-fluid m-auto p-3" alt="image">
+                                        </div>
+                                        <div class="style-text text-left mt-3">
+                                            <h5 class="mb-1">Organic Cream</h5>
+                                            <p class="mb-0">789 Item</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-lg-3">
+                                <div class="card card-block card-stretch card-height mb-0">
+                                    <div class="card-body">
+                                        <div class="bg-danger-light rounded">
+                                            <img src="assets/images/product/02.png" class="style-img img-fluid m-auto p-3" alt="image">
+                                        </div>
+                                        <div class="style-text text-left mt-3">
+                                            <h5 class="mb-1">Rain Umbrella</h5>
+                                            <p class="mb-0">657 Item</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-lg-3">
+                                <div class="card card-block card-stretch card-height mb-0">
+                                    <div class="card-body">
+                                        <div class="bg-info-light rounded">
+                                            <img src="assets/images/product/03.png" class="style-img img-fluid m-auto p-3" alt="image">
+                                        </div>
+                                        <div class="style-text text-left mt-3">
+                                            <h5 class="mb-1">Serum Bottle</h5>
+                                            <p class="mb-0">489 Item</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-lg-3">
+                                <div class="card card-block card-stretch card-height mb-0">
+                                    <div class="card-body">
+                                        <div class="bg-success-light rounded">
+                                            <img src="assets/images/product/02.png" class="style-img img-fluid m-auto p-3" alt="image">
+                                        </div>
+                                        <div class="style-text text-left mt-3">
+                                            <h5 class="mb-1">Organic Cream</h5>
+                                            <p class="mb-0">468 Item</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card-transparent card-block card-stretch mb-4">
+                    <div class="card-header d-flex align-items-center justify-content-between p-0">
+                        <div class="header-title">
+                            <h4 class="card-title mb-0">Top 5</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-block card-stretch card-height-helf" style="hieght: 250px;overflow: auto; height: 350px">
+                    <div class="card-body card-item-right">
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                        <div class="d-flex align-items-top">
+                            <div class="bg-warning-light rounded">
+                                <img src="assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                            </div>
+                            <div class="style-text text-left">
+                                <h5 class="mb-2">Coffee Beans Packet</h5>
+                                <p class="mb-2">Total Sell : 45897</p>
+                                <p class="mb-0">Total Earned : $45,89 M</p>
+                            </div>
+                        </div><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page end  -->
+    </div>
+      </div>
+    </div>
+    <!-- Wrapper End-->
+    <!-- Backend Bundle JavaScript -->
+    <script src="{% static 'assets/js/backend-bundle.min.js' %}"></script>
+
+    <!-- Table Treeview JavaScript -->
+    <script src="{% static 'assets/js/table-treeview.js' %}"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script src="{% static 'assets/js/customizer.js' %}"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script async src="{% static 'assets/js/chart-custom.js' %}"></script>
+
+    <!-- app JavaScript -->
+    <script src="{% static 'assets/js/app.js' %}"></script>
+  </body>
+</html>

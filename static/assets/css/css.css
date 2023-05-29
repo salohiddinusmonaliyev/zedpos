@@ -1,0 +1,26 @@
+.delete {
+    border: 2px solid red;
+    color: red;
+}
+
+.delete:hover {
+    background-color: red;
+    color: white;
+}
+
+.checkout {
+    background-color: #FF9F43;
+    color: white;
+}
+
+.checkout:hover {
+    background-color: #FF9F43;
+    color: white;
+}
+
+.product-submit {
+    background-color: #FF9F43;
+    border: 2px solid #FF9F43;
+    border-radius: 5px;
+    color: white;
+}
