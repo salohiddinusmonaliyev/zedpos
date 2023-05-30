@@ -36,4 +36,6 @@ urlpatterns = [
     path('product-add/', product_add_page),
     path('product-create/', product_add),
     path('archive/', archive),
+    path('warehouse/', warehouse),
+    path('warehouse-add/', warehouse_add),
 ]

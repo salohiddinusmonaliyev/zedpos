@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render, redirect
 
 from .models import *
@@ -32,3 +34,28 @@ def archive(request):
         "products": Product.objects.filter(is_active=False)
     }
     return render(request, "page-list-archive-product.html", data)
+
+def warehouse(request):
+    data = {
+        "items": Warehouse.objects.all()
+    }
+    return render(request, "warehouse.html", data)
+
+def warehouse_add(request):
+    if request.method=="POST":
+        product = request.POST.get("product")
+        product = Product.objects.get(id=product)
+        dealer = request.POST.get("dealer")
+        dealer = Dealer.objects.get(id=dealer)
+        date = datetime.now()
+        quantity = request.POST.get("quantity")
+        total_price = request.POST.get("total_price")
+        price = request.POST.get("price")
+        status = request.POST.get("status")
+        Warehouse.objects.create(product=product, dealer_id=dealer, date=date, quantity=quantity, total_price=total_price, price=price, status=status)
+        return redirect('/warehouse/')
+    data = {
+        "products": Product.objects.all(),
+        "dealers": Dealer.objects.all(),
+    }
+    return render(request, "add-warehouse.html", data)
