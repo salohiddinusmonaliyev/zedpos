@@ -40,10 +40,3 @@ class Cost(models.Model):
     def __str__(self):
         return f"{self.money}"
 
-
-class Purchase(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, blank=True, default=None)
-    sell_id = models.ForeignKey(Sell, on_delete=models.CASCADE)
-    payment = models.IntegerField()
-    time = models.DateTimeField(null=True, blank=True)
-    comment = models.CharField(max_length=200)

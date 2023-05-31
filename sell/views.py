@@ -67,12 +67,23 @@ def saleitem_create(request, saleid):
             message = messages.error(request, "Code error")
             return redirect(f"/sale-add/{saleid}/")
 
-def checkout(request, saleid, total_price):
-    sale = Sell.objects.get(id=saleid)
-    sale.checkout = True
-    sale.total_price = total_price
-    sale.save()
-    return redirect(f"/sale-add/{saleid}/")
+def checkout(request, saleid):
+    if request.method=="POST":
+        saleitem = SellItem.objects.filter(sell_id=saleid)
+        total_price = 0
+        for sale in saleitem:
+            total_price = total_price + (sale.product.price * sale.quantity)
+        sale = Sell.objects.get(id=saleid)
+        sale.checkout = True
+        sale.total_price = total_price
+        customer = request.POST.get('customer')
+        if customer=="---------":
+            sale.client = None
+        else:
+            customer = Client.objects.get(id=customer)
+            sale.client = customer
+        sale.save()
+        return redirect(f"/sale-list/")
 
 def sale_delete(request, saleid):
     sale = Sell.objects.get(id=saleid)

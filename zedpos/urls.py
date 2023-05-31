@@ -30,7 +30,7 @@ urlpatterns = [
     path('sale-add/', create_sale),
     path('<int:saleid>/delete/<int:id>/', saleitem_delete),
     path('<int:saleid>/add/', saleitem_create),
-    path('<int:saleid>/checkout/<int:total_price>/', checkout),
+    path('<int:saleid>/checkout/', checkout),
     path('<int:saleid>/delete/', sale_delete),
     path('product/', include('product.urls')),
     path('warehouse/', include('warehouse.urls')),
