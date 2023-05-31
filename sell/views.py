@@ -80,7 +80,7 @@ def sale_delete(request, saleid):
     for saleitem in saleitems:
         saleitem.delete()
     sale.delete()
-    return redirect("/")
+    return redirect("/sale-list/")
 
 #
 # class SellItemViewSet(APIView):

@@ -24,3 +24,10 @@
     border-radius: 5px;
     color: white;
 }
+
+.archive-btn {
+    background-color: red;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: white;
+}
