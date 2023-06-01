@@ -13,12 +13,23 @@ def dashboard(request):
     products = Product.objects.all()
     products_price = 0
     for p in products:
-        products_price += products_price+p.price
+        if p.is_active==True:
+            products_price += products_price+(p.price*p.quantity)
+        else:
+            products_price += 0
     for s in sales:
-        total_price+=s.total_price+total_price
+        if s.total_price==None:
+            total_price+=0
+        else:
+            total_price=int(s.total_price)+int(total_price)
 
     customers = Client.objects.all()
-    debtors = Client.objects.filter(debt__gte=0)
+    debtors = Client.objects.filter(debt__gte=1)
+
+    costs = Cost.objects.all()
+    cost = 0
+    for c in costs:
+        cost+=c.cost
     data = {
         "kam": kam,
         "sales": sales,
@@ -27,6 +38,7 @@ def dashboard(request):
         "products_price": products_price,
         "customers": customers.count(),
         "debtors": debtors.count(),
+        "cost": cost,
     }
     return render(request, "index.html", data)
 

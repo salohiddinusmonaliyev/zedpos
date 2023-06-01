@@ -34,4 +34,6 @@ urlpatterns = [
     path('<int:saleid>/delete/', sale_delete),
     path('product/', include('product.urls')),
     path('warehouse/', include('warehouse.urls')),
+    path('cost-list/', cost_list),
+    path('cost-add/', cost_create),
 ]

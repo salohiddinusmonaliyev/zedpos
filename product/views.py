@@ -21,12 +21,11 @@ def product_add(request):
     incoming = request.POST.get("incoming")
     quantity = request.POST.get("quantity")
     is_active = request.POST.get("is_active")
-    measure = request.POST.get("measure")
     if is_active=="on":
         is_active=True
     else:
         is_active=False
-    Product.objects.create(code=code, name=name, incoming_price=incoming, price=price, quantity=quantity, is_active=is_active, measure=measure)
+    Product.objects.create(code=code, name=name, incoming_price=incoming, price=price, quantity=quantity, is_active=is_active)
     return redirect("/product/list/")
 
 def archive(request, a=None):

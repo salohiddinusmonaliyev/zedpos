@@ -26,7 +26,7 @@
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="index.html" class="header-logo">
-                  <img src="assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">POSDash</h5>
+                  <img src="assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">ZEDPOS</h5>
               </a>
               <div class="iq-menu-bt-sidebar ml-0">
                       <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
@@ -117,6 +117,34 @@
                           </ul>
                       </li>
                       <li class=" ">
+                          <a href="#cost" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg width="20" height="20" viewBox="0 0 12 16" fill="grey" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 14H12V16H0V14ZM6 0L0 6H5V12H7V6H12L6 0Z" fill=""></path>
+</svg>
+                              <span class="ml-4">Cost</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="cost" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                  <li class="">
+                                          <a href="/cost-list/">
+                                              <span>List Cost</span>
+                                          </a>
+                                  </li>
+<!--                                <li class="">-->
+<!--                                          <a href="/cost-categories/">-->
+<!--                                              <span>Category</span>-->
+<!--                                          </a>-->
+<!--                                  </li>-->
+                                  <li class="">
+                                          <a href="/cost-add/">
+                                              <span>Add Cost</span>
+                                          </a>
+                                  </li>
+                          </ul>
+                      </li>
+                      <li class=" ">
                           <a href="#people" class="collapsed" data-toggle="collapse" aria-expanded="false">
                               <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
@@ -151,7 +179,7 @@
                       
                       <a href="index.html" class="header-logo">
                           <img src="assets/images/logo.png" class="img-fluid rounded-normal" alt="logo">
-                          <h5 class="logo-title ml-3">POSDash</h5>
+                          <h5 class="logo-title ml-3">ZEDPOS</h5>
 
                       </a>
                   </div>
@@ -172,7 +200,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="/product-create/" method="post" data-toggle="validator">{% csrf_token %}
+                        <form action="/product/create/" method="post" data-toggle="validator">{% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -206,13 +234,6 @@
                                     <div class="form-group">
                                         <label>Quantity *</label>
                                         <input name="quantity" type="text" class="form-control" placeholder="Enter Quantity" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Measure *</label>
-                                        <input name="measure" type="text" class="form-control" placeholder="Enter Measure" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

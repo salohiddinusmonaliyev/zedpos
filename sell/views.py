@@ -93,6 +93,35 @@ def sale_delete(request, saleid):
     sale.delete()
     return redirect("/sale-list/")
 
+def cost_list(request):
+    data = {
+        "costs": Cost.objects.all()
+    }
+    return render(request, "list-cost.html", data)
+
+# def cost_category(request):
+#     data = {
+#         "categories": CostCategory.objects.all()
+#     }
+#     return render(request, "list-category.html", data)
+
+def cost_create(request):
+    if request.method=="POST":
+        cost = request.POST.get("cost")
+        worker = request.POST.get("worker")
+        category = request.POST.get("category")
+        category = CostCategory.objects.get(id=category)
+        worker = User.objects.get(id=worker)
+        Cost.objects.create(cost=cost, category=category, worker=worker, date=datetime.now())
+        return redirect('/cost-list/')
+    data = {
+        "category": CostCategory.objects.all(),
+        "worker": User.objects.all()
+    }
+    return render(request, "add-cost.html", data)
+
+
+
 #
 # class SellItemViewSet(APIView):
 #     queryset = SellItem.objects.all()
