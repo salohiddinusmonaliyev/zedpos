@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+      <title>ZEDPOS</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -26,7 +26,7 @@
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="index.html" class="header-logo">
-                  <img src="assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">POSDash</h5>
+                  <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">ZEDPOS</h5>
               </a>
               <div class="iq-menu-bt-sidebar ml-0">
                       <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
@@ -37,7 +37,7 @@
               <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="iq-menu">
                       <li class="">
-                          <a href="index.html" class="svg-icon">
+                          <a href="/" class="svg-icon">
                               <svg  class="svg-icon" id="p-dash1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
                               </svg>
@@ -56,25 +56,41 @@
                           </a>
                           <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                               <li class="">
-                                  <a href="page-list-product.html">
+                                  <a href="/product/list/">
                                       <span>List Product</span>
                                   </a>
                               </li>
                               <li class="">
-                                  <a href="page-add-product.html">
+                                  <a href="/product/add/">
                                       <span>Add Product</span>
                                   </a>
                               </li>
                               <li class="">
-                                  <a href="/archive/">
+                                  <a href="/product/archive/">
                                       <span>Archive</span>
                                   </a>
                               </li>
-                              <li class="">
-                                  <a href="/warehouse/">
-                                      <span>Warehouse</span>
-                                  </a>
-                              </li>
+                          </ul>
+                      </li>
+                      <li class=" ">
+                          <a href="#warehouse" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg class="svg-icon"id="p-dash5" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="#5c0bd6"><path d="M0 488V171.3C0 145.2 15.93 121.6 40.23 111.9L308.1 4.753C315.7 1.702 324.3 1.702 331.9 4.753L599.8 111.9C624.1 121.6 640 145.2 640 171.3V488C640 501.3 629.3 512 616 512H568C554.7 512 544 501.3 544 488V223.1C544 206.3 529.7 191.1 512 191.1H128C110.3 191.1 96 206.3 96 223.1V488C96 501.3 85.25 512 72 512H24C10.75 512 0 501.3 0 488zM152 512C138.7 512 128 501.3 128 488V432H512V488C512 501.3 501.3 512 488 512H152zM128 336H512V400H128V336zM128 224H512V304H128V224z"/></svg>
+                              <span class="ml-4">Warehouse</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="warehouse" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                  <li class="">
+                                          <a href="/warehouse/list/">
+                                              <span>List</span>
+                                          </a>
+                                  </li>
+                                  <li class="">
+                                          <a href="/warehouse/add/">
+                                              <span>Add</span>
+                                          </a>
+                                  </li>
                           </ul>
                       </li>
                       <li class=" ">
@@ -89,36 +105,41 @@
                           </a>
                           <ul id="sale" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                   <li class="">
-                                          <a href="page-list-sale.html">
+                                          <a href="/sale-list/">
                                               <span>List Sale</span>
                                           </a>
                                   </li>
                                   <li class="">
-                                          <a href="page-add-sale.html">
+                                          <a href="/sale-add/">
                                               <span>Add Sale</span>
                                           </a>
                                   </li>
                           </ul>
                       </li>
                       <li class=" ">
-                          <a href="#purchase" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                              <svg class="svg-icon" id="p-dash5" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                                  <line x1="1" y1="10" x2="23" y2="10"></line>
-                              </svg>
-                              <span class="ml-4">Purchases</span>
+                          <a href="#cost" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg width="20" height="20" viewBox="0 0 12 16" fill="#5c0bd6" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 14H12V16H0V14ZM6 0L0 6H5V12H7V6H12L6 0Z" fill=""></path>
+</svg>
+                              <span class="ml-4">Cost</span>
                               <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                               </svg>
                           </a>
-                          <ul id="purchase" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                          <ul id="cost" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                   <li class="">
-                                          <a href="page-list-purchase.html">
-                                              <span>List Purchases</span>
+                                          <a href="/cost-list/">
+                                              <span>List Cost</span>
                                           </a>
                                   </li>
-                                  <li class="active">
-                                          <a href="page-add-purchase.html">
-                                              <span>Add purchase</span>
+<!--                                <li class="">-->
+<!--                                          <a href="/cost-categories/">-->
+<!--                                              <span>Category</span>-->
+<!--                                          </a>-->
+<!--                                  </li>-->
+                                  <li class="">
+                                          <a href="/cost-add/">
+                                              <span>Add Cost</span>
                                           </a>
                                   </li>
                           </ul>
@@ -135,12 +156,12 @@
                           </a>
                           <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                   <li class="">
-                                          <a href="page-list-customers.html">
+                                          <a href="/customers/">
                                               <span>List Customers</span>
                                           </a>
                                   </li>
-                                  <li class="">
-                                          <a href="page-add-customers.html">
+                                  <li class="active">
+                                          <a href="/customers-add/">
                                               <span>Add Customers</span>
                                           </a>
                                   </li>
@@ -150,73 +171,67 @@
               </nav>
 
           </div>
-          </div>
-        <div class="iq-top-navbar">
+          </div>      <div class="iq-top-navbar">
           <div class="iq-navbar-custom">
               <nav class="navbar navbar-expand-lg navbar-light p-0">
                   <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                       <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
-                      <a href="#" class="header-logo">
+
+                      <a href="index.html" class="header-logo">
                           <img src="assets/images/logo.png" class="img-fluid rounded-normal" alt="logo">
-                          <h5 class="logo-title ml-3">POSDash</h5>
+                          <h5 class="logo-title ml-3">ZEDPOS</h5>
 
                       </a>
+                  </div>
+                  <div class="d-flex align-items-center">
+
                   </div>
               </nav>
           </div>
       </div>
-      <div class="content-page">
+<div class="content-page">
      <div class="container-fluid add-form-list">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Add Purchase</h4>
+                            <h4 class="card-title">Add Customer</h4>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="page-list-purchase.html" data-toggle="validator">
+                        <form action="/customers-add/" method="post" data-toggle="validator">{% csrf_token %}
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="dob">Date *</label>
-                                        <input type="datetime-local" class="form-control" id="dob" name="dob" />
+                                        <label>First Name *</label>
+                                        <input name="first_name" type="text" class="form-control" placeholder="Enter Name" data-errors="Please Enter Name." required>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Select sale *</label>
-                                        <select name="type" class="selectpicker form-control" data-style="py-0">
-                                            <option>Sale 1</option>
-                                            <option>Sale 2</option>
-                                            <option>Sale 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Payment *</label>
-                                        <input type="text" class="form-control" placeholder="Payment" required>
+                                        <label>Last Name *</label>
+                                        <input name="last_name" type="text" class="form-control" placeholder="Enter Code" data-errors="Please Enter Code." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Note</label>
-                                        <div id="quill-tool">
-                                            <button class="ql-bold" data-toggle="tooltip" data-placement="bottom" title="Bold"></button>
-                                            <button class="ql-underline" data-toggle="tooltip" data-placement="bottom" title="Underline"></button>
-                                            <button class="ql-italic" data-toggle="tooltip" data-placement="bottom" title="Add italic text <cmd+i>"></button>
-                                            <button class="ql-image" data-toggle="tooltip" data-placement="bottom" title="Upload image"></button>
-                                            <button class="ql-code-block" data-toggle="tooltip" data-placement="bottom" title="Show code"></button>
-                                        </div>
-                                        <div id="quill-toolbar">
-                                        </div>
+                                        <label>Phone Number *</label>
+                                        <input name="p_num" type="text" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Cost." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Debt *</label>
+                                        <input name="debt" type="text" class="form-control" placeholder="Enter Price" data-errors="Please Enter Price." required>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Add Purchase</button>
+                            <button type="submit" class="btn btn-primary mr-2">Add</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </form>
                     </div>
@@ -247,7 +262,6 @@
             </div>
         </div>
     </footer>
-    <!-- Backend Bundle JavaScript -->
     <!-- Backend Bundle JavaScript -->
     <script src="{% static 'assets/js/backend-bundle.min.js' %}"></script>
 

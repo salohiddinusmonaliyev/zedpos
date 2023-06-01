@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+      <title>ZEDPOS</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -23,7 +23,49 @@
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
-
+<div class="modal fade" id="debt" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="popup text-left">
+              <h4 class="mb-3">New Order</h4>
+              <form method="post" action="/debt-payment/">{% csrf_token %}
+				  <div class="content create-workform bg-body">
+                <div class="pb-3">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="select-split">
+									<div class="select-group w-100">
+										<label>Customer</label>
+										<select name="customer" style="padding: 10px; width: 100%; background:#edf2ff; border:none;">
+											{% for c in customers %}
+												<option value="{{c.id}}">{{ c.first_name }} {{ c.last_name }}</option>
+											{% endfor %}
+										</select><br>
+										<br>
+                                        <label>Payment</label>
+                                        <input name="payment" type="text" style="width: 100%; border: 1px solid #5c0bd6; border-radius: 5px;">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="col-lg-12 mt-4">
+                  <div class="d-flex flex-wrap align-items-ceter justify-content-center">
+                  <button type="submit" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #5c0bd6 ;">
+                    <h5 style=" color: white;">Payment</h5>
+                  </button>
+                  </div>
+                </div>
+              </div>
+			  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="index.html" class="header-logo">
@@ -34,6 +76,7 @@
 
               </div>
           </div>
+
           <div class="data-scrollbar" data-scroll="1">
               <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="iq-menu">
@@ -56,7 +99,7 @@
                               </svg>
                           </a>
                           <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                              <li class="active">
+                              <li class="">
                                   <a href="/product/list/">
                                       <span>List Product</span>
                                   </a>
@@ -156,7 +199,7 @@
                               </svg>
                           </a>
                           <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                  <li class="">
+                                  <li class="active">
                                           <a href="/customers/">
                                               <span>List Customers</span>
                                           </a>
@@ -192,9 +235,9 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Product List</h4>
+                        <h4 class="mb-3">Customer List</h4>
                     </div>
-                    <a href="/product/add/" class="btn btn-primary add-list"><svg width="25" height="25" style="padding-right: 7px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" fill="#ffffff"></path> </g></svg>Add Product</a>
+                    <a href="/customers-add/" class="btn btn-primary add-list"><svg width="25" height="25" style="padding-right: 7px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" fill="#ffffff"></path> </g></svg>Add Customer</a>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -208,16 +251,16 @@
                                     <label for="checkbox1" class="mb-0"></label>
                                 </div>
                             </th>
-                            <th>Product</th>
-                            <th>Code</th>
-                            <th>Price</th>
-                            <th>Incoming price</th>
-                            <th>Quantity</th>
-                            <th>Archive</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone number</th>
+                            <th>Debt</th>
+                            <th>Delete</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody class="ligth-body">
-                    {% for p in products %}
+                    {% for p in customers %}
                         <tr>
                             <td>
                                 <div class="checkbox d-inline-block">
@@ -228,20 +271,22 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        {{ p.name }}
+                                        {{ p.first_name }}
                                     </div>
                                 </div>
                             </td>
-                            <td class="filter">{{ p.code }}</td>
-                            <td>{{ p.price }} UZS</td>
-                            <td>{{ p.incoming_price }} UZS</td>
-                            <td>{{ p.quantity }}</td>
-                            <form method="post" action="/archive/{{ p.id }}/">{% csrf_token %}
+                            <td class="filter">{{ p.last_name }}</td>
+                            <td>{{ p.p_num }}</td>
+                            <td>{{ p.debt }}</td>
+                            <form method="post" action="/customer-delete/{{p.id}}/">{% csrf_token %}
                                 <td>
-                                    <button class="archive-btn">Archive</button>
+                                    <button class="archive-btn">Delete</button>
                                 </td>
                             </form>
+                            <td>
+    						    <a href="#" class="btn" data-toggle="modal" style="color:white;" data-target="#debt">Debt Repayment</a>
 
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

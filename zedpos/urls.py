@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from app.views import dashboard
+from clients.views import *
 from product.views import *
 from sell.views import *
 
@@ -36,4 +37,9 @@ urlpatterns = [
     path('warehouse/', include('warehouse.urls')),
     path('cost-list/', cost_list),
     path('cost-add/', cost_create),
+    path('customers/', clients_list),
+    path('customers-add/', customer_add),
+    path('customer-delete/<int:i>/', customer_delete),
+    path('debt-payment/', debt_payment),
+
 ]
