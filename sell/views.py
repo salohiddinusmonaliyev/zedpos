@@ -21,7 +21,7 @@ def sale_add(request, s):
     for sale in saleitem:
         total_price = total_price + (sale.product.price*sale.quantity)
     data = {
-        "products": Product.objects.all(),
+        "products": Product.objects.filter(is_active=True).order_by('code'),
         "clients": Client.objects.all(),
         "sale": s,
         "saleitems": saleitem,

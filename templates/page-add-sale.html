@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-lg-12 mt-4">
                   <div class="d-flex flex-wrap align-items-ceter justify-content-center">
-                  <button type="submit" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #FF9F43 ;">
+                  <button type="submit" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #5c0bd6 ;">
                     <h5 style=" color: white;">Checkout</h5>
                   </button>
                   <a href="/{{ sale }}/delete/" type="submit" class=" btn delete" style="width: 49%; position: relative;left: 10px;display: inline; background-color: red; color: white;">
@@ -108,9 +108,9 @@
                 </div>
               </div>
 				<form method="post" action="/{{sale}}/add/">{% csrf_token %}
-                  <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Code" style="border: 2px solid #FF9F43; border-radius: 4px; margin-bottom: 5px; width: 150px;">
-                  <input name="quantity" type="text" id="myInput2" placeholder="Quantity" style="border: 2px solid #FF9F43; border-radius: 4px; margin-bottom: 5px; width: 150px;">
-                  <button type="submit" class="product-submit">Submit</button>
+                  <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Code" style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
+                  <input name="quantity" type="text" id="myInput2" placeholder="Quantity" style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
+                  <button type="submit" class="product-btn">Submit</button>
                 </form>
                 <hr>
               <div class="container" style="border-color: black; background-color: white; overflow: auto; height: 600px;">
@@ -315,10 +315,10 @@
                       <!--												<h6>5.00 UZS</h6>-->
                       <!--											</li>-->
                       <li class="total-value">
-                        <h5 style="color: #FF9F43;">Total</h5>
-                        <h6 style="color: #FF9F43;">{{total_price}} UZS</h6>
+                        <h5 style="color: #5c0bd6;">Total</h5>
+                        <h6 style="color: #5c0bd6;">{{total_price}} UZS</h6>
                       </li>
-						<a href="#" class="btn border add-btn mx-2 d-md-block" data-toggle="modal" style="width: 100%; background-color: #FF9F43; color: white;" data-target="#new-order">Checkout</a>
+						<a href="#" class="btn border add-btn mx-2 d-md-block" data-toggle="modal" style="width: 100%; background-color: #5c0bd6; color: white;" data-target="#new-order">Checkout</a>
                     </ul>
                   </div>
                 </div>

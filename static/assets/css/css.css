@@ -9,18 +9,18 @@
 }
 
 .checkout {
-    background-color: #FF9F43;
+    background-color: #5c0bd6;
     color: white;
 }
 
 .checkout:hover {
-    background-color: #FF9F43;
+    background-color: #5c0bd6;
     color: white;
 }
 
-.product-submit {
-    background-color: #FF9F43;
-    border: 2px solid #FF9F43;
+.product-btn {
+    background-color: #5c0bd6;
+    border: 2px solid #5c0bd6;
     border-radius: 5px;
     color: white;
 }
@@ -30,4 +30,31 @@
     border: 2px solid red;
     border-radius: 5px;
     color: white;
+}
+.btn {
+    background-color: #5c0bd6;
+    border: 2px solid #5c0bd6;
+}
+
+.btn:hover {
+    background-color: #2c0bd5;
+    border: 2px solid #2c0bd5;
+}
+
+
+.btns {
+    background-color: #5c0bd6;
+    border: 2px solid #5c0bd6;
+}
+
+.btns:hover {
+    background-color: #2c0bd5;
+}
+
+.svg-icon {
+    color:grey
+}
+
+.svg-icon:hover {
+    color: #5c0bd6;
 }
