@@ -8,8 +8,8 @@ class Dealer(models.Model):
     def __str__(self):
         return self.name
 
-class DealerOutput(models.Model):
+class Payment(models.Model):
     dealer = models.ForeignKey(Dealer, on_delete=models.SET_NULL, null=True)
-    price = models.IntegerField()
+    payment = models.IntegerField()
     date = models.DateField(auto_now=True)
     description = models.TextField(null=True, blank=True)

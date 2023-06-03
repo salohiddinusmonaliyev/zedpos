@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+from dealer.models import Payment
 from product.models import *
 from clients.models import *
 from sell.models import *
@@ -27,6 +28,10 @@ def dashboard(request):
             total_price+=0
         else:
             total_price=int(s.total_price)+int(total_price)
+    dealers = Payment.objects.all()
+    pay = 0
+    for p in dealers:
+        pay += p.payment
 
     customers = Client.objects.all()
     debtors = Client.objects.filter(debt__gte=1)
@@ -39,7 +44,7 @@ def dashboard(request):
     data = {
         "kam": kam,
         "sales": sales,
-        "total_price": total_price,
+        "total_price": total_price-pay,
         "products": products.count(),
         "products_price": products_price,
         "customers": customers.count(),

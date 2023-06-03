@@ -1,11 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from rest_framework.viewsets import ModelViewSet
+from dealer.models import *
 
-from .models import *
-from . serializer import *
 
-# Create your views here.
-class DealerViewSet(ModelViewSet):
-    queryset = Dealer.objects.all()
-    serializer_class = DealerSerializer
+def list(request):
+    data = {
+        'dealers': Dealer.objects.all()
+    }
+    return render(request, 'dealers.html', data)
+
+def add(request):
+    if request.method=="POST":
+        name = request.POST.get("name")
+        pnum = str(request.POST.get("pnum"))
+        Dealer.objects.create(name=name, phone_num=pnum)
+        return redirect('/dealers/')
+    return render(request, 'add-dealers.html')
+
+def payment(request):
+    payment = request.POST.get("payment")
+    dealer = request.POST.get("dealer")
+    dealer = Dealer.objects.get(id=dealer)
+    Payment.objects.create(payment=payment, dealer=dealer)
+    return redirect('/dealers/')
+
+
+
+
+
+
+
+
+
+
+
+
+# from rest_framework.viewsets import ModelViewSet
+#
+# from .models import *
+# from . serializer import *
+#
+# # Create your views here.
+# class DealerViewSet(ModelViewSet):
+#     queryset = Dealer.objects.all()
+#     serializer_class = DealerSerializer
