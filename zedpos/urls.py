@@ -41,5 +41,5 @@ urlpatterns = [
     path('customers-add/', customer_add),
     path('customer-delete/<int:i>/', customer_delete),
     path('debt-payment/', debt_payment),
-
+    path('<int:saleid>/refresh/<int:tp>/', refresh),
 ]

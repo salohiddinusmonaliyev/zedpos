@@ -14,6 +14,7 @@ class Sell(models.Model):
     discount = models.IntegerField(null=True, default=0)
     checkout = models.BooleanField(null=True, blank=True)
     total_price = models.IntegerField(null=True, blank=True)
+    paid = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.id}"

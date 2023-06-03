@@ -5,11 +5,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
-    <meta name="description" content="POS - Bootstrap Admin Template" />
+    <meta name="description" content="ZEDPOS" />
     <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
-    <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
+    <meta name="author" content="ZEDPOS" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>Dreams Pos admin template</title>
+    <title>ZEDPOS</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}" />
 
@@ -66,8 +66,10 @@
 											{% endfor %}
 										</select><br>
 										<br>
-										<h5 style="display: inline;">Total</h5>
-										<h5 style="display: inline; position: absolute; right: 15px;">{{ total_price }} UZS</h5>
+                    <label>Paid</label>
+                    <input name="paid" type="text" style="padding: 10px; width: 100%; background:#edf2ff; border: 0.5px solid #5c0bd6; border-radius: 8px;">
+                    <h5 style="display: inline; position: relative; top: 50px;">Total</h5>
+										<h5 style="display: inline; position: absolute; right: 15px;bottom: -40px;">{{ total_price }} UZS</h5>
 									</div>
 								</div>
 							</div>
@@ -318,7 +320,11 @@
                         <h5 style="color: #5c0bd6;">Total</h5>
                         <h6 style="color: #5c0bd6;">{{total_price}} UZS</h6>
                       </li>
-						<a href="#" class="btn border add-btn mx-2 d-md-block" data-toggle="modal" style="width: 100%; background-color: #5c0bd6; color: white;" data-target="#new-order">Checkout</a>
+                      {% if checkout == True %}
+                      <a href="/{{ sale }}/refresh/{{ total_price }}/" class="btn border add-btn mx-2 d-md-block" style="width: 100%; background-color: #5c0bd6; color: white;">Refresh</a>
+                      {% else %}
+						          <a href="#" class="btn border add-btn mx-2 d-md-block" data-toggle="modal" style="width: 100%; background-color: #5c0bd6; color: white;" data-target="#new-order">Checkout</a>
+                      {% endif %}
                     </ul>
                   </div>
                 </div>

@@ -11,7 +11,7 @@ from django.contrib import messages
 
 def sale_list(request):
     data = {
-        "sales": Sell.objects.all(),
+        "sales": Sell.objects.all().order_by('id'),
     }
     return render(request, "page-list-sale.html", data)
 
@@ -52,7 +52,7 @@ def saleitem_create(request, saleid):
             saleitems = SellItem.objects.all()
             code = request.POST.get("code")
             quantity = request.POST.get("quantity")
-            product = Product.objects.get(code=code)
+            product = Product.objects.get(is_active=True, code=code)
             # print("-----------")
             # print(product.quantity-int(quantity))
             for s in saleitems:
@@ -74,15 +74,31 @@ def checkout(request, saleid):
         for sale in saleitem:
             total_price = total_price + (sale.product.price * sale.quantity)
         sale = Sell.objects.get(id=saleid)
-        sale.checkout = True
-        sale.total_price = total_price
-        customer = request.POST.get('customer')
-        if customer=="---------":
-            sale.client = None
+        paid = request.POST.get('paid')
+        if paid==total_price:
+            sale.checkout = True
+            sale.total_price = total_price
+            customer = request.POST.get('customer')
+            sale.paid = paid
+            if customer=="---------":
+                sale.client = None
+            else:
+                customer = Client.objects.get(id=customer)
+                sale.client = customer
+            sale.save()
         else:
-            customer = Client.objects.get(id=customer)
-            sale.client = customer
-        sale.save()
+            sale.checkout = True
+            sale.total_price = total_price
+            customer = request.POST.get('customer')
+            if customer=="---------":
+                messages.error(request, "error")
+            else:
+                customer = Client.objects.get(id=customer)
+                customer.debt += int(total_price)-int(paid)
+                customer.save()
+                sale.client = customer
+            sale.paid = paid
+            sale.save()
         return redirect(f"/sale-list/")
 
 def sale_delete(request, saleid):
@@ -92,6 +108,12 @@ def sale_delete(request, saleid):
         saleitem.delete()
     sale.delete()
     return redirect("/sale-list/")
+
+def refresh(request, saleid, tp):
+    sale = Sell.objects.get(id=saleid)
+    sale.total_price = tp
+    sale.save()
+    return redirect('/sale-list/')
 
 def cost_list(request):
     data = {

@@ -8,15 +8,12 @@ import datetime
 # Create your views here.
 def dashboard(request):
     sales = Sell.objects.all()
-    kam = Product.objects.filter(quantity__lte=10)
+    kam = Product.objects.filter(is_active=True, quantity__lte=10)
     total_price = 0
-    products = Product.objects.all()
+    products = Product.objects.filter(is_active=True)
     products_price = 0
     for p in products:
-        if p.is_active==True:
-            products_price += products_price+(p.price*p.quantity)
-        else:
-            products_price += 0
+        products_price = products_price+(p.incoming_price*p.quantity)
     for s in sales:
         if s.total_price==None:
             total_price+=0

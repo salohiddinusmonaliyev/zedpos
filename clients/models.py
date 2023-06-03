@@ -10,6 +10,5 @@ class Client(models.Model):
     p_num = models.CharField(("Phone number"), max_length=20)
     debt = models.IntegerField(("Debt"), null=True, blank=True, default=0)
 
-
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

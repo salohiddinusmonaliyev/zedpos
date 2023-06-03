@@ -47,7 +47,7 @@ def warehouse_add(request):
         Warehouse.objects.create(product=product, dealer_id=dealer, date=date, quantity=quantity, total_price=total_price, price=price, status=status)
         return redirect('/warehouse/list/')
     data = {
-        "products": Product.objects.all(),
+        "products": Product.objects.filter(is_active=True).order_by('code'),
         "dealers": Dealer.objects.all(),
     }
     return render(request, "add-warehouse.html", data)

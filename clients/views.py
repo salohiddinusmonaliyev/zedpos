@@ -29,6 +29,7 @@ def customer_add(request):
         debt = request.POST.get('debt')
         p_num = request.POST.get('p_num')
         Client.objects.create(first_name=first_name, last_name=last_name, p_num=p_num, debt=debt)
+        return redirect('/customers/')
     return render(request, "page-add-customers.html")
 
 
