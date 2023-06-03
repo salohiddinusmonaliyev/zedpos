@@ -230,7 +230,7 @@
 
                                     </div>
                                     <div>
-                                        <p class="mb-2" style="color: white">Sotuvlar</p>
+                                        <p class="mb-2" style="color: white">Daromad</p>
                                         <h4 style="color: white">{{ total_price }} UZS</h4>
                                     </div>
                                 </div>
@@ -272,7 +272,7 @@
 
                                     </div>
                                     <div>
-                                        <p class="mb-2" style="color: white">Daromad</p>
+                                        <p class="mb-2" style="color: white">Foyda</p>
                                         <h4 style="color: white">{{ foyda }} UZS</h4>
                                     </div>
                                 </div>
@@ -380,71 +380,19 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled row top-product mb-0">
-                            <li class="col-lg-3">
+                            {% for p in top5 %}
+                            <li class="col-lg-3" style="border: 1px solid #5c0bd6; border-radius: 10px; margin: 15px; margin-left: 10px;">
                                 <div class="card card-block card-stretch card-height mb-0">
                                     <div class="card-body">
-                                        <div class="bg-warning-light rounded">
-                                            <img src="assets/images/product/01.png" class="style-img img-fluid m-auto p-3" alt="image">
-                                        </div>
-                                        <div class="style-text text-left mt-3">
-                                            <h5 class="mb-1">Organic Cream</h5>
-                                            <p class="mb-0">789 Item</p>
+                                        <div class="style-text text-left mt-4">
+                                            <h5 class="mb-1">{{ p.name }}</h5>
+                                            <p class="mb-0">Sold: {{ p.count }}</p>
+                                            <p class="mb-0">Code: {{ p.code }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="col-lg-3">
-                                <div class="card card-block card-stretch card-height mb-0">
-                                    <div class="card-body">
-                                        <div class="bg-danger-light rounded">
-                                            <img src="assets/images/product/02.png" class="style-img img-fluid m-auto p-3" alt="image">
-                                        </div>
-                                        <div class="style-text text-left mt-3">
-                                            <h5 class="mb-1">Rain Umbrella</h5>
-                                            <p class="mb-0">657 Item</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-lg-3">
-                                <div class="card card-block card-stretch card-height mb-0">
-                                    <div class="card-body">
-                                        <div class="bg-info-light rounded">
-                                            <img src="assets/images/product/03.png" class="style-img img-fluid m-auto p-3" alt="image">
-                                        </div>
-                                        <div class="style-text text-left mt-3">
-                                            <h5 class="mb-1">Serum Bottle</h5>
-                                            <p class="mb-0">489 Item</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-lg-3">
-                                <div class="card card-block card-stretch card-height mb-0">
-                                    <div class="card-body">
-                                        <div class="bg-success-light rounded">
-                                            <img src="assets/images/product/02.png" class="style-img img-fluid m-auto p-3" alt="image">
-                                        </div>
-                                        <div class="style-text text-left mt-3">
-                                            <h5 class="mb-1">Organic Cream</h5>
-                                            <p class="mb-0">468 Item</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-lg-3">
-                                <div class="card card-block card-stretch card-height mb-0">
-                                    <div class="card-body">
-                                        <div class="bg-success-light rounded">
-                                            <img src="assets/images/product/02.png" class="style-img img-fluid m-auto p-3" alt="image">
-                                        </div>
-                                        <div class="style-text text-left mt-3">
-                                            <h5 class="mb-1">Organic Cream</h5>
-                                            <p class="mb-0">468 Item</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>

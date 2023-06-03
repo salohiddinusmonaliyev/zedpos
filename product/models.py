@@ -15,6 +15,7 @@ class Product(models.Model):
     price = models.IntegerField()
     quantity = models.IntegerField(null=True)
     is_active = models.BooleanField(default=True)
+    count = models.IntegerField(null=True, blank=True, default=0)
 
     def __str__(self):
         return self.name

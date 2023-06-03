@@ -60,8 +60,10 @@ def saleitem_create(request, saleid):
                     return redirect(f"/sale-add/{saleid}/")
             if product.quantity-int(quantity)>=0:
                 product.quantity = product.quantity-int(quantity)
+                product.count += int(quantity)
                 product.save()
                 SellItem.objects.create(sell_id=sale, product=product, date=datetime.now(), quantity=quantity)
+
             return redirect(f"/sale-add/{saleid}/")
         except:
             message = messages.error(request, "Code error")

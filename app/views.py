@@ -12,8 +12,16 @@ def dashboard(request):
     total_price = 0
     products = Product.objects.filter(is_active=True)
     products_price = 0
+    data = SellItem.objects.filter()
+    foyda = 0
+    for i in data:
+        product_price = (int(i.quantity) * i.product.price)
+        product_kelgan = (int(i.quantity) * i.product.incoming_price)
+        foyda = foyda + (product_price - product_kelgan)
+    my_list = []
     for p in products:
         products_price = products_price+(p.incoming_price*p.quantity)
+        my_list.append(p.count)
     for s in sales:
         if s.total_price==None:
             total_price+=0
@@ -27,6 +35,7 @@ def dashboard(request):
     cost = 0
     for c in costs:
         cost+=c.cost
+
     data = {
         "kam": kam,
         "sales": sales,
@@ -36,6 +45,8 @@ def dashboard(request):
         "customers": customers.count(),
         "debtors": debtors.count(),
         "cost": cost,
+        "foyda": foyda,
+        "top5": Product.objects.all().order_by('count')[:5],
     }
     return render(request, "index.html", data)
 
