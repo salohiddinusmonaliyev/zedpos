@@ -12,3 +12,10 @@ class Client(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+class Payment(models.Model):
+    customer = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
+    payment = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.payment} | {self.customer}"

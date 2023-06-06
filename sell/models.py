@@ -20,13 +20,13 @@ class Sell(models.Model):
         return f"{self.id}"
 
 class SellItem(models.Model):
-    sell_id = models.ForeignKey(Sell, on_delete=models.CASCADE)
+    sell_id = models.ForeignKey(Sell, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-    date = models.DateTimeField(null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
     quantity = models.IntegerField()
 
     def __str__(self):
-        return f"{self.id} {self.product.name} {self.sell_id.time}"
+        return f"{self.id} {self.product.name}"
 
 
 class CostCategory(models.Model):

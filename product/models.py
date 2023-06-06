@@ -15,6 +15,7 @@ class Product(models.Model):
     price = models.IntegerField()
     quantity = models.IntegerField(null=True)
     is_active = models.BooleanField(default=True)
+    measure = models.ForeignKey(Measure, on_delete=models.SET_NULL, null=True, blank=True)
     count = models.IntegerField(null=True, blank=True, default=0)
 
     def __str__(self):
