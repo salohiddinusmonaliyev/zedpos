@@ -17,9 +17,13 @@ def sale_list(request):
 
 def sale_add(request, s):
     saleitem = SellItem.objects.filter(sell_id=s)
+    sale_item = []
+    for item in saleitem:
+        sale_item.append({item.id: item.quantity*(item.product.price-item.discount)})
+    print(sale_item)
     total_price = 0
     for sale in saleitem:
-        total_price = total_price + (sale.product.price*sale.quantity)
+        total_price = int((total_price + (sale.product.price*sale.quantity))-(sale.discount*sale.quantity))
     data = {
         "products": Product.objects.filter(is_active=True).order_by('code'),
         "clients": Client.objects.all(),
@@ -27,6 +31,7 @@ def sale_add(request, s):
         "saleitems": saleitem,
         "checkout": Sell.objects.get(id=s).checkout,
         "total_price": total_price,
+        "sale_item": sale_item,
 
     }
     return render(request, "page-add-sale.html", data)
@@ -52,17 +57,18 @@ def saleitem_create(request, saleid):
             saleitems = SellItem.objects.all()
             code = request.POST.get("code")
             quantity = request.POST.get("quantity")
+            discount = request.POST.get("discount")
             product = Product.objects.get(is_active=True, code=code)
             # print("-----------")
             # print(product.quantity-int(quantity))
-            for s in saleitems:
-                if s.product==product and s.sell_id==sale:
-                    return redirect(f"/sale-add/{saleid}/")
+            # for s in saleitems:
+            #     if s.product==product and s.sell_id==sale:
+            #         return redirect(f"/sale-add/{saleid}/")
             if product.quantity-int(quantity)>=0:
                 product.quantity = product.quantity-int(quantity)
                 product.count += int(quantity)
                 product.save()
-                SellItem.objects.create(sell_id=sale, product=product, date=datetime.now(), quantity=quantity)
+                SellItem.objects.create(sell_id=sale, product=product, date=datetime.now(), quantity=quantity, discount=discount)
 
             return redirect(f"/sale-add/{saleid}/")
         except:
@@ -74,7 +80,7 @@ def checkout(request, saleid):
         saleitem = SellItem.objects.filter(sell_id=saleid)
         total_price = 0
         for sale in saleitem:
-            total_price = total_price + (sale.product.price * sale.quantity)
+            total_price = (total_price + (sale.product.price * sale.quantity))-(sale.discount*sale.quantity)
         sale = Sell.objects.get(id=saleid)
         paid = request.POST.get('paid')
         if paid==total_price:
@@ -96,7 +102,7 @@ def checkout(request, saleid):
                 messages.error(request, "error")
             else:
                 customer = Client.objects.get(id=customer)
-                customer.debt += int(total_price)-int(paid)
+                customer.debt = int(total_price)-float(paid)
                 customer.save()
                 sale.client = customer
             sale.paid = paid

@@ -42,5 +42,7 @@ urlpatterns = [
     path('customer-delete/<int:i>/', customer_delete),
     path('debt-payment/', debt_payment),
     path('<int:saleid>/refresh/<int:tp>/', refresh),
+    path(r'^<int:saleid>/refresh/(?P<value>\d+\.\d{2})/$', refresh),
     path('dealers/', include('dealer.urls')),
+    path('customer/<int:i>/', customer_history),
 ]

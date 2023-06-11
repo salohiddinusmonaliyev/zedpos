@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math in HTML and JS</title>
+</head>
+<body>
+    <span id="num2">{{ num2 }}</span>
+    <span id="num1">{{ num1 }}</span>
+
+    <script>
+    var num1 = parseFloat(document.getElementById("num1").innerText);
+    var num2 = parseFloat(document.getElementById("num2").innerText);
+    var multiplication = num1 * num2;
+
+    document.write("Multiplication: " + multiplication);
+</script>
+</body>
+</html>

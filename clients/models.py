@@ -13,9 +13,10 @@ class Client(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
-class Payment(models.Model):
+class CustomerPayment(models.Model):
     customer = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
-    payment = models.IntegerField()
+    paymnet = models.IntegerField()
+    date = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f"{self.payment} | {self.customer}"
+        return self.customer.first_name

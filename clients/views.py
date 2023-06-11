@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Client
+from .models import *
 
 def clients_list(request):
     data = {
@@ -19,6 +19,7 @@ def debt_payment(request):
 
     customer_debt.debt = int(customer_debt2)-int(payment)
     customer_debt.save()
+    CustomerPayment.objects.create(customer=customer_debt, paymnet=payment)
     return redirect('/customers/')
 
 
@@ -32,8 +33,11 @@ def customer_add(request):
         return redirect('/customers/')
     return render(request, "page-add-customers.html")
 
-
-
+def customer_history(request, i):
+    data = {
+        "customers": CustomerPayment.objects.filter(customer_id=i)
+    }
+    return render(request, "customer-history.html", data)
 
 
 

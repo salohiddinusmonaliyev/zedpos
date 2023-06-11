@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from dealer.models import *
+from warehouse.models import Warehouse
 
 
 def list(request):
@@ -24,7 +25,11 @@ def payment(request):
     Payment.objects.create(payment=payment, dealer=dealer)
     return redirect('/dealers/')
 
-
+def dealer_brought(request, i):
+    data = {
+        "dealers": Warehouse.objects.filter(dealer_id=i)
+    }
+    return render(request, "dealers-brought.html", data)
 
 
 

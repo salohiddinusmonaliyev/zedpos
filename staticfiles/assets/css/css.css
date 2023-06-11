@@ -1,0 +1,60 @@
+.delete {
+    border: 2px solid red;
+    color: red;
+}
+
+.delete:hover {
+    background-color: red;
+    color: white;
+}
+
+.checkout {
+    background-color: #5c0bd6;
+    color: white;
+}
+
+.checkout:hover {
+    background-color: #5c0bd6;
+    color: white;
+}
+
+.product-btn {
+    background-color: #5c0bd6;
+    border: 2px solid #5c0bd6;
+    border-radius: 5px;
+    color: white;
+}
+
+.archive-btn {
+    background-color: red;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: white;
+}
+.btn {
+    background-color: #5c0bd6;
+    border: 2px solid #5c0bd6;
+}
+
+.btn:hover {
+    background-color: #2c0bd5;
+    border: 2px solid #2c0bd5;
+}
+
+
+.btns {
+    background-color: #5c0bd6;
+    border: 2px solid #5c0bd6;
+}
+
+.btns:hover {
+    background-color: #2c0bd5;
+}
+
+.svg-icon {
+    color:grey
+}
+
+.svg-icon:hover {
+    color: #5c0bd6;
+}

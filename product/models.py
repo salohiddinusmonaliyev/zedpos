@@ -11,11 +11,11 @@ class Measure(models.Model):
 class Product(models.Model):
     code = models.IntegerField(null=True)
     name = models.CharField(max_length=50)
-    incoming_price = models.IntegerField()
+    arrival_price = models.IntegerField()
     price = models.IntegerField()
-    quantity = models.IntegerField(null=True)
+    measure = models.ForeignKey(Measure, on_delete=models.SET_NULL, null=True)
+    quantity = models.FloatField(null=True)
     is_active = models.BooleanField(default=True)
-    measure = models.ForeignKey(Measure, on_delete=models.SET_NULL, null=True, blank=True)
     count = models.IntegerField(null=True, blank=True, default=0)
 
     def __str__(self):

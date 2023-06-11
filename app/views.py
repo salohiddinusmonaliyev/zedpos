@@ -17,11 +17,11 @@ def dashboard(request):
     foyda = 0
     for i in data:
         product_price = (int(i.quantity) * i.product.price)
-        product_kelgan = (int(i.quantity) * i.product.incoming_price)
+        product_kelgan = (int(i.quantity) * i.product.arrival_price)
         foyda = foyda + (product_price - product_kelgan)
     my_list = []
     for p in products:
-        products_price = products_price+(p.incoming_price*p.quantity)
+        products_price = products_price+(p.arrival_price*p.quantity)
         my_list.append(p.count)
     for s in sales:
         if s.total_price==None:
