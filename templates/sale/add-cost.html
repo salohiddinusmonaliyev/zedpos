@@ -4,14 +4,14 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS</title>
+      <title>ZEDPOS | ZED IT ACADEMY</title>
 
       <!-- Favicon -->
-      <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
-      <link rel="stylesheet" href="{% static 'assets/css/backend-plugin.min.css' %}">
-      <link rel="stylesheet" href="{% static 'assets/css/backend.css?v=1.0.0' %}">
+      <link rel="shortcut icon" href="{% static 'zed.png' %}" />
       <link rel="stylesheet" href="{% static 'assets/css/css.css' %}">
 
+      <link rel="stylesheet" href="{% static 'assets/css/backend-plugin.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/backend.css' %}">
       <link rel="stylesheet" href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}">
       <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css' %}">
       <link rel="stylesheet" href="{% static 'assets/vendor/remixicon/fonts/remixicon.css' %}">  </head>
@@ -106,41 +106,18 @@
                               </svg>
                           </a>
                           <ul id="sale" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                  <li class="active">
-                                          <a href="/sale-list/">
+                                  <li class="">
+                                          <a href="/sale/list/">
                                               <span>List Sale</span>
                                           </a>
                                   </li>
                                   <li class="">
-                                          <a href="/sale-add/">
+                                          <a href="/sale/add/">
                                               <span>Add Sale</span>
                                           </a>
                                   </li>
                           </ul>
                       </li>
-<!--                      <li class=" ">-->
-<!--                          <a href="#return" class="collapsed" data-toggle="collapse" aria-expanded="false">-->
-<!--                              <svg class="svg-icon" id="p-dash6" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
-<!--                                  <polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line>-->
-<!--                              </svg>-->
-<!--                              <span class="ml-4">Returns</span>-->
-<!--                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
-<!--                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>-->
-<!--                              </svg>-->
-<!--                          </a>-->
-<!--                          <ul id="return" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">-->
-<!--                                  <li class="">-->
-<!--                                          <a href="page-list-returns.html">-->
-<!--                                              <span>List Returns</span>-->
-<!--                                          </a>-->
-<!--                                  </li>-->
-<!--                                  <li class="">-->
-<!--                                          <a href="page-add-return.html">-->
-<!--                                              <span>Add Return</span>-->
-<!--                                          </a>-->
-<!--                                  </li>-->
-<!--                          </ul>-->
-<!--                      </li>-->
                       <li class=" ">
                           <a href="#cost" class="collapsed" data-toggle="collapse" aria-expanded="false">
                               <svg width="20" height="20" viewBox="0 0 12 16" fill="#5c0bd6" xmlns="http://www.w3.org/2000/svg">
@@ -153,7 +130,7 @@
                           </a>
                           <ul id="cost" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                   <li class="">
-                                          <a href="/cost-list/">
+                                          <a href="/sale/cost-list/">
                                               <span>List Cost</span>
                                           </a>
                                   </li>
@@ -162,8 +139,8 @@
 <!--                                              <span>Category</span>-->
 <!--                                          </a>-->
 <!--                                  </li>-->
-                                  <li class="">
-                                          <a href="/cost-add/">
+                                  <li class="active">
+                                          <a href="/sale/cost-add/">
                                               <span>Add Cost</span>
                                           </a>
                                   </li>
@@ -221,105 +198,75 @@
               </nav>
 
           </div>
-          </div>
-        <div class="iq-top-navbar">
+          </div>      <div class="iq-top-navbar">
           <div class="iq-navbar-custom">
               <nav class="navbar navbar-expand-lg navbar-light p-0">
                   <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                       <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
-                      <a href="#" class="header-logo">
+
+                      <a href="../index.html" class="header-logo">
                           <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal" alt="logo">
                           <h5 class="logo-title ml-3">ZEDPOS</h5>
 
                       </a>
                   </div>
+                  <div class="d-flex align-items-center">
+
+                  </div>
               </nav>
           </div>
       </div>
-        <div class="content-page">
-     <div class="container-fluid">
+<div class="content-page">
+     <div class="container-fluid add-form-list">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
-                    <div>
-                        <h4 class="mb-3">Sale List</h4>
-                        <p class="mb-0">Sales enables you to effectively control sales KPIs and monitor them in one central<br>
-                         place while helping teams to reach sales goals. </p>
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Add Cost</h4>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="table-responsive rounded mb-3">
-                <table class="data-table table mb-0 tbl-server-info">
-                    <thead class="bg-white text-uppercase">
-                        <tr class="ligth ligth-data">
-                            <th>ID</th>
-                            <th>Date</th>
-                            <th>Customer</th>
-                            <th>Total</th>
-                            <th>Paid</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                        <tbody class="ligth-body">
-                        {% for s in sales %}
-                            <tr>
-                                <td><a href="/sale-add/{{ s.id }}/" style="color: black;">{{ s.id }}</a></td>
-                                <td><a href="/sale-add/{{ s.id }}/" style="color: black;">{{ s.time }}</a></td>
-                                <td><a href="/sale-add/{{ s.id }}/" style="color: black;">{{ s.client }}</a></td>
-                                <td><a href="/sale-add/{{ s.id }}/" style="color: black;">{{ s.total_price }}</a></td>
-                                <td><a href="/sale-add/{{ s.id }}/" style="color: black;">{{ s.paid }}</a></td>
-                                {% if s.checkout == True and s.total_price == s.paid %}
-                                <td><div class="badge badge-success">Paid</div></td>
-                                {% elif s.total_price != s.paid and s.checkout == True %}
-                                <td><div class="badge badge-warning">50%</div></td>
-                                {% else %}
-                                <td><div class="badge badge-warning">Unpaid</div></td>
-                                {% endif %}
-
-                            </tr>
-
-                        {% endfor %}
-                    </tbody>
-                </table>
+                    <div class="card-body">
+                        <form action="/cost-add/" method="post" data-toggle="validator">{% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Category *</label>
+                                        <select class="form-control" name="category">
+                                            {% for w in category %}
+                                            <option value="{{w.id}}">{{ w.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Cost *</label>
+                                        <input name="cost" type="text" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Cost." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Worker *</label>
+                                        <select class="form-control" name="worker">
+                                            {% for w in worker %}
+                                            <option value="{{w.id}}">{{ w.first_name }} {{ w.last_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Add</button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Page end  -->
-    </div>
-    <!-- Modal Edit -->
-    <div class="modal fade" id="edit-note" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="popup text-left">
-                        <div class="media align-items-top justify-content-between">
-                            <h3 class="mb-3">Product</h3>
-                            <div class="btn-cancel p-0" data-dismiss="modal"><i class="las la-times"></i></div>
-                        </div>
-                        <div class="content edit-notes">
-                            <div class="card card-transparent card-block card-stretch event-note mb-0">
-                                <div class="card-body px-0 bukmark">
-                                    <div class="d-flex align-items-center justify-content-between pb-2 mb-3 border-bottom">
-                                        <div class="quill-tool">
-                                        </div>
-                                    </div>
-                                    <div id="quill-toolbar1">
-                                        <p>Virtual Digital Marketing Course every week on Monday, Wednesday and Saturday.Virtual Digital Marketing Course every week on Monday</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer border-0">
-                                    <div class="d-flex flex-wrap align-items-ceter justify-content-end">
-                                        <div class="btn btn-primary mr-3" data-dismiss="modal">Cancel</div>
-                                        <div class="btn btn-outline-primary" data-dismiss="modal">Save</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
       </div>
     </div>

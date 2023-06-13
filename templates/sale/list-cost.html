@@ -9,7 +9,7 @@
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
       <link rel="stylesheet" href="{% static 'assets/css/backend-plugin.min.css' %}">
-      <link rel="stylesheet" href="{% static 'assets/css/backend.css?v=1.0.0' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/backend.css' %}">
       <link rel="stylesheet" href="{% static 'assets/css/css.css' %}">
       <link rel="stylesheet" href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}">
       <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css' %}">
@@ -27,7 +27,7 @@
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="/" class="header-logo">
-                  <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">ZEDPOS</h5>
+                <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">ZEDPOS</h5>
               </a>
               <div class="iq-menu-bt-sidebar ml-0">
                     <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
@@ -56,7 +56,7 @@
                               </svg>
                           </a>
                           <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                              <li class="active">
+                              <li class="">
                                   <a href="/product/list/">
                                       <span>List Product</span>
                                   </a>
@@ -128,7 +128,7 @@
                               </svg>
                           </a>
                           <ul id="cost" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                  <li class="">
+                                  <li class="active">
                                           <a href="/sale/cost-list/">
                                               <span>List Cost</span>
                                           </a>
@@ -202,7 +202,7 @@
                   <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                       <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
 
-                      <a href="index.html" class="header-logo">
+                      <a href="../index.html" class="header-logo">
                           <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal" alt="logo">
                           <h5 class="logo-title ml-3">ZEDPOS</h5>
 
@@ -211,53 +211,15 @@
               </nav>
           </div>
       </div>
-    <div class="modal fade" id="debt" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="popup text-left">
-              <h4 class="mb-3">New Order</h4>
-              <form method="post" action="/product/measure/">{% csrf_token %}
-				  <div class="content create-workform bg-body">
-                <div class="pb-3">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="select-split">
-									<div class="select-group w-100">
-                                        <label>Name *</label>
-                                        <input name="name" type="text" style="width: 100%; border: 1px solid #5c0bd6; border-radius: 5px;">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-                </div>
-                <div class="col-lg-12 mt-4">
-                  <div class="d-flex flex-wrap align-items-ceter justify-content-center">
-                  <button type="submit" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #5c0bd6 ;">
-                    <h5 style=" color: white;">Submit</h5>
-                  </button>
-                  </div>
-                </div>
-              </div>
-			  </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
       <div class="content-page">
      <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Product List</h4>
+                        <h4 class="mb-3">Cost List</h4>
                     </div>
-                    <a href="#" class="btn" data-toggle="modal" style="color:white; position: relative; left: 580px; height: 47px" data-target="#debt">Add Measure</a>
-                    <a href="/product/add/" class="btn btn-primary add-list"><svg width="25" height="25" style="padding-right: 7px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" fill="#ffffff"></path> </g></svg>Add Product</a>
-
+                    <!-- <a href="/product/add/" class="btn btn-primary add-list"><svg width="25" height="25" style="padding-right: 7px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" fill="#ffffff"></path> </g></svg>Add Product</a> -->
                 </div>
             </div>
             <div class="col-lg-12">
@@ -271,16 +233,14 @@
                                     <label for="checkbox1" class="mb-0"></label>
                                 </div>
                             </th>
-                            <th>Product</th>
-                            <th>Code</th>
-                            <th>Price</th>
-                            <th>Arrival price</th>
-                            <th>Quantity</th>
-                            <th>Archive</th>
+                            <th>Category</th>
+                            <th>Worker</th>
+                            <th>Cost</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody class="ligth-body">
-                    {% for p in products %}
+                    {% for p in costs %}
                         <tr>
                             <td>
                                 <div class="checkbox d-inline-block">
@@ -291,19 +251,14 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        {{ p.name }}
+                                        {{ p.category }}
                                     </div>
                                 </div>
                             </td>
-                            <td class="filter">{{ p.code }}</td>
-                            <td>{{ p.price }} UZS</td>
-                            <td>{{ p.arrival_price }} UZS</td>
-                            <td>{{ p.quantity }}</td>
-                            <form method="post" action="/archive/{{ p.id }}/">{% csrf_token %}
-                                <td>
-                                    <button class="archive-btn">Archive</button>
-                                </td>
-                            </form>
+                            <td>{{ p.worker.first_name }} {{ p.worker.last_name }}</td>
+                            <td>{{ p.cost }}</td>
+                            <td>{{ p.date }}</td>
+
 
                         </tr>
                     {% endfor %}

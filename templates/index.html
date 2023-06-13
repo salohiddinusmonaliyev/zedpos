@@ -12,7 +12,10 @@
       <link rel="stylesheet" href="{% static 'assets/css/backend.css?v=1.0.0' %}">
       <link rel="stylesheet" href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}">
       <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css' %}">
-      <link rel="stylesheet" href="{% static 'assets/vendor/remixicon/fonts/remixicon.css' %}">  </head>
+      <link rel="stylesheet" href="{% static 'assets/vendor/remixicon/fonts/remixicon.css' %}">
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  </head>
   <body class="  ">
 
     <!-- loader END -->
@@ -21,7 +24,7 @@
 
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
-              <a href="" class="header-logo">
+              <a href="/" class="header-logo">
                 <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">ZEDPOS</h5>
               </a>
               <div class="iq-menu-bt-sidebar ml-0">
@@ -101,12 +104,12 @@
                           </a>
                           <ul id="sale" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                   <li class="">
-                                          <a href="/sale-list/">
+                                          <a href="/sale/list/">
                                               <span>List Sale</span>
                                           </a>
                                   </li>
                                   <li class="">
-                                          <a href="/sale-add/">
+                                          <a href="/sale/add/">
                                               <span>Add Sale</span>
 
                                           </a>
@@ -148,7 +151,7 @@
                           </a>
                           <ul id="cost" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                   <li class="">
-                                          <a href="/cost-list/">
+                                          <a href="/sale/cost-list/">
                                               <span>List Cost</span>
                                           </a>
                                   </li>
@@ -158,7 +161,7 @@
 <!--                                          </a>-->
 <!--                                  </li>-->
                                   <li class="">
-                                          <a href="/cost-add/">
+                                          <a href="/sale/cost-add/">
                                               <span>Add Cost</span>
                                           </a>
                                   </li>
@@ -188,12 +191,12 @@
                           </ul>
 
                       </li>
-                      
+
 
                       <li class=" ">
                         <a href="#dealer" class="collapsed" data-toggle="collapse" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="25" height="25" x="0" y="0" viewBox="0 0 100 100" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M94 28a2.55 2.55 0 0 0-2.15-.46L82.26 30c-3.54-.2-14.83-4.54-21.26-7.3l-.13-.05c-8.54-3.07-15.93-2.38-22.11 2-8.22-2.81-18.75 3.12-22 5.15l-8.64-2.22A2.49 2.49 0 0 0 5 30v35a2.5 2.5 0 0 0 2.5 2.5h5.31l22.73 17.92A7.5 7.5 0 0 0 47.62 83a7.56 7.56 0 0 0 3.72 1 7.5 7.5 0 0 0 6.89-4.53 7.44 7.44 0 0 0 3.72 1 7.5 7.5 0 0 0 6.88-4.53A7.48 7.48 0 0 0 80 69.21l5.35-1.71h7.15A2.5 2.5 0 0 0 95 65V30a2.48 2.48 0 0 0-1-2Zm-84 5.2 4.47 1.15L12.68 51l-1.24 11.5H10Zm64.32 37.96a2.55 2.55 0 0 1-3.54 0l-3.53-3.53-14.14-14.15A2.5 2.5 0 0 0 49.57 57l14.15 14.17a2.5 2.5 0 0 1-3.54 3.53l-3.54-3.54L46 60.55a2.5 2.5 0 1 0-3.54 3.54L53.11 74.7a2.5 2.5 0 1 1-3.54 3.53L39 67.63a2.49 2.49 0 0 0-3.53 0 2.45 2.45 0 0 0-.73 1.76 2.49 2.49 0 0 0 .73 1.77l7.07 7.07a2.51 2.51 0 0 1 0 3.54 2.57 2.57 0 0 1-3.54 0 2.09 2.09 0 0 0-.22-.2L16.31 63.89l2.51-23.19.73-6.76c3.18-2 9.39-5.09 14.54-5A39.07 39.07 0 0 0 30 34.62a8.63 8.63 0 0 0 2.54 11.47c3.54 2.42 10 4.67 18-2.24l23.78 23.77a2.52 2.52 0 0 1 0 3.54Zm3.93-6.63a5.34 5.34 0 0 0-.39-.44l-23.8-23.8c1-1.14 2-2.41 3-3.85A2.5 2.5 0 1 0 53 33.56c-4.44 6.29-11.08 12.85-17.6 8.4a3.61 3.61 0 0 1-1-4.8 28.18 28.18 0 0 1 6.26-7.64 2.11 2.11 0 0 0 .23-.19c5-4 11-4.61 18.28-2 1.89.8 14.48 6.13 21.08 7.4l2.2 28.49ZM90 62.5h-2.68l-2.17-28.09L90 33.2Z" data-name="Layer 2" fill="#5c0bd6" data-original="#000000" class=""></path></g></svg>
-                              
+
                             <span class="ml-4">Dealers</span>
                             <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
@@ -211,7 +214,7 @@
                                         </a>
                                 </li>
                         </ul>
-                        
+
                     </li>
                   </ul>
               </nav>
@@ -224,25 +227,38 @@
               <nav class="navbar navbar-expand-lg navbar-light p-0">
                   <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                       <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#5c0bd6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
-                      <a href="#" class="header-logo">
+                      <a href="/" class="header-logo">
                           <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal" alt="logo">
                           <h5 class="logo-title ml-3">ZEDPOS</h5>
 
                       </a>
                   </div>
+
               </nav>
           </div>
+
       </div>
       <div class="content-page">
+          <form method="post" action="/date-range/" style="position: relative; top: -35px; left: 17px">{% csrf_token %}
+              <input name="a" type="date" style="border: 1px solid #5c0bd6; border-radius: 5px; position: relative; top: 20px;" value="{{ a }}">
+              <input name="b" type="date" style="border: 1px solid #5c0bd6; border-radius: 5px; position: relative; top: 20px;" value="{{ b }}">
+{#              <button name="yesterday" style="border: 2px solid #5c0bd6; border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: #5c0bd6;">Kecha</button>#}
+{#              <button name="today" style="border: 2px solid #5c0bd6; border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: #5c0bd6;">Bugun</button>#}
+{#              <button name="week" style="border: 2px solid #5c0bd6; border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: #5c0bd6;">7 kun</button>#}
+{#              <button name="30day" style="border: 2px solid #5c0bd6; border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: #5c0bd6;">30 kun</button>#}
+{#              <button name="month" style="border: 2px solid #5c0bd6; border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: #5c0bd6;">Shu oy</button>\#}
+              <button style="border: 2px solid #5c0bd6; border-radius: 5px; background-color: #5c0bd6; color: white; position: relative; top: 20px; width: 80px; left: 15px" type="submit">Submit</button>
+          </form>
+          <br>
      <div class="container-fluid">
 
-         <br>
          <div class="card-header-toolbar d-flex align-items-center">
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3">
+                <div class="row" style="position: relative; top: -20px">
+                    <div style="height: 130px" class="col-lg-3 col-md-3">
+
                         <div class="card card-block card-stretch card-height" style="background-color: #5c0bd6">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -263,7 +279,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div style="height: 130px" class="col-lg-3 col-md-3">
                         <div class="card card-block card-stretch card-height" style="background-color: #5c0bd6;">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -278,13 +294,13 @@
                                     </div>
                                     <div>
                                         <p class="mb-2" style="color: white">Sotuvlar soni</p>
-                                        <h4 style="color: white">{{ sales.count }}</h4>
+                                        <h4 style="color: white">{{ sale_count }}</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div style="height: 130px" class="col-lg-3 col-md-3">
                         <div class="card card-block card-stretch card-height" style="background-color: #5c0bd6">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -305,7 +321,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div style="height: 130px" class="col-lg-3 col-md-3">
                         <div class="card card-block card-stretch card-height" style="background-color: #5c0bd6">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -326,7 +342,7 @@
                     </div>
 
 
-                    <div class="col-lg-3 col-md-3">
+                    <div style="height: 130px; position: relative; top: -20px" class="col-lg-3 col-md-3">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -343,12 +359,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div style="height: 130px; position: relative; top: -20px" class="col-lg-3 col-md-3">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
                                     <div class="icon iq-icon-box-2 bg-success-light" style="background-color: #5c0bd6 !important;">
-                                        
+
                                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-people" viewBox="0 0 16 16">
   <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
 </svg>
@@ -362,7 +378,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div style="height: 130px; position: relative; top: -20px" class="col-lg-3 col-md-3">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -380,7 +396,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div style="height: 130px; position: relative; top: -20px" class="col-lg-3 col-md-3">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -397,44 +413,32 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
-                <div class="card card-block card-stretch card-height">
+        <div class="col-lg-6" style="position: relative; top: -20px;">
+                <div class="card card-block card-stretch">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Top 5</h4>
+                            <h4 class="card-title">Chart</h4>
                         </div>
                     </div>
                     <div class="card-body">
-                        <ul class="list-unstyled row top-product mb-0">
-                            {% for p in top5 %}
-                            <li class="col-lg-3" style="border: 1px solid #5c0bd6; border-radius: 10px; margin: 15px; margin-left: 10px;">
-                                <div class="card card-block card-stretch card-height mb-0">
-                                    <div class="card-body">
-                                        <div class="style-text text-left mt-4">
-                                            <h5 class="mb-1">{{ p.name }}</h5>
-                                            <p class="mb-0">Sold: {{ p.count }}</p>
-                                            <p class="mb-0">Code: {{ p.code }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            {% endfor %}
-                        </ul>
+                        <div style="">
+  <canvas id="lineChart"></canvas>
+</div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="card-transparent card-block card-stretch mb-4">
-                    <div class="card-header d-flex align-items-center justify-content-between p-0">
+            <div class="col-lg-3" style="position: relative; top: -20px;">
+                <div class="card card-block card-stretch">
+                    <div class="card-header d-flex align-items-center justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title mb-0">10 tadan kam qolgan mahsulotlar</h4>
+                            <h4 class="card-title">10 qolgan tovarlar qoldig'i</h4>
                         </div>
                     </div>
-                </div>
-                <div class="card card-block card-stretch card-height-helf" style="overflow: auto; height: 350px">
+                        <div class="" style="overflow: auto; height: 410px">
                     <div class="card-body card-item-right">
+
                         {% for k in kam %}
-                        <div class="d-flex align-items-top">
+                            <div class="d-flex align-items-top">
                             <div class="style-text text-left">
                                 <h5 class="mb-2">{{ k.name }}</h5>
                                 <p class="mb-2">Code : {{ k.code }}</p>
@@ -442,14 +446,112 @@
                             </div>
                         </div><hr>
                         {% endfor %}
+
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3" style="position: relative; top: -20px;">
+                <div class="card card-block card-stretch">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Top 5 ko'p sotilgan tovarlar</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="">
+                          <canvas id="pieChart"></canvas>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
         <!-- Page end  -->
     </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+$(function() {
+
+    var start = moment().subtract(29, 'days');
+    var end = moment();
+
+    function cb(start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    }
+
+    $('#reportrange').daterangepicker({
+        startDate: start,
+        endDate: end,
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }, cb);
+
+    cb(start, end);
+
+});
+</script>
+
+
+    <script>
+        // Retrieve data passed from the view
+        var data = {{ data|safe }};
+
+        // Get the canvas element
+        var canvas = document.getElementById('pieChart');
+
+        // Create the chart
+        new Chart(canvas, {
+            type: 'pie',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    data: data.values,
+                    backgroundColor: ['rgb(60 25 220)', 'blue', 'green', "white", "rgb(92 11 214)"] // Customize colors if needed
+                }]
+            }
+        });
+    </script>
+    <script>
+        // Retrieve the data points from the Django template context
+        var dataPoints = {{ data_points|safe }};
+
+        // Get the canvas element
+        var ctx = document.getElementById('lineChart').getContext('2d');
+
+        // Create the line chart
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ dates|safe }},  // Example labels
+                datasets: [{
+                    label: 'Chart',
+                    data: dataPoints,
+                    backgroundColor: 'rgb(92 11 214)',
+                    borderColor: 'rgb(92 11 214)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
     <!-- Wrapper End-->
     <!-- Backend Bundle JavaScript -->
     <script src="{% static 'assets/js/backend-bundle.min.js' %}"></script>
@@ -459,6 +561,7 @@
 
     <!-- Chart Custom JavaScript -->
     <script src="{% static 'assets/js/customizer.js' %}"></script>
+    <script src="{% static 'chart.js' %}"></script>
 
     <!-- Chart Custom JavaScript -->
     <script async src="{% static 'assets/js/chart-custom.js' %}"></script>

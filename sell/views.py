@@ -13,7 +13,7 @@ def sale_list(request):
     data = {
         "sales": Sell.objects.all().order_by('id'),
     }
-    return render(request, "page-list-sale.html", data)
+    return render(request, "sale/page-list-sale.html", data)
 
 def sale_add(request, s):
     saleitem = SellItem.objects.filter(sell_id=s)
@@ -34,13 +34,13 @@ def sale_add(request, s):
         "sale_item": sale_item,
 
     }
-    return render(request, "page-add-sale.html", data)
+    return render(request, "sale/page-add-sale.html", data)
 
 
 def create_sale(request):
     saleid = Sell.objects.create(time=datetime.now())
     saleid = saleid.id
-    return redirect(f'/sale-add/{saleid}/')
+    return redirect(f'/sale/add/{saleid}/')
 
 def saleitem_delete(request, id, saleid):
     saleitem = SellItem.objects.get(id=id)
@@ -48,7 +48,7 @@ def saleitem_delete(request, id, saleid):
     product.quantity = product.quantity + saleitem.quantity
     product.save()
     SellItem.objects.get(id=id).delete()
-    return redirect(f"/sale-add/{saleid}")
+    return redirect(f"/sale/add/{saleid}")
 
 def saleitem_create(request, saleid):
     if request.method=="POST":
@@ -63,17 +63,17 @@ def saleitem_create(request, saleid):
             # print(product.quantity-int(quantity))
             # for s in saleitems:
             #     if s.product==product and s.sell_id==sale:
-            #         return redirect(f"/sale-add/{saleid}/")
+            #         return redirect(f"/sale/add/{saleid}/")
             if product.quantity-int(quantity)>=0:
                 product.quantity = product.quantity-int(quantity)
                 product.count += int(quantity)
                 product.save()
                 SellItem.objects.create(sell_id=sale, product=product, date=datetime.now(), quantity=quantity, discount=discount)
 
-            return redirect(f"/sale-add/{saleid}/")
+            return redirect(f"/sale/add/{saleid}/")
         except:
             message = messages.error(request, "Code error")
-            return redirect(f"/sale-add/{saleid}/")
+            return redirect(f"/sale/add/{saleid}/")
 
 def checkout(request, saleid):
     if request.method=="POST":
@@ -107,7 +107,7 @@ def checkout(request, saleid):
                 sale.client = customer
             sale.paid = paid
             sale.save()
-        return redirect(f"/sale-list/")
+        return redirect(f"/sale/list/")
 
 def sale_delete(request, saleid):
     sale = Sell.objects.get(id=saleid)
@@ -115,19 +115,19 @@ def sale_delete(request, saleid):
     for saleitem in saleitems:
         saleitem.delete()
     sale.delete()
-    return redirect("/sale-list/")
+    return redirect("/sale/list/")
 
 def refresh(request, saleid, tp):
     sale = Sell.objects.get(id=saleid)
     sale.total_price = tp
     sale.save()
-    return redirect('/sale-list/')
+    return redirect('/sale/list/')
 
 def cost_list(request):
     data = {
         "costs": Cost.objects.all()
     }
-    return render(request, "list-cost.html", data)
+    return render(request, "sale/list-cost.html", data)
 
 # def cost_category(request):
 #     data = {
@@ -148,9 +148,34 @@ def cost_create(request):
         "category": CostCategory.objects.all(),
         "worker": User.objects.all()
     }
-    return render(request, "add-cost.html", data)
+    return render(request, "sale/add-cost.html", data)
 
+def saleitem_list(request, s):
+    saleitem = SellItem.objects.filter(sell_id=s)
+    sale_item = []
+    for item in saleitem:
+        sale_item.append({item.id: item.quantity*(item.product.price-item.discount)})
+    print(sale_item)
+    total_price = 0
+    for sale in saleitem:
+        total_price = int((total_price + (sale.product.price*sale.quantity))-(sale.discount*sale.quantity))
+    data = {
+        "products": Product.objects.filter(is_active=True).order_by('code'),
+        "clients": Client.objects.all(),
+        "sale": s,
+        "saleitems": saleitem,
+        "checkout": Sell.objects.get(id=s).checkout,
+        "total_price": total_price,
+        "sale_item": sale_item,
 
+    }
+    return render(request, "sale/saleitem_list.html", data)
+
+def return_list(request):
+    data = {
+        "returns": Return.objects.all(),
+    }
+    return render(request, "sale/list-returns.html", data)
 
 #
 # class SellItemViewSet(APIView):

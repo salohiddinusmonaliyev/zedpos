@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Math in HTML and JS</title>
+    <title>Date Picker Range</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <span id="num2">{{ num2 }}</span>
-    <span id="num1">{{ num1 }}</span>
+    <div class="date-picker">
+        <input type="date" id="start-date" required>
+        <span class="separator">to</span>
+        <input type="date" id="end-date" required>
+    </div>
+    <style>
+        .date-picker {
+    display: flex;
+    align-items: center;
+}
 
+.separator {
+    margin: 0 10px;
+}
+
+    </style>
     <script>
-    var num1 = parseFloat(document.getElementById("num1").innerText);
-    var num2 = parseFloat(document.getElementById("num2").innerText);
-    var multiplication = num1 * num2;
+        const startDateInput = document.getElementById('start-date');
+const endDateInput = document.getElementById('end-date');
 
-    document.write("Multiplication: " + multiplication);
-</script>
+startDateInput.addEventListener('change', handleDateChange);
+endDateInput.addEventListener('change', handleDateChange);
+
+function handleDateChange() {
+    const startDate = new Date(startDateInput.value);
+    const endDate = new Date(endDateInput.value);
+
+    if (startDate > endDate) {
+        alert('Start date cannot be after end date');
+        // Clear the input values
+        startDateInput.value = '';
+        endDateInput.value = '';
+    }
+}
+
+    </script>
 </body>
 </html>

@@ -17,32 +17,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from app.views import dashboard
+from app.views import *
 from clients.views import *
 from product.views import *
 from sell.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dashboard/<str:a>/<str:b>/', dashboard),
+    path('dashboard/<str:a>/<str:b>/', dashboard, name="dashboard"),
     path('', dashboard),
-    path('sale-list/', sale_list),
-    path('sale-add/<int:s>/', sale_add),
-    path('sale-add/', create_sale),
-    path('<int:saleid>/delete/<int:id>/', saleitem_delete),
-    path('<int:saleid>/add/', saleitem_create),
-    path('<int:saleid>/checkout/', checkout),
-    path('<int:saleid>/delete/', sale_delete),
     path('product/', include('product.urls')),
     path('warehouse/', include('warehouse.urls')),
-    path('cost-list/', cost_list),
-    path('cost-add/', cost_create),
-    path('customers/', clients_list),
-    path('customers-add/', customer_add),
+    path('customers/', clients_list, name="customers"),
+    path('customers-add/', customer_add, name="customer-add"),
     path('customer-delete/<int:i>/', customer_delete),
     path('debt-payment/', debt_payment),
-    path('<int:saleid>/refresh/<int:tp>/', refresh),
-    path(r'^<int:saleid>/refresh/(?P<value>\d+\.\d{2})/$', refresh),
+    path('sale/', include('sell.urls')),
     path('dealers/', include('dealer.urls')),
     path('customer/<int:i>/', customer_history),
+    path('date-range/', date_range),
 ]

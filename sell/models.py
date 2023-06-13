@@ -47,6 +47,10 @@ class Cost(models.Model):
 
 class Return(models.Model):
     customer = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
-    sellitem = models.ForeignKey(SellItem, on_delete=models.SET_NULL)
+    sellitem = models.ForeignKey(SellItem, on_delete=models.SET_NULL, null=True)
     date = models.DateTimeField(auto_now_add=True)
     paid = models.IntegerField()
+    worker = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.customer.first_name
