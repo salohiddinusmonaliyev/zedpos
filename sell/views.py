@@ -10,6 +10,8 @@ from django.contrib import messages
 
 
 def sale_list(request):
+    for sell in Sell.objects.all().order_by('id'):
+        SellItem.objects.filter(sell_id_id=sell.id)
     data = {
         "sales": Sell.objects.all().order_by('id'),
     }

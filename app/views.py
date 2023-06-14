@@ -102,11 +102,12 @@ def dashboard(request, a=None, b=None):
     # print(dates)
 
     top_products = Product.objects.all().order_by('count')[:5]
+    # for t in Product.objects.all().order_by('count')[:5]:
+        # if str(c.date.date()) >= a and str(c.date.date()) <= b:
 
     # Prepare data for the chart
     labels = [wa.name for wa in top_products]
     values = [la.count for la in top_products]
-    print(values)
 
     data = {
         "kam": kam,

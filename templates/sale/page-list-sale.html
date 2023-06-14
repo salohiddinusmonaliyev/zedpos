@@ -264,11 +264,11 @@
                         <tbody class="ligth-body">
                         {% for s in sales %}
                             <tr>
-                                <td><a href="/sale/add/{{ s.id }}/" style="color: black;">{{ s.id }}</a></td>
-                                <td><a href="/sale/add/{{ s.id }}/" style="color: black;">{{ s.time }}</a></td>
-                                <td><a href="/sale/add/{{ s.id }}/" style="color: black;">{{ s.client }}</a></td>
-                                <td><a href="/sale/add/{{ s.id }}/" style="color: black;">{{ s.total_price }}</a></td>
-                                <td><a href="/sale/add/{{ s.id }}/" style="color: black;">{{ s.paid }}</a></td>
+                                <td><a href="/sale/{{ s.id }}/items/" style="color: black;">{{ s.id }}</a></td>
+                                <td><a href="/sale/{{ s.id }}/items/" style="color: black;">{{ s.time }}</a></td>
+                                <td><a href="/sale/{{ s.id }}/items/" style="color: black;">{{ s.client }}</a></td>
+                                <td><a href="/sale/{{ s.id }}/items/" style="color: black;">{{ s.total_price }}</a></td>
+                                <td><a href="/sale/{{ s.id }}/items/" style="color: black;">{{ s.paid }}</a></td>
                                 {% if s.checkout == True and s.total_price == s.paid %}
                                 <td><div class="badge badge-success">Paid</div></td>
                                 {% elif s.total_price != s.paid and s.checkout == True %}

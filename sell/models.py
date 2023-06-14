@@ -50,6 +50,7 @@ class Return(models.Model):
     sellitem = models.ForeignKey(SellItem, on_delete=models.SET_NULL, null=True)
     date = models.DateTimeField(auto_now_add=True)
     paid = models.IntegerField()
+    quantity = models.IntegerField(null=True)
     worker = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

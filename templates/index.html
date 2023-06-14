@@ -511,12 +511,12 @@ $(function() {
 
         // Create the chart
         new Chart(canvas, {
-            type: 'pie',
+            type: 'doughnut',
             data: {
                 labels: data.labels,
                 datasets: [{
                     data: data.values,
-                    backgroundColor: ['rgb(60 25 220)', 'blue', 'green', "white", "rgb(92 11 214)"] // Customize colors if needed
+                    borderColor: ['rgb(60 25 220)', 'blue', 'green', "grey", "rgb(92 11 214)"]
                 }]
             }
         });
