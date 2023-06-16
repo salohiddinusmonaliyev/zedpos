@@ -10,13 +10,13 @@ def product_list(request):
     data = {
         'products': Product.objects.filter(is_active=True).order_by('code'),
     }
-    return render(request, 'page-list-product.html', data)
+    return render(request, 'products/page-list-product.html', data)
 
 def product_add_page(request):
     data = {
         "measures": Measure.objects.all()
     }
-    return render(request, 'page-add-product.html', data)
+    return render(request, 'products/page-add-product.html', data)
 
 def product_add(request):
     name = request.POST.get("name")
@@ -55,7 +55,7 @@ def archive(request, a=None):
     data = {
         "products": Product.objects.filter(is_active=False)
     }
-    return render(request, "page-list-archive-product.html", data)
+    return render(request, "products/page-list-archive-product.html", data)
 
 def archive_delete(request, a):
     product = Product.objects.get(id=a)

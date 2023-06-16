@@ -14,7 +14,7 @@ def warehouse(request):
     data = {
         "items": Warehouse.objects.all()
     }
-    return render(request, "warehouse.html", data)
+    return render(request, "products/warehouse.html", data)
 
 def warehouse_add(request):
     if request.method=="POST":
@@ -51,4 +51,4 @@ def warehouse_add(request):
         "products": Product.objects.filter(is_active=True).order_by('code'),
         "dealers": Dealer.objects.all(),
     }
-    return render(request, "add-warehouse.html", data)
+    return render(request, "products/add-warehouse.html", data)

@@ -8,7 +8,7 @@ def list(request):
     data = {
         'dealers': Dealer.objects.all()
     }
-    return render(request, 'dealers.html', data)
+    return render(request, 'people/dealers.html', data)
 
 def add(request):
     if request.method=="POST":
@@ -16,7 +16,7 @@ def add(request):
         pnum = str(request.POST.get("pnum"))
         Dealer.objects.create(name=name, phone_num=pnum)
         return redirect('/dealers/')
-    return render(request, 'add-dealers.html')
+    return render(request, 'people/add-dealers.html')
 
 def payment(request):
     payment = request.POST.get("payment")
@@ -29,7 +29,7 @@ def dealer_brought(request, i):
     data = {
         "dealers": Warehouse.objects.filter(dealer_id=i)
     }
-    return render(request, "dealers-brought.html", data)
+    return render(request, "people/dealers-brought.html", data)
 
 
 

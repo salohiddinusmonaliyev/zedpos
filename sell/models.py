@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 
+from accounts.models import Worker
 from clients.models import Client
 
 from django.db import models
@@ -37,7 +38,7 @@ class CostCategory(models.Model):
         return self.name
 
 class Cost(models.Model):
-    worker = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    worker = models.ForeignKey(Worker, on_delete=models.CASCADE, null=True, blank=True)
     category = models.ForeignKey(CostCategory, on_delete=models.CASCADE)
     date = models.DateTimeField()
     cost = models.IntegerField()
@@ -51,7 +52,7 @@ class Return(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     paid = models.IntegerField()
     quantity = models.IntegerField(null=True)
-    worker = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    worker = models.ForeignKey(Worker, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.customer.first_name

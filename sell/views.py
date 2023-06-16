@@ -39,7 +39,7 @@ def sale_add(request, s):
     return render(request, "sale/page-add-sale.html", data)
 
 
-def create_sale(request):
+def sale_create(request):
     saleid = Sell.objects.create(time=datetime.now())
     saleid = saleid.id
     return redirect(f'/sale/add/{saleid}/')
@@ -173,9 +173,45 @@ def saleitem_list(request, s):
     }
     return render(request, "sale/saleitem_list.html", data)
 
+def return_create(request, sale, saleitem):
+    if request.method=="POST":
+        customer = request.POST.get("customer")
+        customer = Client.objects.get(id=customer)
+        quantity = request.POST.get("quantity")
+        worker = request.POST.get("worker")
+        item = SellItem.objects.get(id=saleitem)
+        saleitem2 = SellItem.objects.filter(sell_id_id=sale)
+        total_price = 0
+        sell = Sell.objects.get(id=sale)
+        for sale2 in saleitem2:
+            total_price = (total_price + (sale2.product.price * sale2.quantity)) - (sale2.discount * sale2.quantity)
+        if sell.paid == sell.total_price:
+            paid = item.product.price * int(quantity) - (item.discount * int(quantity))
+            sell.total_price = total_price-paid
+            sell.paid = total_price-paid
+            item.quantity = item.quantity - int(quantity)
+            item.save()
+            sell.save()
+            Return.objects.create(sellitem_id=saleitem, customer=customer, paid=paid, quantity=quantity,
+                                  worker_id=worker)
+        elif customer.debt>0:
+            messages.error(request, "Mijoz avval qarzini to'liq to'lasin")
+            return redirect("/customers/")
+
+        return redirect("/sale/return/")
+    # saleitem = SellItem.objects.get(id=saleitem)
+    # sale = Sell.objects.get()
+    data = {
+        "sale": sale,
+        "saleitem": saleitem,
+        "customers": Client.objects.all(),
+        "staff": Worker.objects.all(),
+    }
+    return render(request, "sale/add-returns.html", data)
+
 def return_list(request):
     data = {
-        "returns": Return.objects.all(),
+        "items": Return.objects.all()
     }
     return render(request, "sale/list-returns.html", data)
 

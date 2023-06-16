@@ -1,11 +1,22 @@
 from django.shortcuts import render
 
-from rest_framework.viewsets import ModelViewSet
+from accounts.models import CustomUser
 
-from .models import *
-from .serializer import *
+def workers_list(request):
+    data = {
+        "workers": CustomUser.objects.all(),
+    }
+    return render(request, "worker-list.html", data)
 
-# Create your views here.
-class UserViewSet(ModelViewSet):
-    queryset = CustomUser.objects.all()
-    serializer_class = UserSerializer
+
+
+
+# from rest_framework.viewsets import ModelViewSet
+#
+# from .models import *
+# from .serializer import *
+#
+# # Create your views here.
+# class UserViewSet(ModelViewSet):
+#     queryset = CustomUser.objects.all()
+#     serializer_class = UserSerializer
