@@ -1,13 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from accounts.models import CustomUser
+from accounts.models import *
 
-def workers_list(request):
+def worker(request):
     data = {
-        "workers": CustomUser.objects.all(),
+        "staff": Worker.objects.all(),
     }
-    return render(request, "worker-list.html", data)
+    if request.method == "POST":
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        p_num = request.POST.get("number")
+        Worker.objects.create(first_name=first_name, last_name=last_name, ph_number=p_num)
+        return redirect('/worker/')
+    return render(request, "people/worker.html", data)
 
+# def worker_create(request):
+#     return render(request, "people/worker-create.html")
 
 
 

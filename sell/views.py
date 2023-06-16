@@ -215,6 +215,11 @@ def return_list(request):
     }
     return render(request, "sale/list-returns.html", data)
 
+def category(request):
+    name = request.POST.get("name")
+    CostCategory.objects.create(name=name)
+    return redirect("/sale/cost-list/")
+
 #
 # class SellItemViewSet(APIView):
 #     queryset = SellItem.objects.all()

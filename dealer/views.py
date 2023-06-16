@@ -22,7 +22,8 @@ def payment(request):
     payment = request.POST.get("payment")
     dealer = request.POST.get("dealer")
     dealer = Dealer.objects.get(id=dealer)
-    Payment.objects.create(payment=payment, dealer=dealer)
+    description = request.POST.get("description")
+    Payment.objects.create(payment=payment, dealer=dealer, description=description)
     return redirect('/dealers/')
 
 def dealer_brought(request, i):

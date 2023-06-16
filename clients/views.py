@@ -14,12 +14,13 @@ def customer_delete(request, i):
 def debt_payment(request):
     payment = request.POST.get('payment')
     customer = request.POST.get('customer')
+    comment = request.POST.get("comment")
     customer_debt = Client.objects.get(id=customer)
     customer_debt2 = Client.objects.get(id=customer).debt
 
     customer_debt.debt = int(customer_debt2)-int(payment)
     customer_debt.save()
-    CustomerPayment.objects.create(customer=customer_debt, paymnet=payment)
+    CustomerPayment.objects.create(customer=customer_debt, paymnet=payment, comment=comment)
     return redirect('/customers/')
 
 

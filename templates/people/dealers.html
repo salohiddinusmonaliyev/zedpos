@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS</title>
+      <title>ZEDPOS | DEALERS</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -28,7 +28,7 @@
         <div class="modal-content">
           <div class="modal-body">
             <div class="popup text-left">
-              <h4 class="mb-3">New Order</h4>
+              <h4 class="mb-3">Payment</h4>
               <form method="post" action="/dealers/payment/">{% csrf_token %}
 				  <div class="content create-workform bg-body">
                 <div class="pb-3">
@@ -46,6 +46,9 @@
 										<br>
                                         <label>Payment</label>
                                         <input name="payment" type="text" style="width: 100%; border: 1px solid #5c0bd6; border-radius: 5px;">
+
+                                        <label>Comment</label>
+                                        <input type="text" name="description" style="width: 100%; border: 1px solid #5c0bd6; border-radius: 5px;">
 									</div>
 								</div>
 							</div>
@@ -256,11 +259,7 @@
                                           <span>List</span>
                                       </a>
                               </li>
-                              <li class="">
-                                      <a href="/worker-add/">
-                                          <span>Add</span>
-                                      </a>
-                              </li>
+                              
                       </ul>
 
                   </li>
@@ -274,7 +273,7 @@
                   <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                       <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
 
-                      <a href="../index.html" class="header-logo">
+                      <a href="/" class="header-logo">
                           <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal" alt="logo">
                           <h5 class="logo-title ml-3">ZEDPOS</h5>
 

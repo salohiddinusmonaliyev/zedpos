@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS</title>
+      <title>ZEDPOS | CUSTOMERS</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -28,7 +28,7 @@
         <div class="modal-content">
           <div class="modal-body">
             <div class="popup text-left">
-              <h4 class="mb-3">New Order</h4>
+              <h4 class="mb-3">Debt</h4>
               <form method="post" action="/debt-payment/">{% csrf_token %}
 				  <div class="content create-workform bg-body">
                 <div class="pb-3">
@@ -45,7 +45,10 @@
 										</select><br>
 										<br>
                                         <label>Payment</label>
-                                        <input name="payment" type="text" style="width: 100%; border: 1px solid #5c0bd6; border-radius: 5px;">
+                                        <input name="payment" type="text" style="width: 100%; border: 1px solid #5c0bd6; border-radius: 5px;"><br>
+
+                                        <label>Comment</label>
+                                        <input type="text" name="comment" style="width: 100%; border: 1px solid #5c0bd6; border-radius: 5px;">
 									</div>
 								</div>
 							</div>
@@ -259,11 +262,7 @@
                                           <span>List</span>
                                       </a>
                               </li>
-                              <li class="">
-                                      <a href="/worker-add/">
-                                          <span>Add</span>
-                                      </a>
-                              </li>
+                              
                       </ul>
 
                   </li>

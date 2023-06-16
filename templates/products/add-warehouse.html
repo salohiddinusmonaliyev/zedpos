@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS</title>
+      <title>ZEDPOS | WAREHOUSE</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -217,11 +217,7 @@
                                           <span>List</span>
                                       </a>
                               </li>
-                              <li class="">
-                                      <a href="/worker-add/">
-                                          <span>Add</span>
-                                      </a>
-                              </li>
+                              
                       </ul>
 
                   </li>
@@ -266,7 +262,7 @@
                                         <label>Product *</label>
                                         <select name="product" class="form-control">-->
                                             {% for p in products %}
-                                            <option value="{{ p.id }}">{{ p.name }}</option>
+                                            <option value="{{ p.id }}">{{ p.name }} | {{ p.arrival_price }} | {{ p.price }}</option>
                                             {% endfor %}
                                         </select>
                                         <div class="help-block with-errors"></div>
