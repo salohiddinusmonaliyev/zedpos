@@ -28,7 +28,7 @@ class SellItem(models.Model):
     quantity = models.FloatField()
 
     def __str__(self):
-        return f"{self.id} {self.product.name} {self.sell_id.time}"
+        return f"{self.id} {self.sell_id.time}"
 
 
 class CostCategory(models.Model):

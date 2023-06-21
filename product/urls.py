@@ -26,5 +26,6 @@ urlpatterns = [
     path('archive/', archive),
     path('archive/<int:a>/', archive),
     path('archive-delete/<int:a>/', archive_delete),
-    path('measure/', measure),
+    path('measurement/', measurements),
+    path('measurement/add/', measurement_add),
 ]

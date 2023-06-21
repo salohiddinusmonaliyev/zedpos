@@ -30,11 +30,11 @@ def warehouse_add(request):
         status = request.POST.get("status")
         price = request.POST.get("price")
 
-        if aprice == product_price:
+        if int(aprice) == int(product_price):
             pq = product.quantity
             product.quantity = int(pq) + int(quantity)
             product.save()
-        elif aprice!=product_price:
+        elif int(aprice) != int(product_price):
             print("------------")
             print(False)
             product.is_active = False

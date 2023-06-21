@@ -71,6 +71,16 @@
                                       <span>Archive</span>
                                   </a>
                               </li>
+                              <li class="">
+                                <a href="/product/measurement/">
+                                    <span>List Measurement</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/product/measurement/add/">
+                                    <span>Add Measurement</span>
+                                </a>
+                            </li>
                           </ul>
                       </li>
                       <li class=" ">
@@ -326,7 +336,7 @@
                             <td>{{ p.price }} UZS</td>
                             <td>{{ p.arrival_price }} UZS</td>
                             <td>{{ p.quantity }}</td>
-                            <form method="post" action="/archive/{{ p.id }}/">{% csrf_token %}
+                            <form method="post" action="/product/archive/{{ p.id }}/">{% csrf_token %}
                                 <td>
                                     <button class="archive-btn">Archive</button>
                                 </td>

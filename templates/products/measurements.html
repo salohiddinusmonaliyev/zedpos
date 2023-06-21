@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS | DEALERS</title>
+      <title>ZEDPOS | PRODUCT</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -23,49 +23,7 @@
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
-<div class="modal fade" id="debt" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="popup text-left">
-              <h4 class="mb-3">New Order</h4>
-              <form method="post" action="/debt-payment/">{% csrf_token %}
-				  <div class="content create-workform bg-body">
-                <div class="pb-3">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="select-split">
-									<div class="select-group w-100">
-										<label>Customer</label>
-										<select name="customer" style="padding: 10px; width: 100%; background:#edf2ff; border:none;">
-											{% for c in customers %}
-												<option value="{{c.id}}">{{ c.first_name }} {{ c.last_name }}</option>
-											{% endfor %}
-										</select><br>
-										<br>
-                                        <label>Payment</label>
-                                        <input name="payment" type="text" style="width: 100%; border: 1px solid #5c0bd6; border-radius: 5px;">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-                </div>
-                <div class="col-lg-12 mt-4">
-                  <div class="d-flex flex-wrap align-items-ceter justify-content-center">
-                  <button type="submit" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #5c0bd6 ;">
-                    <h5 style=" color: white;">Payment</h5>
-                  </button>
-                  </div>
-                </div>
-              </div>
-			  </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="/" class="header-logo">
@@ -76,7 +34,6 @@
 
               </div>
           </div>
-
           <div class="data-scrollbar" data-scroll="1">
               <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="iq-menu">
@@ -114,7 +71,7 @@
                                       <span>Archive</span>
                                   </a>
                               </li>
-                              <li class="">
+                              <li class="active">
                                 <a href="/product/measurement/">
                                     <span>List Measurement</span>
                                 </a>
@@ -163,7 +120,7 @@
                                               <span>List Sale</span>
                                           </a>
                                   </li>
-                                  
+
                                   <li class="">
                                           <a href="/sale/return/">
                                               <span>Return</span>
@@ -241,7 +198,7 @@
                           </svg>
                       </a>
                       <ul id="dealer" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                              <li class="active">
+                              <li class="">
                                       <a href="/dealers/">
                                           <span>List Dealers</span>
                                       </a>
@@ -253,7 +210,7 @@
                               </li>
                       </ul>
 
-                  </li>               
+                  </li>
 
                   <li class=" ">
                       <a href="#worker" class="collapsed" data-toggle="collapse" aria-expanded="false">
@@ -269,11 +226,10 @@
                                           <span>List</span>
                                       </a>
                               </li>
-                              
+
                       </ul>
 
                   </li>
-
                   </ul>
               </nav>
           </div>
@@ -298,9 +254,9 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">List</h4>
+                        <h4 class="mb-3">Measurement List</h4>
                     </div>
-{#    						    <a href="#" class="btn" data-toggle="modal" style="color:white;" data-target="#debt">Debt Repayment</a>#}
+                    <a href="/product/measurement/add/" class="btn btn-primary add-list"><svg width="25" height="25" style="padding-right: 7px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" fill="#ffffff"></path> </g></svg>Add Measurement</a>
 
                 </div>
             </div>
@@ -309,44 +265,17 @@
                 <table class="data-table table mb-0 tbl-server-info">
                     <thead class="bg-white text-uppercase">
                         <tr class="ligth ligth-data">
-                            <th>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox1">
-                                    <label for="checkbox1" class="mb-0"></label>
-                                </div>
-                            </th>
-                            <th>Product</th>
-                            <th>Delaer</th>
-                            <th>Date</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total price</th>
-                            <th>Status</th>
+                            <th>Name</th>
                         </tr>
                     </thead>
                     <tbody class="ligth-body">
-                    {% for p in dealers %}
+                    {% for p in measurements %}
                         <tr>
                             <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
-                                    <label for="checkbox2" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        {{ p.product }}
-                                    </div>
-                                </div>
-                            </td>
-                            <td>{{ p.dealer_id }}</td>
-                            <td>{{ p.date }}</td>
-                            <td>{{ p.price }}</td>
-                            <td>{{ p.quantity }}</td>
-                            <td>{{ p.total_price }}</td>
-                            <td>{{ p.status }}</td>
 
+                                        {{ p.name }}
+
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

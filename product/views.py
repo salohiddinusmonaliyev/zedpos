@@ -64,8 +64,17 @@ def archive_delete(request, a):
     return redirect("/product/list/")
 
 
-def measure(request):
+def measurement_add(request):
     if request.method == "POST":
         name = request.POST.get('name')
         Measure.objects.create(name=name)
-    return redirect("/product/list/")
+        return redirect("/product/measurement/")
+    else:
+        return render(request, "products/add-measurement.html")
+
+
+def measurements(request):
+    data = {
+        "measurements": Measure.objects.all(),
+    }
+    return render(request, "products/measurements.html", data)

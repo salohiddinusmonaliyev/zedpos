@@ -118,7 +118,7 @@
 				<form method="post" action="/sale/{{sale}}/add/">{% csrf_token %}
                   <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Code" style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
                   <input name="quantity" type="text" id="myInput2" placeholder="Quantity" style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
-                  <input name="discount" type="text" id="myInput2" placeholder="Discount" style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
+                  <input name="discount" type="text" id="myInput3" placeholder="Discount"  style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
                   <button type="submit" class="product-btn">Submit</button>
                 </form>
                 <hr>
@@ -342,9 +342,17 @@
                       <!--												<h5>Tax</h5>-->
                       <!--												<h6>5.00 UZS</h6>-->
                       <!--											</li>-->
-                      <li class="total-value">
+                    <li class="total-value">
                         <h5 style="color: #5c0bd6;">Total</h5>
-                        <h6 style="color: #5c0bd6;">{{total_price}} UZS</h6>
+                        <h6 style="color: #5c0bd6;">{{total_price2}} UZS</h6>
+                      </li>
+                      <li class="total-value">
+                        <h5 style="color: #5c0bd6;">Discount</h5>
+                        <h6 style="color: #5c0bd6;">{{discount}} UZS</h6>
+                      </li>
+                    <li class="total-value">
+                        <h3 style="color: #5c0bd6;">Total</h3>
+                        <h4 style="color: #5c0bd6;">{{total_price}} UZS</h4>
                       </li>
                       {% if checkout == True %}
                       <a href="/sale/{{ sale }}/refresh/{{ total_price }}/" class="btn border add-btn mx-2 d-md-block" style="width: 100%; background-color: #5c0bd6; color: white;">Refresh</a>
