@@ -242,7 +242,6 @@ def plus(request, sale_id, saleitem_id):
 
 def minus(request, sale_id, saleitem_id):
     sellitem = SellItem.objects.get(id=saleitem_id)
-    print("wpfijwpifjwpijfpewrg--------------------")
     sellitem.quantity = sellitem.quantity - 1
     sellitem.save()
     return redirect(f"/sale/add/{sale_id}/")
