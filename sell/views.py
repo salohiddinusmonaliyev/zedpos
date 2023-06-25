@@ -40,6 +40,7 @@ def sale_add(request, s):
         "sale_item": sale_item,
         "discount": discount,
         "total_price2": total_price+discount
+
     }
     return render(request, "sale/page-add-sale.html", data)
 

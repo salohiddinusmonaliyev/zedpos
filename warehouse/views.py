@@ -35,8 +35,6 @@ def warehouse_add(request):
             product.quantity = int(pq) + int(quantity)
             product.save()
         elif int(aprice) != int(product_price):
-            print("------------")
-            print(False)
             product.is_active = False
             product.save()
             code = product.code

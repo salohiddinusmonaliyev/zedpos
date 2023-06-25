@@ -108,7 +108,7 @@
 
 
             </div>
-            <div class="col-lg-8 col-sm-12 tabs_wrapper">
+            <div class="col-lg-7 col-sm-12 tabs_wrapper">
               <div class="page-header">
                 <div class="page-title">
                   <h4>Products</h4>
@@ -222,7 +222,7 @@
               </div>
               <hr>
             </div>
-            <div class="col-lg-4 col-sm-12">
+            <div class="col-lg-5 col-sm-12">
               <div class="order-list">
                 <div class="orderid">
                   <h4>Order List</h4>
@@ -287,6 +287,7 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
+                        <th>Discount</th>
                         <th>Total price</th>
                         {% if checkout == False %}
                             <th>Delete</th>
@@ -303,6 +304,7 @@
 {#                            {% widthratio 10 1 5 %}#}
 {#                        {% widthratio 50 10 1 %}#}
 {#                        {{ 100|add:"+10" }}#}
+                        <td>{% widthratio saleitem.quantity 1 saleitem.discount %}</td>
                         <td>{% for sale in sale_item %}
                             {% for id in sale.keys %}
                                 {% if saleitem.id == id %}
