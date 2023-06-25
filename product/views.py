@@ -18,6 +18,7 @@ def product_add_page(request):
     }
     return render(request, 'products/page-add-product.html', data)
 
+
 def product_add(request):
     name = request.POST.get("name")
     code = int(request.POST.get("code"))

@@ -7,6 +7,7 @@ from clients.models import *
 from sell.models import *
 import datetime
 
+
 def calculate_total_cost(lists):
     total_cost_by_date = {}
 

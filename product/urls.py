@@ -19,6 +19,7 @@ from django.urls import path
 
 from product.views import *
 
+
 urlpatterns = [
     path('list/', product_list),
     path('add/', product_add_page),
