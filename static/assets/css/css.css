@@ -9,6 +9,33 @@
     background-image: url('https://i.imgur.com/GnyDvKN.png');
 }
 
+.center{
+width: 150px;
+  margin: 40px auto;
+
+}
+
+.button-plus {
+    position: relative;
+    left: 5px;
+    border: 0.1px solid #5c0bd6;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.button-minus {
+    position: relative;
+    right: 5px;
+    border: 0.1px solid #5c0bd6;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.quantity-field {
+    width: 60px;
+    border: 0.1px solid rgba(0, 0, 0, 0.29);
+}
+
 .delete {
     border: 2px solid red;
     color: red;

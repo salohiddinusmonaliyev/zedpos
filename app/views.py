@@ -102,21 +102,13 @@ def dashboard(request, a=None, b=None):
         dates.append(f"{item}")
     # print(dates)
 
-    top_products = Product.objects.all().order_by('count')[:5]
+    top_products = Product.objects.filter(is_active=True).order_by('count')[:5]
     # for t in Product.objects.all().order_by('count')[:5]:
         # if str(c.date.date()) >= a and str(c.date.date()) <= b:
 
     # Prepare data for the chart
     labels = [wa.name for wa in top_products]
     values = [la.count for la in top_products]
-
-    from django.db.models import Count
-
-    top_5_sotilgan_mahsulotlar = SellItem.objects.values('product__name').annotate(
-        total_sotilgan=Count('product')).order_by('-total_sotilgan')[:5]
-
-    for item in top_5_sotilgan_mahsulotlar:
-        print(item['product__name'], item['total_sotilgan'])
 
     data = {
         "kam": kam,
@@ -132,7 +124,7 @@ def dashboard(request, a=None, b=None):
         "dates": dates,
         "a": a,
         "b": b,
-        "top": Product.objects.filter(is_active=True).order_by('count')[:5],
+        "top": Product.objects.filter(is_active=True).order_by('-count')[:5],
         # "chart": calculate_total_cost(lists),
         "data_points": totalprice,
         'data': {'labels': labels,

@@ -51,10 +51,6 @@ def sale_create(request):
     return redirect(f'/sale/add/{saleid}/')
 
 def saleitem_delete(request, id, saleid):
-    saleitem = SellItem.objects.get(id=id)
-    product = Product.objects.get(id=saleitem.product.id)
-    product.quantity = product.quantity + saleitem.quantity
-    product.save()
     SellItem.objects.get(id=id).delete()
     return redirect(f"/sale/add/{saleid}")
 
@@ -75,14 +71,14 @@ def saleitem_create(request, saleid):
             product = Product.objects.get(is_active=True, code=code)
             # print("-----------")
             # print(product.quantity-int(quantity))
-            # for s in saleitems:
-            #     if s.product==product and s.sell_id==sale:
-            #         return redirect(f"/sale/add/{saleid}/")
+            for s in saleitems:
+                if s.product==product and s.sell_id==sale:
+                    message = messages.error(request, "Bu mahsulot savatda bor")
+                    return redirect(f"/sale/add/{saleid}/")
             SellItem.objects.create(sell_id=sale, product=product, date=datetime.now(), quantity=quantity, discount=discount)
 
             return redirect(f"/sale/add/{saleid}/")
     except:
-        message = messages.error(request, "error")
         return redirect(f"/sale/add/{saleid}/")
 
 def checkout(request, saleid):

@@ -59,11 +59,7 @@
                                       <span>List Product</span>
                                   </a>
                               </li>
-                              <li class="">
-                                  <a href="/product/add/">
-                                      <span>Add Product</span>
-                                  </a>
-                              </li>
+                              
                               <li class="">
                                   <a href="/product/archive/">
                                       <span>Archive</span>
@@ -74,11 +70,7 @@
                                     <span>List Measurement</span>
                                 </a>
                             </li>
-                            <li class="">
-                                <a href="/product/measurement/add/">
-                                    <span>Add Measurement</span>
-                                </a>
-                            </li>
+                            
                           </ul>
                       </li>
                       <li class=" ">
@@ -553,7 +545,8 @@ $(function() {
                 labels: data.labels,
                 datasets: [{
                     data: data.values,
-                    borderColor: ['rgb(60 25 220)', 'blue', 'green', "grey", "rgb(92 11 214)"]
+                    borderColor: ['rgb(60 25 220)', 'blue', 'green', "grey", "rgb(92 11 214)"],
+                    backgroundColor: 'white'
                 }]
             }
         });
