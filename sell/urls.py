@@ -19,4 +19,5 @@ urlpatterns = [
     path('category/', category),
     path('<int:sale_id>/minus/<int:saleitem_id>/', minus),
     path('<int:sale_id>/plus/<int:saleitem_id>/', plus),
+    path('<int:sale_id>/quantity/<int:saleitem_id>/', quantity),
 ]

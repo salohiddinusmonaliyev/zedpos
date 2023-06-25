@@ -246,6 +246,15 @@ def minus(request, sale_id, saleitem_id):
     sellitem.save()
     return redirect(f"/sale/add/{sale_id}/")
 
+
+def quantity(request, sale_id, saleitem_id):
+    if request.method == "POST":
+        quantity = float(request.POST.get("quantity"))
+        sellitem = SellItem.objects.get(id=saleitem_id)
+        sellitem.quantity = quantity
+        sellitem.save()
+        return redirect(f"/sale/add/{sale_id}/")
+
 #
 # class SellItemViewSet(APIView):
 #     queryset = SellItem.objects.all()
