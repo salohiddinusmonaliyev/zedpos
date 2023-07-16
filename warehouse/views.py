@@ -16,7 +16,7 @@ def warehouse(request):
     }
     return render(request, "products/warehouse.html", data)
 
-def warehouse_add(request):
+def warehouse_add(request, a=None):
     if request.method=="POST":
         product = request.POST.get("product")
         product_price = Product.objects.get(id=product).arrival_price
@@ -46,7 +46,7 @@ def warehouse_add(request):
         Warehouse.objects.create(product=product, dealer_id=dealer, date=date, quantity=quantity, total_price=total_price, price=price, status=status)
         return redirect('/warehouse/list/')
     data = {
-        "products": Product.objects.filter(is_active=True).order_by('code'),
+        "product": Product.objects.get(id=a),
         "dealers": Dealer.objects.all(),
     }
     return render(request, "products/add-warehouse.html", data)

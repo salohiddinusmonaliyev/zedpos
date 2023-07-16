@@ -4,12 +4,14 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS | DEALER</title>
+      <title>ZEDPOS | EDIT</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
       <link rel="stylesheet" href="{% static 'assets/css/backend-plugin.min.css' %}">
       <link rel="stylesheet" href="{% static 'assets/css/backend.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/css.css' %}">
+
       <link rel="stylesheet" href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}">
       <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css' %}">
       <link rel="stylesheet" href="{% static 'assets/vendor/remixicon/fonts/remixicon.css' %}">  </head>
@@ -25,7 +27,7 @@
 
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
-              <a href="/static" class="header-logo">
+              <a href="/" class="header-logo">
                   <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">ZEDPOS</h5>
               </a>
               <div class="iq-menu-bt-sidebar ml-0">
@@ -37,7 +39,7 @@
               <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="iq-menu">
                       <li class="">
-                          <a href="/static" class="svg-icon">
+                          <a href="/" class="svg-icon">
                               <svg  class="svg-icon" id="p-dash1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
                               </svg>
@@ -55,12 +57,12 @@
                               </svg>
                           </a>
                           <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                              <li class="">
+                              <li class="active">
                                   <a href="/product/list/">
                                       <span>List Product</span>
                                   </a>
                               </li>
-                              
+
                               <li class="">
                                   <a href="/product/archive/">
                                       <span>Archive</span>
@@ -71,7 +73,7 @@
                                     <span>List Measurement</span>
                                 </a>
                             </li>
-                            
+
                           </ul>
                       </li>
                       
@@ -91,7 +93,7 @@
                                               <span>List Sale</span>
                                           </a>
                                   </li>
-                                  
+
                                   <li class="">
                                           <a href="/sale/return/">
                                               <span>Return</span>
@@ -174,14 +176,14 @@
                                           <span>List Dealers</span>
                                       </a>
                               </li>
-                              <li class="active">
+                              <li class="">
                                       <a href="/dealers/add/">
                                           <span>Add Dealer</span>
                                       </a>
                               </li>
                       </ul>
 
-                  </li>               
+                  </li>
 
                   <li class=" ">
                       <a href="#worker" class="collapsed" data-toggle="collapse" aria-expanded="false">
@@ -197,12 +199,12 @@
                                           <span>List</span>
                                       </a>
                               </li>
-                              
+
                       </ul>
 
                   </li>
 
-
+                      </li>
                   </ul>
               </nav>
 
@@ -226,35 +228,89 @@
           </div>
       </div>
 <div class="content-page">
+
      <div class="container-fluid add-form-list">
+         {% if messages %}
+      {% for m in messages %}
+      <div class="error">{{m}}</div>
+      {% endfor %}
+      {% endif %}
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Add Dealer</h4>
+                            <h4 class="card-title">Add Product</h4>
                         </div>
+
                     </div>
                     <div class="card-body">
-                        <form action="/dealers/add/" method="post" data-toggle="validator">{% csrf_token %}
+                        <form action="/product/{{ product.id }}/edit/" method="post" data-toggle="validator">{% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Name *</label>
-                                        <input name="name" type="text" class="form-control" placeholder="Enter Name" data-errors="Please Enter Name." required>
+                                        <input value="{{ product.name }}" name="name" type="text" class="form-control" placeholder="Enter Name" data-errors="Please Enter Name." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Phone Number *</label>
-                                        <input name="pnum" type="text" class="form-control" placeholder="Enter Phone Number" data-errors="Please Enter Phone Number." required>
+                                        <label>Code *</label>
+                                        <input value="{{ product.code }}" name="code" type="number" class="form-control" placeholder="Enter Code" data-errors="Please Enter Code." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Arrival price *</label>
+                                        <input value="{{ product.arrival_price }}" name="incoming" type="text" class="form-control" placeholder="Enter Price" data-errors="Please Enter Price." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Price *</label>
+                                        <input value="{{ product.price }}" name="price" type="text" class="form-control" placeholder="Enter Price" data-errors="Please Enter Price." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Quantity *</label>
+                                        <input value="{{ product.quantity }}" name="quantity" type="text" class="form-control" placeholder="Enter Quantity" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Measure *</label>
+                                        <select name="measure" class="form-control">
+                                            {% for p in measures %}
+                                                {% if p == product.measure %}
+                                                    <option selected="selected" value="{{ p.id }}">{{ p.name }}</option>
+                                                {% else %}
+                                                    {% if p != product.measure %}
+                                                        <option value="{{ p.id }}">{{ p.name }}</option>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Is active?</label>
+                                        {% if product.is_active %}
+                                            <input name="is_active" type="checkbox" checked>
+                                        {% else %}
+                                            <input name="is_active" type="checkbox">
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Add</button>
+                            <button type="submit" class="btn btn-primary mr-2">Add Product</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </form>
                     </div>

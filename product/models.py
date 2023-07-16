@@ -16,7 +16,7 @@ class Product(models.Model):
     measure = models.ForeignKey(Measure, on_delete=models.SET_NULL, null=True)
     quantity = models.FloatField(null=True)
     is_active = models.BooleanField(default=True)
-    count = models.IntegerField(null=True, blank=True, default=0)
+    count = models.FloatField(null=True, blank=True, default=0)
 
     def __str__(self):
         return self.name

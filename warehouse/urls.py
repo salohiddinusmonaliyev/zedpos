@@ -20,5 +20,6 @@ from .views import *
 
 urlpatterns = [
     path('list/', warehouse),
+    path('<int:a>/add/', warehouse_add),
     path('add/', warehouse_add),
 ]

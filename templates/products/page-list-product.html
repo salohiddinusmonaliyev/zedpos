@@ -75,27 +75,7 @@
                             
                           </ul>
                       </li>
-                      <li class=" ">
-                          <a href="#warehouse" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                              <svg class="svg-icon"id="p-dash5" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="#5c0bd6"><path d="M0 488V171.3C0 145.2 15.93 121.6 40.23 111.9L308.1 4.753C315.7 1.702 324.3 1.702 331.9 4.753L599.8 111.9C624.1 121.6 640 145.2 640 171.3V488C640 501.3 629.3 512 616 512H568C554.7 512 544 501.3 544 488V223.1C544 206.3 529.7 191.1 512 191.1H128C110.3 191.1 96 206.3 96 223.1V488C96 501.3 85.25 512 72 512H24C10.75 512 0 501.3 0 488zM152 512C138.7 512 128 501.3 128 488V432H512V488C512 501.3 501.3 512 488 512H152zM128 336H512V400H128V336zM128 224H512V304H128V224z"/></svg>
-                              <span class="ml-4">Warehouse</span>
-                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                              </svg>
-                          </a>
-                          <ul id="warehouse" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                  <li class="">
-                                          <a href="/warehouse/list/">
-                                              <span>List</span>
-                                          </a>
-                                  </li>
-                                  <li class="">
-                                          <a href="/warehouse/add/">
-                                              <span>Add</span>
-                                          </a>
-                                  </li>
-                          </ul>
-                      </li>
+                      
                       <li class=" ">
                           <a href="#sale" class="collapsed" data-toggle="collapse" aria-expanded="false">
                               <svg class="svg-icon" id="p-dash4" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5c0bd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -304,7 +284,7 @@
                             <th>Price</th>
                             <th>Arrival price</th>
                             <th>Quantity</th>
-                            <th>Archive</th>
+                            <th> </th>
                         </tr>
                     </thead>
                     <tbody class="ligth-body">
@@ -327,11 +307,26 @@
                             <td>{{ p.price }} UZS</td>
                             <td>{{ p.arrival_price }} UZS</td>
                             <td>{{ p.quantity }}</td>
-                            <form method="post" action="/product/archive/{{ p.id }}/">{% csrf_token %}
-                                <td>
-                                    <button class="archive-btn">Archive</button>
-                                </td>
+                            <td>
+                                   <a href="/product/{{ p.id }}/edit/" style="display: inline">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5c0bd6" class="bi bi-pen" viewBox="0 0 16 16">
+                                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                                        </svg>
+                                    </a>
+                                <a href="/warehouse/{{ p.id }}/add/" style="display: inline">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5c0bd6" class="bi bi-plus-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg>
+                                    </a>
+                            <form style="display: inline" method="post" action="/product/archive/{{ p.id }}/">{% csrf_token %}
+                                    <button style="background-color: white; border: 1px solid white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-archive" viewBox="0 0 16 16">
+                                            <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                                      </svg>
+                                    </button>
                             </form>
+                            </td>
 
                         </tr>
                     {% endfor %}

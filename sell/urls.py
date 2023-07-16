@@ -14,7 +14,7 @@ urlpatterns = [
     path('<int:saleid>/delete/', sale_delete),
     path('<int:saleid>/refresh/<int:tp>/', refresh),
     path('<int:s>/items/', saleitem_list),
-    path('<int:sale>/return/<int:saleitem>/', return_create, name='return-add'),
+    path('<int:sale>/return/<int:saleitem_id>/', return_create, name='return-add'),
     path('return/', return_list),
     path('category/', category),
     path('<int:sale_id>/minus/<int:saleitem_id>/', minus),

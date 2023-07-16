@@ -19,7 +19,6 @@ from django.urls import path
 
 from product.views import *
 
-
 urlpatterns = [
     path('list/', product_list),
     path('add/', product_add_page),
@@ -29,4 +28,5 @@ urlpatterns = [
     path('archive-delete/<int:a>/', archive_delete),
     path('measurement/', measurements),
     path('measurement/add/', measurement_add),
+    path('<int:id>/edit/', product_edit),
 ]

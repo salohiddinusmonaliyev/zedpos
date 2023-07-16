@@ -65,9 +65,9 @@ width: 150px;
 
 .archive-btn {
     background-color: red;
-    border: 2px solid red;
     border-radius: 5px;
     color: white;
+    width: 50px;
 }
 .btn {
     background-color: #5c0bd6;
@@ -95,4 +95,8 @@ width: 150px;
 
 .svg-icon:hover {
     color: #5c0bd6;
+}
+
+.edit-btn {
+    background-color: #5c0bd6;
 }

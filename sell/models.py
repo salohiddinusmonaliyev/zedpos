@@ -15,7 +15,7 @@ class Sell(models.Model):
     discount = models.IntegerField(null=True, default=0)
     checkout = models.BooleanField(null=True, blank=True)
     total_price = models.IntegerField(null=True, blank=True)
-    paid = models.IntegerField(null=True, blank=True)
+    # paid = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.id}"
@@ -50,8 +50,8 @@ class Return(models.Model):
     customer = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
     sellitem = models.ForeignKey(SellItem, on_delete=models.SET_NULL, null=True)
     date = models.DateTimeField(auto_now_add=True)
-    paid = models.IntegerField()
-    quantity = models.IntegerField(null=True)
+    paid = models.IntegerField(null=True)
+    quantity = models.FloatField(null=True)
     worker = models.ForeignKey(Worker, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
