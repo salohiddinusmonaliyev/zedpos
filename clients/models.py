@@ -16,7 +16,7 @@ class Client(models.Model):
 class CustomerPayment(models.Model):
     customer = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
     paymnet = models.IntegerField()
-    comment = models.TextField(null=True)
+    comment = models.CharField(max_length=100, null=True)
     date = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):

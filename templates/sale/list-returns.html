@@ -256,6 +256,11 @@
       </div>
     </div>
       <div class="content-page">
+      {% if messages %}
+      {% for m in messages %}
+      <div class="error">{{m}}</div>
+      {% endfor %}
+      {% endif %}
      <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">

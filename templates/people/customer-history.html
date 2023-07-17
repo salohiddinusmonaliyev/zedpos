@@ -291,6 +291,7 @@
                             <th>Last Name</th>
                             <th>Date</th>
                             <th>Payment</th>
+                            <th>Description</th>
                         </tr>
                     </thead>
                     <tbody class="ligth-body">
@@ -312,6 +313,7 @@
                             <td>{{ p.customer.last_name }}</td>
                             <td>{{ p.date }}</td>
                             <td>{{ p.paymnet }}</td>
+                            <td>{{ p.comment }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

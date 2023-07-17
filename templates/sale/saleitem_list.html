@@ -264,7 +264,6 @@
                 <table class="data-table table mb-0 tbl-server-info">
                     <thead class="bg-white text-uppercase">
                         <tr class="ligth ligth-data">
-                            <th>ID</th>
                             <th>Product</th>
                             <th>Price</th>
                             <th>Quantity</th>
@@ -276,7 +275,6 @@
                         <tbody class="ligth-body">
                         {% for s in saleitems %}
                             <tr>
-                                <td><a href="#" style="color: black;">{{ s.id }}</a></td>
                                 <td><a href="#" style="color: black;">{{ s.product.name }}</a></td>
                                 <td><a href="#" style="color: black;">{{ s.product.price }}</a></td>
                                 <td><a href="#" style="color: black;">{{ s.quantity }}</a></td>
