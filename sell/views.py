@@ -206,7 +206,7 @@ def return_create(request, sale, saleitem_id):
         if float(item.quantity) >= float(quantity):
             for saleitem in saleitems:
                 total_price = (total_price + (saleitem.product.price * saleitem.quantity)) - (saleitem.discount * saleitem.quantity)
-            if customer.debt == 0:
+            if customer.debt == 0 and float(item.quantity) >= float(quantity):
                 sell.total_price = total_price-paid
                 item.quantity = item.quantity - float(quantity)
                 product.quantity = float(product.quantity) + float(quantity)
@@ -223,7 +223,7 @@ def return_create(request, sale, saleitem_id):
                 messages.success(request, f"Mijozga {paid} so'm to'landi")
                 return redirect("/sale/return/")
 
-            elif customer.debt > 0:
+            elif customer.debt > 0 and float(item.quantity) >= float(quantity):
                 if customer.debt - paid >= 0:
                     customer.debt = customer.debt - paid
                     customer.save()
@@ -241,14 +241,20 @@ def return_create(request, sale, saleitem_id):
                                           worker_id=worker)
                     messages.success(request, f"Mijozga 0 so'm to'landi")
                     return redirect("/sale/return/")
-                elif customer.debt - paid < 0:
+                elif customer.debt - paid < 0 and float(item.quantity) >= float(quantity):
+                    print(222)
                     product.quantity = float(product.quantity) + float(quantity)
                     product.count = float(product.count) - float(quantity)
                     product.save()
+                    print(paid)
                     paid = -(customer.debt - paid)
                     sell.total_price = total_price - paid
                     item.quantity = float(item.quantity) - float(quantity)
+                    customer.debt = 0
                     sell.save()
+                    print(paid)
+                    # print(total_price-paid)
+                    # print()
                     customer.save()
                     returns = Return.objects.create(sellitem_id=saleitem_id,
                                                     customer=customer,
