@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
@@ -139,3 +141,48 @@ def measurements(request):
         "measurements": Measure.objects.all(),
     }
     return render(request, "products/measurements.html", data)
+
+
+# Create your views here.
+
+
+def warehouse(request):
+    data = {
+        "items": AddProduct.objects.all()
+    }
+    return render(request, "products/warehouse.html", data)
+
+def warehouse_add(request, a=None):
+    if request.method=="POST":
+        product = request.POST.get("product")
+        product_price = Product.objects.get(id=product).arrival_price
+        product = Product.objects.get(id=product)
+        dealer = request.POST.get("dealer")
+        dealer = Dealer.objects.get(id=dealer)
+        date = datetime.now()
+        quantity = request.POST.get("quantity")
+        total_price = request.POST.get("total_price")
+        aprice = request.POST.get("aprice")
+        status = request.POST.get("status")
+        price = request.POST.get("price")
+
+        if int(aprice) == int(product_price):
+            pq = product.quantity
+            product.quantity = int(pq) + int(quantity)
+            product.save()
+        elif int(aprice) != int(product_price):
+            product.is_active = False
+            product.save()
+            code = product.code
+            name = product.name
+            coming = aprice
+            quantity = float(quantity) + float(product.quantity)
+
+            Product.objects.create(code=code, name=name, arrival_price=coming, price=price, quantity=quantity, is_active=True)
+        AddProduct.objects.create(product=product, dealer_id=dealer, date=date, quantity=quantity, total_price=total_price, price=price, status=status)
+        return redirect('/warehouse/list/')
+    data = {
+        "product": Product.objects.get(id=a),
+        "dealers": Dealer.objects.all(),
+    }
+    return render(request, "products/add-warehouse.html", data)

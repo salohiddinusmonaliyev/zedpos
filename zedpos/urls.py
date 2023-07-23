@@ -27,7 +27,6 @@ urlpatterns = [
     path('dashboard/<str:a>/<str:b>/', dashboard, name="dashboard"),
     path('', dashboard),
     path('product/', include('product.urls')),
-    path('warehouse/', include('warehouse.urls')),
     path('customers/', clients_list, name="customers"),
     path('customers-add/', customer_add, name="customer-add"),
     path('customer-delete/<int:i>/', customer_delete),

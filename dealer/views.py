@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from dealer.models import *
-from warehouse.models import Warehouse
+from product.models import AddProduct
 
 
 def list(request):
@@ -28,7 +28,7 @@ def payment(request):
 
 def dealer_brought(request, i):
     data = {
-        "dealers": Warehouse.objects.filter(dealer_id=i)
+        "dealers": AddProduct.objects.filter(dealer_id=i)
     }
     return render(request, "people/dealers-brought.html", data)
 
