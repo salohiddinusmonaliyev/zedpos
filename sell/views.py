@@ -279,7 +279,7 @@ def return_create(request, sale, saleitem_id):
                         print("wfimoioi oij")
                         sell.total_price = total_price-paid
                         item.quantity = item.quantity - float(quantity)
-
+                        item.total_price = (item.price - item.discount) * item.quantity
                         Return.objects.create(sellitem=item,
                                         customer=customer,
                                         paid=paid,
@@ -293,7 +293,8 @@ def return_create(request, sale, saleitem_id):
                         product.count = float(product.count) - float(quantity)
                         product.save()    
                         sell.save()
-
+                        if not SellItem.objects.filter(sell_id_id=sell):
+                            sell.delete()
                         messages.success(request, f"Mijozga {paid} so'm to'landi")
                         return redirect("/sale/return/")
 
@@ -310,7 +311,8 @@ def return_create(request, sale, saleitem_id):
                             product.count = float(product.count) - float(quantity)
                             product.save()
                             sell.save()
-
+                            if not SellItem.objects.filter(sell_id_id=sell):
+                                sell.delete()
                             Return.objects.create(sellitem=item,
                                                 customer=customer,
                                                 paid=0,
@@ -330,13 +332,10 @@ def return_create(request, sale, saleitem_id):
                             product.count = float(product.count) - float(quantity)
                             product.save()
                             paid = -(customer.debt - paid)
-
-                            sell.total_price = 0
                             print("--------------------")
                             print(total_price - paid)
                             item.quantity = float(item.quantity) - float(quantity)
                             customer.debt = 0
-                            sell.save()
                             Return.objects.create(sellitem_id=saleitem_id,
                                                             customer=customer,
                                                             paid=paid,
@@ -351,7 +350,15 @@ def return_create(request, sale, saleitem_id):
                                 item.total_price = (item.price - item.discount) * item.quantity
                                 item.save()
                             customer.save()
-                            
+                            sale_total_price = 0
+                            if SellItem.objects.filter(sell_id_id=sell):
+                                for t in SellItem.objects.filter(sell_id_id=sell):
+                                    sale_total_price += t.total_price
+                                sell.total_price = sale_total_price
+                                sell.save()
+
+                            else:
+                                sell.delete()
                             messages.success(request, f"Mijozga {paid} so'm to'landi.")
                             return redirect("/sale/return/")
                 elif float(item.quantity) < float(quantity):
