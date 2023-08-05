@@ -85,7 +85,7 @@
                 </div>
                 <div class="col-lg-12 mt-4">
                   <div class="d-flex flex-wrap align-items-ceter justify-content-center">
-                  <button type="submit" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #5c0bd6 ;">
+                  <button type="submit" id="checkout" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #5c0bd6 ;">
                     <h5 style=" color: white;">Checkout</h5>
                   </button>
                   <a href="/sale/{{ sale }}/delete/" type="submit" class=" btn delete" style="width: 49%; position: relative;left: 10px;display: inline; background-color: red; color: white;">
@@ -117,15 +117,14 @@
                 </div>
               </div>
 				<form method="post" action="/sale/{{sale}}/add/">{% csrf_token %}
-                  <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Code" style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
-                  <input name="quantity" type="text" id="myInput2" placeholder="Quantity" style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
+                  <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Code" style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;" autofocus>
                   <input name="discount" type="text" id="myInput3" placeholder="Discount"  style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
                   <button type="submit" class="product-btn">Submit</button>
                 </form>
                 <hr>
               <div class="container" style="border-color: black; background-color: white; overflow: auto; height: 600px;">
                 <br>
-                <table class="table" id="myTable" data-filter-control="true" data-show-search-clear-button="true">
+                <table class="table" id="myTable" datas-filter-control="true" data-show-search-clear-button="true">
                   <tr>
                     <th>Code</th>
                     <th>Name</th>
@@ -443,6 +442,16 @@
           decrementValue(e);
         });
 
+    </script>
+    <script>
+        document.getElementById('checkout').addEventListener('click', function() {
+            // Change the URL to the desired URL that you want to open in the new tab
+            var sale = "{{ sale }}";
+            var url = `/sale/refresh/${sale}/`;
+
+            // Open the URL in a new tab
+            window.open(url, '_blank');
+        });
     </script>
 
     <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>

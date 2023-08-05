@@ -9,6 +9,8 @@ class Client(models.Model):
     last_name = models.CharField(("Last name"), max_length=50)
     p_num = models.CharField(("Phone number"), max_length=20)
     debt = models.IntegerField(("Debt"), null=True, blank=True, default=0)
+    count = models.IntegerField(null=True)
+    sale = models.IntegerField(null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

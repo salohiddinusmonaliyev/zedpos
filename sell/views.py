@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 
 from django.shortcuts import render, redirect
@@ -6,6 +7,47 @@ from django.views import View
 from .models import *
 
 from django.contrib import messages
+# payments/views.py
+
+import jinja2
+import pdfkit
+from datetime import datetime
+
+from django.shortcuts import render
+import pdfkit
+from django.http import HttpResponse
+
+def generate_cheque_pdf(request, pk):
+    # Data to be passed to the Jinja2 template
+    items = SellItem.objects.filter(sell_id_id=pk)
+    total_price = 0
+    for item in items:
+        total_price += (int(item.price)-int(item.discount))*float(item.quantity)
+    cheque_data = {
+        "cheque": Sell.objects.get(id=pk),
+        "items": items,
+        "products": Product.objects.filter().order_by('code'),
+        "clients": Client.objects.all(),
+        "item_total_price": total_price,
+    }
+
+    # Render the cheque template using Jinja2
+    template_name = 'cheque.html'
+    rendered_template = render(request, template_name, cheque_data)
+
+    # Generate PDF using pdfkit
+    rendered_content = rendered_template.content.decode('utf-8')
+
+    # Generate PDF using pdfkit and provide the path to wkhtmltopdf executable
+    config = pdfkit.configuration(wkhtmltopdf='C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe')
+    pdf = pdfkit.from_string(rendered_content, False, configuration=config)
+
+    # Set the Content-Disposition header to open the PDF in a new tab
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; filename="cheque.pdf"'
+
+    return response
+
 
 
 
@@ -21,13 +63,12 @@ def sale_add(request, s):
     saleitem = SellItem.objects.filter(sell_id=s)
     sale_item = []
     for item in saleitem:
-        sale_item.append({item.id: item.quantity*(item.product.price-item.discount)})
-    print(sale_item)
+        sale_item.append({item.id: item.quantity*(item.price-item.discount)})
     total_price = 0
     discount = 0
     for sale in saleitem:
-        total_price = int((total_price + (sale.product.price*sale.quantity))-(sale.discount*sale.quantity))
-        discount+=(sale.discount*sale.quantity)
+        total_price = int((total_price + (sale.price*sale.quantity))-(sale.discount*sale.quantity))
+        discount += (sale.discount*sale.quantity)
 
 
     data = {
@@ -54,40 +95,65 @@ def saleitem_delete(request, id, saleid):
     SellItem.objects.get(id=id).delete()
     return redirect(f"/sale/add/{saleid}")
 
+# def saleitem_create(request, saleid):
+#     try:
+#         if request.method=="POST":
+#             sale = Sell.objects.get(id=saleid)
+#             saleitems = SellItem.objects.all()
+#             code = request.POST.get("code")
+#             quantity = request.POST.get("quantity")
+#             discount = request.POST.get("discount")
+#             if discount is None or not discount:
+#                 discount = 0
+#
+#             product = Product.objects.get(is_active=True, code=code)
+#             for s in saleitems:
+#                 if s.product == product and s.sell_id == sale:
+#                     message = messages.error(request, "Bu mahsulot savatda bor")
+#                     return redirect(f"/sale/add/{saleid}/")
+#             SellItem.objects.create(sell_id=sale, product=product, price=product.price, date=datetime.now(), quantity=quantity, discount=discount)
+#
+#             return redirect(f"/sale/add/{saleid}/")
+#
+
+def calculate_sellitem_total_price(price, quantity, discount):
+    return (price-discount) * quantity
+
 def saleitem_create(request, saleid):
     try:
-        if request.method=="POST":
+        if request.method == "POST":
             sale = Sell.objects.get(id=saleid)
             saleitems = SellItem.objects.all()
             code = request.POST.get("code")
-            quantity = request.POST.get("quantity")
+            # quantity = request.POST.get("quantity")
             discount = request.POST.get("discount")
+
             if discount is None or not discount:
                 discount = 0
-
             product = Product.objects.get(is_active=True, code=code)
-            # print("-----------")
-            # print(product.quantity-int(quantity))
             for s in saleitems:
                 if s.product == product and s.sell_id == sale:
-                    message = messages.error(request, "Bu mahsulot savatda bor")
+                    s.quantity += 1
+                    s.total_price = int(s.total_price) + int(product.price-discount)
+                    s.save()
                     return redirect(f"/sale/add/{saleid}/")
-            SellItem.objects.create(sell_id=sale, product=product, date=datetime.now(), quantity=quantity, discount=discount)
-
+            total_price = calculate_sellitem_total_price(product.price, 1, discount)
+            SellItem.objects.create(sell_id=sale, total_price=total_price, product=product, price=product.price, date=datetime.now(),
+                                    quantity=1, discount=discount)
             return redirect(f"/sale/add/{saleid}/")
+
     except:
         return redirect(f"/sale/add/{saleid}/")
 
 def checkout(request, saleid):
     if request.method == "POST":
-        print(00)
         saleitems = SellItem.objects.filter(sell_id=saleid)
         sale = Sell.objects.get(id=saleid)
         paid = float(request.POST.get('paid'))
         customer = request.POST.get('customer')
         total_price = 0
         for saleitem in saleitems:
-            total_price = (total_price + (saleitem.product.price * saleitem.quantity))-(saleitem.discount*saleitem.quantity)
+            total_price = (total_price + (saleitem.price * saleitem.quantity))-(saleitem.discount*saleitem.quantity)
         if paid == total_price:
             sale.checkout = True
             sale.total_price = total_price
@@ -95,6 +161,9 @@ def checkout(request, saleid):
                 sale.client = None
             else:
                 customer = Client.objects.get(id=customer)
+                customer.count += 1
+                customer.sale += total_price
+                customer.save()
                 sale.client = customer
             sale.save()
             sell_items = SellItem.objects.filter(sell_id=saleid)
@@ -105,7 +174,6 @@ def checkout(request, saleid):
                     product.quantity = product.quantity - float(quantity)
                     product.count += float(quantity)
                     product.save()
-                    sale.save()
         else:
             sale.checkout = True
             sale.total_price = total_price
@@ -151,11 +219,9 @@ def cost_list(request):
     }
     return render(request, "sale/list-cost.html", data)
 
-# def cost_category(request):
-#     data = {
-#         "categories": CostCategory.objects.all()
-#     }
-#     return render(request, "list-category.html", data)
+def refresh_page(request, pk):
+    time.sleep(1)
+    return redirect(f"/sale/cheque/{pk}/")
 
 def cost_create(request):
     if request.method=="POST":
@@ -176,10 +242,10 @@ def saleitem_list(request, s):
     saleitem = SellItem.objects.filter(sell_id=s)
     sale_item = []
     for item in saleitem:
-        sale_item.append({item.id: item.quantity*(item.product.price-item.discount)})
+        sale_item.append({item.id: item.quantity*(item.price-item.discount)})
     total_price = 0
     for sale in saleitem:
-        total_price = int((total_price + (sale.product.price*sale.quantity))-(sale.discount*sale.quantity))
+        total_price = int((total_price + (sale.price*sale.quantity))-(sale.discount*sale.quantity))
     data = {
         "products": Product.objects.filter().order_by('code'),
         "clients": Client.objects.all(),
@@ -199,73 +265,100 @@ def return_create(request, sale, saleitem_id):
         worker = request.POST.get("worker")
         item = SellItem.objects.get(id=saleitem_id)
         saleitems = SellItem.objects.filter(sell_id_id=sale)
-        paid = item.product.price * float(quantity) - (item.discount * float(quantity))
+        paid = item.price * float(quantity) - (item.discount * float(quantity))
         product = Product.objects.get(id=item.product_id)
         total_price = 0
         sell = Sell.objects.get(id=sale)
-        if float(item.quantity) >= float(quantity):
-            for saleitem in saleitems:
-                total_price = (total_price + (saleitem.product.price * saleitem.quantity)) - (saleitem.discount * saleitem.quantity)
-            if customer.debt == 0 and float(item.quantity) >= float(quantity):
-                sell.total_price = total_price-paid
-                item.quantity = item.quantity - float(quantity)
-                product.quantity = float(product.quantity) + float(quantity)
-                product.count = float(product.count) - float(quantity)
-                product.save()
-                item.save()
-                sell.save()
+        for saleitem in saleitems:
+            if saleitem.sell_id_id:
+                
+                if float(item.quantity) >= float(quantity):
+                    for saleitem in saleitems:
+                        total_price = (total_price + (saleitem.price * saleitem.quantity)) - (saleitem.discount * saleitem.quantity)
+                    if customer.debt == 0 and float(item.quantity) >= float(quantity):
+                        print("wfimoioi oij")
+                        sell.total_price = total_price-paid
+                        item.quantity = item.quantity - float(quantity)
 
-                Return.objects.create(sellitem_id=saleitem_id,
-                                      customer=customer,
-                                      paid=paid,
-                                      quantity=quantity,
-                                      worker_id=worker)
-                messages.success(request, f"Mijozga {paid} so'm to'landi")
-                return redirect("/sale/return/")
+                        Return.objects.create(sellitem=item,
+                                        customer=customer,
+                                        paid=paid,
+                                        quantity=quantity,
+                                        worker_id=worker)
+                        if item.quantity == 0:
+                            item.delete()
+                        else:
+                            item.save()
+                        product.quantity = float(product.quantity) + float(quantity)
+                        product.count = float(product.count) - float(quantity)
+                        product.save()    
+                        sell.save()
 
-            elif customer.debt > 0 and float(item.quantity) >= float(quantity):
-                if customer.debt - paid >= 0:
-                    customer.debt = customer.debt - paid
-                    customer.save()
-                    sell.total_price = total_price - paid
-                    item.quantity = item.quantity - float(quantity)
-                    product.quantity = float(product.quantity) + float(quantity)
-                    product.count = float(product.count) - float(quantity)
-                    product.save()
-                    sell.save()
-                    item.save()
-                    Return.objects.create(sellitem_id=saleitem_id,
-                                          customer=customer,
-                                          paid=0,
-                                          quantity=quantity,
-                                          worker_id=worker)
-                    messages.success(request, f"Mijozga 0 so'm to'landi")
-                    return redirect("/sale/return/")
-                elif customer.debt - paid < 0 and float(item.quantity) >= float(quantity):
-                    print(222)
-                    product.quantity = float(product.quantity) + float(quantity)
-                    product.count = float(product.count) - float(quantity)
-                    product.save()
-                    print(paid)
-                    paid = -(customer.debt - paid)
-                    sell.total_price = total_price - paid
-                    item.quantity = float(item.quantity) - float(quantity)
-                    customer.debt = 0
-                    sell.save()
-                    print(paid)
-                    # print(total_price-paid)
-                    # print()
-                    customer.save()
-                    returns = Return.objects.create(sellitem_id=saleitem_id,
-                                                    customer=customer,
-                                                    paid=paid,
-                                                    quantity=quantity,
-                                                    worker_id=worker)
-                    messages.success(request, f"Mijozga {paid} so'm to'landi. Mijoz qarzi: {returns.customer.debt}")
-                    return redirect("/sale/return/")
-        elif float(item.quantity) < float(quantity):
-            messages.error(request, "Berilgandan ko'p mahsulot qaytarib olinmaydi!")
-            return redirect(f"/sale/{sale}/items/")
+                        messages.success(request, f"Mijozga {paid} so'm to'landi")
+                        return redirect("/sale/return/")
+
+                    elif customer.debt > 0 and float(item.quantity) >= float(quantity):
+                        print("wfwf")
+                        if customer.debt - paid >= 0:
+                            print("wewfwiojfwoi")
+                            customer.debt = customer.debt - paid
+                            customer.save()
+                            sell.total_price = total_price - paid
+                            print(total_price - paid)
+                            item.quantity = item.quantity - float(quantity)
+                            product.quantity = float(product.quantity) + float(quantity)
+                            product.count = float(product.count) - float(quantity)
+                            product.save()
+                            sell.save()
+
+                            Return.objects.create(sellitem=item,
+                                                customer=customer,
+                                                paid=0,
+                                                quantity=quantity,
+                                                worker_id=worker)
+                            if item.quantity == 0:
+                                item.delete()
+                            else:
+                                item.save()
+                                item.total_price = (item.price - item.discount) * item.quantity
+                                item.save()
+                            messages.success(request, f"Mijozga 0 so'm to'landi")
+                            return redirect("/sale/return/")
+                        elif customer.debt - paid < 0 and float(item.quantity) >= float(quantity):
+                            print(57885)
+                            product.quantity = float(product.quantity) + float(quantity)
+                            product.count = float(product.count) - float(quantity)
+                            product.save()
+                            paid = -(customer.debt - paid)
+
+                            sell.total_price = 0
+                            print("--------------------")
+                            print(total_price - paid)
+                            item.quantity = float(item.quantity) - float(quantity)
+                            customer.debt = 0
+                            sell.save()
+                            Return.objects.create(sellitem_id=saleitem_id,
+                                                            customer=customer,
+                                                            paid=paid,
+                                                            quantity=quantity,
+                                                            worker_id=worker)
+
+
+                            if item.quantity == 0:
+                                item.delete()
+                            else:
+                                item.save()
+                                item.total_price = (item.price - item.discount) * item.quantity
+                                item.save()
+                            customer.save()
+                            
+                            messages.success(request, f"Mijozga {paid} so'm to'landi.")
+                            return redirect("/sale/return/")
+                elif float(item.quantity) < float(quantity):
+                    messages.error(request, "Berilgandan ko'p mahsulot qaytarib olinmaydi!")
+                    return redirect(f"/sale/{sale}/items/")
+            else:
+                sell.delete()
     elif Sell.objects.get(id=sale).client is None:
         messages.error(request, "Savatni egasi mijozlar ro'yhatiga qo'shilmagan.")
         return redirect(f"/sale/{sale}/items/")
@@ -292,12 +385,14 @@ def category(request):
 def plus(request, sale_id, saleitem_id):
     sellitem = SellItem.objects.get(id=saleitem_id)
     sellitem.quantity = sellitem.quantity + 1
+    sellitem.total_price = int(sellitem.total_price) + int(sellitem.price - sellitem.discount)
     sellitem.save()
     return redirect(f"/sale/add/{sale_id}/")
 
 def minus(request, sale_id, saleitem_id):
     sellitem = SellItem.objects.get(id=saleitem_id)
     sellitem.quantity = sellitem.quantity - 1
+    sellitem.total_price = int(sellitem.total_price) - int(sellitem.price - sellitem.discount)
     sellitem.save()
     return redirect(f"/sale/add/{sale_id}/")
 

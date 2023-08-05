@@ -23,8 +23,10 @@ class Sell(models.Model):
 class SellItem(models.Model):
     sell_id = models.ForeignKey(Sell, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    price = models.IntegerField(null=True)
     date = models.DateTimeField(null=True, blank=True)
     discount = models.IntegerField(null=True)
+    total_price = models.IntegerField(null=True)
     quantity = models.FloatField()
 
     def __str__(self):
@@ -56,3 +58,4 @@ class Return(models.Model):
 
     def __str__(self):
         return self.customer.first_name
+

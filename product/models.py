@@ -31,6 +31,7 @@ class AddProduct(models.Model):
     date = models.DateField()
     quantity = models.IntegerField(null=True)
     total_price = models.IntegerField()
+    paid = models.IntegerField(null=True)
     price = models.IntegerField()
     status = models.CharField(max_length=50, choices=STATUS)
 

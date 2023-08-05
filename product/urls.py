@@ -31,5 +31,5 @@ urlpatterns = [
     path('<int:id>/edit/', product_edit),
     path('list/', warehouse),
     path('<int:a>/add/', warehouse_add),
-    path('add/', warehouse_add),
+    path('product-add/', warehouse_add),
 ]

@@ -9,18 +9,18 @@
 }
 
 .checkout {
-    background-color: #5c0bd6;
+    background-color: var(--main-color);
     color: white;
 }
 
 .checkout:hover {
-    background-color: #5c0bd6;
+    background-color: var(--main-color);
     color: white;
 }
 
 .product-btn {
-    background-color: #5c0bd6;
-    border: 2px solid #5c0bd6;
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
     border-radius: 5px;
     color: white;
 }
@@ -32,8 +32,8 @@
     color: white;
 }
 .btn {
-    background-color: #5c0bd6;
-    border: 2px solid #5c0bd6;
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
 }
 
 .btn:hover {
@@ -43,8 +43,8 @@
 
 
 .btns {
-    background-color: #5c0bd6;
-    border: 2px solid #5c0bd6;
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
 }
 
 .btns:hover {
@@ -56,5 +56,5 @@
 }
 
 .svg-icon:hover {
-    color: #5c0bd6;
+    color: var(--main-color);
 }

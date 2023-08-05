@@ -70,19 +70,15 @@ def product_edit(request, id):
         }
         return render(request, "products/page-edit-product.html", data)
 
+
 def product_add(request):
     name = request.POST.get("name")
     code = int(request.POST.get("code"))
     price = request.POST.get("price")
     incoming = request.POST.get("incoming")
     quantity = request.POST.get("quantity")
-    is_active = request.POST.get("is_active")
     measure = request.POST.get('measure')
     measure = Measure.objects.get(id=measure)
-    if is_active == "on":
-        is_active = True
-    else:
-        is_active = False
     try:
         if Product.objects.get(code=code).code == code:
             messages.error(request, "Code error. Bunday kodli mahsulot bor")
@@ -94,7 +90,7 @@ def product_add(request):
                                    arrival_price=incoming,
                                    price=price,
                                    quantity=quantity,
-                                   is_active=is_active,
+                                   is_active=True,
                                    measure=measure)
             return redirect("/product/list/")
     except:
@@ -103,7 +99,7 @@ def product_add(request):
                                arrival_price=incoming,
                                price=price,
                                quantity=quantity,
-                               is_active=is_active,
+                               is_active=True,
                                measure=measure)
         return redirect("/product/list/")
 
@@ -143,44 +139,38 @@ def measurements(request):
     return render(request, "products/measurements.html", data)
 
 
-# Create your views here.
-
-
 def warehouse(request):
     data = {
         "items": AddProduct.objects.all()
     }
     return render(request, "products/warehouse.html", data)
 
+
 def warehouse_add(request, a=None):
-    if request.method=="POST":
+    if request.method == "POST":
         product = request.POST.get("product")
-        product_price = Product.objects.get(id=product).arrival_price
         product = Product.objects.get(id=product)
         dealer = request.POST.get("dealer")
         dealer = Dealer.objects.get(id=dealer)
         date = datetime.now()
         quantity = request.POST.get("quantity")
         total_price = request.POST.get("total_price")
-        aprice = request.POST.get("aprice")
-        status = request.POST.get("status")
+        paid = request.POST.get("paid")
         price = request.POST.get("price")
-
-        if int(aprice) == int(product_price):
-            pq = product.quantity
+        pq = product.quantity
+        if int(total_price) != int(quantity) * int(product.price):
+            messages.error(request, "Total price - error!")
+            return redirect(f"/product/{a}/add/")
+        else:
+            if total_price == paid:
+                status = "Paid"
+            else:
+                status = "Unpaid"
             product.quantity = int(pq) + int(quantity)
             product.save()
-        elif int(aprice) != int(product_price):
-            product.is_active = False
-            product.save()
-            code = product.code
-            name = product.name
-            coming = aprice
-            quantity = float(quantity) + float(product.quantity)
-
-            Product.objects.create(code=code, name=name, arrival_price=coming, price=price, quantity=quantity, is_active=True)
-        AddProduct.objects.create(product=product, dealer_id=dealer, date=date, quantity=quantity, total_price=total_price, price=price, status=status)
-        return redirect('/warehouse/list/')
+            AddProduct.objects.create(product=product, dealer_id=dealer, date=date, quantity=quantity,
+                                      total_price=total_price, price=price, status=status, paid=paid)
+            return redirect('/product/list/')
     data = {
         "product": Product.objects.get(id=a),
         "dealers": Dealer.objects.all(),
