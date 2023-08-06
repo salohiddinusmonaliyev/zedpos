@@ -242,7 +242,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="/product/product-add/" method="post" data-toggle="validator">{% csrf_token %}
+                        <form action="/product/{{ product.id }}/add/" method="post" data-toggle="validator">{% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

@@ -1,16 +1,12 @@
 import time
-from datetime import datetime
 
-from django.shortcuts import render, redirect
-from django.views import View
+from django.shortcuts import redirect
 
 from .models import *
 
 from django.contrib import messages
 # payments/views.py
 
-import jinja2
-import pdfkit
 from datetime import datetime
 
 from django.shortcuts import render
@@ -229,12 +225,12 @@ def cost_create(request):
         worker = request.POST.get("worker")
         category = request.POST.get("category")
         category = CostCategory.objects.get(id=category)
-        worker = User.objects.get(id=worker)
+        worker = Worker.objects.get(id=worker)
         Cost.objects.create(cost=cost, category=category, worker=worker, date=datetime.now())
-        return redirect('/cost-list/')
+        return redirect('/sale/cost-list/')
     data = {
         "category": CostCategory.objects.all(),
-        "worker": User.objects.all()
+        "worker": Worker.objects.all()
     }
     return render(request, "sale/add-cost.html", data)
 

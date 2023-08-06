@@ -166,8 +166,10 @@ def warehouse_add(request, a=None):
                 status = "Paid"
             else:
                 status = "Unpaid"
+                dealer.debt = int(dealer.debt) + int(int(total_price) - int(paid))
             product.quantity = int(pq) + int(quantity)
             product.save()
+            dealer.save()
             AddProduct.objects.create(product=product, dealer_id=dealer, date=date, quantity=quantity,
                                       total_price=total_price, price=price, status=status, paid=paid)
             return redirect('/product/list/')
