@@ -150,31 +150,30 @@ def warehouse_add(request, a=None):
     if request.method == "POST":
         product = request.POST.get("product")
         product = Product.objects.get(id=product)
-        dealer = request.POST.get("dealer")
-        dealer = Dealer.objects.get(id=dealer)
         date = datetime.now()
         quantity = request.POST.get("quantity")
-        total_price = request.POST.get("total_price")
-        paid = request.POST.get("paid")
-        price = request.POST.get("price")
         pq = product.quantity
-        if int(total_price) != int(quantity) * int(product.price):
-            messages.error(request, "Total price - error!")
-            return redirect(f"/product/{a}/add/")
-        else:
-            if total_price == paid:
-                status = "Paid"
-            else:
-                status = "Unpaid"
-                dealer.debt = int(dealer.debt) + int(int(total_price) - int(paid))
-            product.quantity = int(pq) + int(quantity)
-            product.save()
-            dealer.save()
-            AddProduct.objects.create(product=product, dealer_id=dealer, date=date, quantity=quantity,
-                                      total_price=total_price, price=price, status=status, paid=paid)
-            return redirect('/product/list/')
+        product.quantity = int(pq) + int(quantity)
+        product.save()
+        total_price = int(quantity) * int(product.price)
+        AddProduct.objects.create(product=product, date=date, quantity=quantity,
+                                      total_price=total_price)
+        return redirect('/product/list/')
     data = {
         "product": Product.objects.get(id=a),
         "dealers": Dealer.objects.all(),
     }
     return render(request, "products/add-warehouse.html", data)
+
+
+def product_item(request, pk):
+    data = {
+        "items": AddProduct.objects.filter(product_id=pk)
+    }
+    return render(request, "people/dealers-brought.html", data)
+
+def unarchive(request, pk):
+    product = Product.objects.get(id=pk)
+    product.is_active = True
+    product.save()
+    return redirect('/product/list/')

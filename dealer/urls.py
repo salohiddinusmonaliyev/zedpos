@@ -5,5 +5,4 @@ urlpatterns = [
     path('', list),
     path('add/', add),
     path('payment/', payment),
-    path('brought/<int:i>/', dealer_brought),
 ]

@@ -99,7 +99,7 @@
                               </svg>
                           </a>
                           <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                              <li class="">
+                              <li class="active">
                                   <a href="/product/list/">
                                       <span>List Product</span>
                                   </a>
@@ -213,7 +213,7 @@
                           </svg>
                       </a>
                       <ul id="dealer" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                              <li class="active">
+                              <li class="">
                                       <a href="/dealers/">
                                           <span>List Dealers</span>
                                       </a>
@@ -288,17 +288,14 @@
                                 </div>
                             </th>
                             <th>Product</th>
-                            <th>Dealer</th>
                             <th>Date</th>
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Total price</th>
-                            <th>Paid</th>
-                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody class="ligth-body">
-                    {% for p in dealers %}
+                    {% for p in items %}
                         <tr>
                             <td>
                                 <div class="checkbox d-inline-block">
@@ -313,14 +310,10 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ p.dealer_id }}</td>
                             <td>{{ p.date }}</td>
-                            <td>{{ p.price }}</td>
+                            <td>{{ p.product.price }}</td>
                             <td>{{ p.quantity }}</td>
                             <td>{{ p.total_price }}</td>
-                            <td>{{ p.paid }}</td>
-                            <td>{{ p.status }}</td>
-
                         </tr>
                     {% endfor %}
                     </tbody>

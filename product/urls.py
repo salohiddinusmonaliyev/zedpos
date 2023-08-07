@@ -32,4 +32,6 @@ urlpatterns = [
     path('list/', warehouse),
     path('<int:a>/add/', warehouse_add),
     path('product-add/', warehouse_add),
+    path('items/<int:pk>/', product_item),
+    path('unarchive/<int:pk>/', unarchive),
 ]

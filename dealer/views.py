@@ -26,11 +26,11 @@ def payment(request):
     Payment.objects.create(payment=payment, dealer=dealer, description=description)
     return redirect('/dealers/')
 
-def dealer_brought(request, i):
-    data = {
-        "dealers": AddProduct.objects.filter(dealer_id=i)
-    }
-    return render(request, "people/dealers-brought.html", data)
+# def dealer_brought(request, i):
+#     data = {
+#         "dealers": AddProduct.objects.filter(dealer_id=i)
+#     }
+#     return render(request, "people/dealers-brought.html", data)
 
 
 
