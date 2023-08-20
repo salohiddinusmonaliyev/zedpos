@@ -6,3 +6,17 @@ class Worker(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     ph_number = models.CharField(("Phone number"), max_length=50)
+
+
+class CustomUser(models.Model):
+    status = (
+        ("Unpaid", "Unpaid"),
+        ("Paid", "Paid"),
+    )
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    status = models.CharField(choices=status, max_length=100)
+    shop_name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.shop_name
