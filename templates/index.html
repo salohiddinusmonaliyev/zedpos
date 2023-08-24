@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS</title>
+      <title>ZEDPOS | {{ request.user.shop_name }}</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -28,7 +28,7 @@
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="/" class="header-logo">
-                <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">ZEDPOS</h5>
+                <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">{{ request.user.shop_name }}</h5>
               </a>
               <div class="iq-menu-bt-sidebar ml-0">
                 <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
@@ -477,22 +477,6 @@
 
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="color-switcher">
-                <div class="switcher-btn">
-                    <i class="fas fa-cog"></i>
-                </div>
-                <h3>Select color</h3>
-                <div class="theme-buttons-container">
-                    <span class="theme-button" data-color="#4A5568" style="background-color: #4A5568;"></span>
-                    <span class="theme-button" data-color="#4A5568" style="background-color: #4A5568;"></span>
-                    <span class="theme-button" data-color="#4A5568" style="background-color: #4A5568;"></span>
-                    <span class="theme-button" data-color="#4A5568" style="background-color: #4A5568;"></span>
-                    <span class="theme-button" data-color="#4A5568" style="background-color: #4A5568;"></span>
-                    <span class="theme-button" data-color="#4A5568" style="background-color: #4A5568;"></span>
-                    <span class="theme-button" data-color="#4A5568" style="background-color: #4A5568;"></span>
-                    <span class="theme-button" data-color="#4A5568" style="background-color: #4A5568;"></span>
                 </div>
             </div>
         <!-- Page end  -->

@@ -3,24 +3,24 @@ from .models import *
 
 def clients_list(request):
     data = {
-        "customers": Client.objects.all(),
+        "customers": Client.objects.filter(user=request.user),
     }
     return render(request, 'people/page-list-customers.html', data)
 
 def customer_delete(request, i):
-    Client.objects.get(id=i).delete()
+    Client.objects.get(id=i, user=request.user).delete()
     return redirect("/customers/")
 
 def debt_payment(request):
     payment = request.POST.get('payment')
     customer = request.POST.get('customer')
     comment = request.POST.get("comment")
-    customer_debt = Client.objects.get(id=customer)
-    customer_debt2 = Client.objects.get(id=customer).debt
+    customer_debt = Client.objects.get(id=customer, user=request.user)
+    customer_debt2 = Client.objects.get(id=customer, user=request.user).debt
 
     customer_debt.debt = int(customer_debt2)-int(payment)
     customer_debt.save()
-    CustomerPayment.objects.create(customer=customer_debt, paymnet=payment, comment=comment)
+    CustomerPayment.objects.create(customer=customer_debt, paymnet=payment, comment=comment, user=request.user)
     return redirect('/customers/')
 
 

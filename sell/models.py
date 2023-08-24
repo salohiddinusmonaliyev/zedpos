@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 
-from accounts.models import Worker
+from accounts.models import Worker, CustomUser
 from clients.models import Client
 
 from django.db import models
@@ -15,6 +15,8 @@ class Sell(models.Model):
     discount = models.IntegerField(null=True, default=0)
     checkout = models.BooleanField(null=True, blank=True)
     total_price = models.IntegerField(null=True, blank=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
+
     # paid = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
@@ -28,6 +30,8 @@ class SellItem(models.Model):
     discount = models.IntegerField(null=True)
     total_price = models.IntegerField(null=True)
     quantity = models.FloatField()
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
+
 
     def __str__(self):
         return f"{self.id} {self.sell_id.time}"
@@ -35,6 +39,8 @@ class SellItem(models.Model):
 
 class CostCategory(models.Model):
     name = models.CharField(max_length=100)
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
+
 
     def __str__(self):
         return self.name
@@ -44,6 +50,8 @@ class Cost(models.Model):
     category = models.ForeignKey(CostCategory, on_delete=models.CASCADE)
     date = models.DateTimeField()
     cost = models.IntegerField()
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
+
 
     def __str__(self):
         return f"{self.cost}"
@@ -55,6 +63,8 @@ class Return(models.Model):
     paid = models.IntegerField(null=True)
     quantity = models.FloatField(null=True)
     worker = models.ForeignKey(Worker, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
+
 
     def __str__(self):
         return self.customer.first_name

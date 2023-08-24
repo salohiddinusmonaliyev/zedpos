@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import render, redirect
 
@@ -23,13 +24,14 @@ def calculate_total_cost(lists):
 
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def dashboard(request, a=None, b=None):
     if a==None and b==None:
         a = str(datetime.date.today())
         b = str(datetime.date.today())
     total_price = 0
     #sales
-    sales = Sell.objects.filter()
+    sales = Sell.objects.filter(user=request.user)
     sales_count = 0
     for s in sales:
         if str(s.time.date())>=a and str(s.time.date())<=b:
@@ -39,10 +41,10 @@ def dashboard(request, a=None, b=None):
                 total_price=int(s.total_price)+int(total_price)
                 sales_count = sales_count + 1
     #kam qolgan
-    kam = Product.objects.filter(is_active=True, quantity__lte=10)
+    kam = Product.objects.filter(is_active=True, quantity__lte=10, user=request.user)
 
     #products
-    products = Product.objects.filter(is_active=True)
+    products = Product.objects.filter(is_active=True, user=request.user)
     products_price = 0
     my_list = []
     for p in products:
@@ -50,7 +52,7 @@ def dashboard(request, a=None, b=None):
         my_list.append(p.count)
 
     #foyda
-    data = SellItem.objects.filter()
+    data = SellItem.objects.filter(user=request.user)
     foyda = 0
     for i in data:
         if str(i.date.date()) >= a and str(i.date.date()) <= b:
@@ -61,15 +63,15 @@ def dashboard(request, a=None, b=None):
             discount = (int(i.quantity) * i.discount)
             # print(product_kelgan)
             foyda = foyda + int(product_price - product_kelgan - discount)
-    dealers = Payment.objects.filter()
+    dealers = Payment.objects.filter(user=request.user)
     pay = 0
     for p in dealers:
         pay += p.payment
 
-    customers = Client.objects.all()
-    debtors = Client.objects.filter(debt__gte=1)
+    customers = Client.objects.filter(user=request.user)
+    debtors = Client.objects.filter(debt__gte=1, user=request.user)
 
-    costs = Cost.objects.filter()
+    costs = Cost.objects.filter(user=request.user)
     cost = 0
     for c in costs:
         if str(c.date.date()) >= a and str(c.date.date()) <= b:
@@ -102,8 +104,8 @@ def dashboard(request, a=None, b=None):
         dates.append(f"{item}")
     # print(dates)
 
-    top_products = Product.objects.filter(is_active=True).order_by('count')[:5]
-    # for t in Product.objects.all().order_by('count')[:5]:
+    top_products = Product.objects.filter(is_active=True, user=request.user).order_by('count')[:5]
+    # for t in Product.objects.filter().order_by('count')[:5]:
         # if str(c.date.date()) >= a and str(c.date.date()) <= b:
 
     # Prepare data for the chart
@@ -124,7 +126,7 @@ def dashboard(request, a=None, b=None):
         "dates": dates,
         "a": a,
         "b": b,
-        "top": Product.objects.filter(is_active=True).order_by('-count')[:5],
+        "top": Product.objects.filter(is_active=True, user=request.user).order_by('-count')[:5],
         # "chart": calculate_total_cost(lists),
         "data_points": totalprice,
         'data': {'labels': labels,

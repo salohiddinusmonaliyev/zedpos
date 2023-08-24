@@ -35,5 +35,5 @@ urlpatterns = [
     path('dealers/', include('dealer.urls')),
     path('customer/<int:i>/', customer_history),
     path('date-range/', date_range),
-    path('worker/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
