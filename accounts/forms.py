@@ -6,7 +6,7 @@ from accounts.models import CustomUser
 class RegisterForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'username', 'shop_name', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username','phone_number', 'shop_name', 'password1', 'password2']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,6 +30,10 @@ class RegisterForm(UserCreationForm):
         })
         self.fields['password2'].widget.attrs.update({
             'placeholder': 'Confirm password',
+            'class': 'form-control',  # Add your custom class here
+        })
+        self.fields['phone_number'].widget.attrs.update({
+            'placeholder': 'Phone number',
             'class': 'form-control',  # Add your custom class here
         })
         self.fields['shop_name'].widget.attrs.update({

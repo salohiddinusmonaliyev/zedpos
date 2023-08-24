@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS | {{ request.user.shop_name }}</title>
+      <title>ZEDPOS</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -28,7 +28,7 @@
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="/" class="header-logo">
-                <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">{{ request.user.shop_name }}</h5>
+                <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">ZEDPOS</h5>
               </a>
               <div class="iq-menu-bt-sidebar ml-0">
                 <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
@@ -245,8 +245,9 @@
 
                       </a>
                   </div>
-
+                <h4 style="position: relative; margin-top: 1.5%">{{ request.user.shop_name }}</h4>
               </nav>
+
           </div>
 
       </div>
@@ -285,7 +286,7 @@
                                     </div>
                                     <div>
                                         <p class="mb-2" style="color: white">Daromad</p>
-                                        <h4 style="color: white">{{ total_price }} UZS</h4>
+                                        <h4 style="color: white">{{ total_price }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -327,7 +328,7 @@
                                     </div>
                                     <div>
                                         <p class="mb-2" style="color: white">Foyda</p>
-                                        <h4 style="color: white">{{ foyda }} UZS</h4>
+                                        <h4 style="color: white">{{ foyda }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -346,7 +347,7 @@
                                     </div>
                                     <div>
                                         <p class="mb-2" style="color: white">Xarajat</p>
-                                        <h4 style="color: white">{{ cost }} UZS</h4>
+                                        <h4 style="color: white">{{ cost }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -401,8 +402,8 @@
 
                                     </div>
                                     <div>
-                                        <p class="mb-2">Do'kondagi tovarlar</p>
-                                        <h4>{{ products_price }} UZS</h4>
+                                        <p class="mb-2">Tovarlar</p>
+                                        <h4>{{ products_price }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -443,7 +444,7 @@
                 <div class="card card-block card-stretch">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">10 qolgan tovarlar qoldig'i</h4>
+                            <h4 class="card-title">10 tadan kam qolgan tovarlar</h4>
                         </div>
                     </div>
                         <div class="" style="overflow: auto; height: 410px">
@@ -468,7 +469,7 @@
                 <div class="card card-block card-stretch">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Top 5 ko'p sotilgan tovarlar</h4>
+                            <h4 class="card-title">Top 5</h4>
                         </div>
                     </div>
                     <div class="card-body">
