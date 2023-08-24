@@ -12,6 +12,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=200, null=True)
     status = models.CharField(choices=status, max_length=100)
     shop_name = models.CharField(max_length=200)
+    phone_number = models.CharField(max_length=100, null=True, unique=True)
 
     def __str__(self):
         return self.shop_name
