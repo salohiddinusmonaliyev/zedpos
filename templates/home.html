@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -7,13 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="/assets/images/icons/fav*32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'zed.png' %}" type="image/x-icon">
     <!-- ========================================= Css files -->
     <link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
     
     <link rel="stylesheet" href="{% static '/assets/css/slick.css' %}">
     <link rel="stylesheet" href="{% static '/assets/css/slick-theme.css' %}">
-    
+
 
     <link rel="stylesheet" href="{% static '/node_modules/remixicon/fonts/remixicon.css' %}">
     <link rel="stylesheet" href="{% static '/assets/scss/style.css' %}">    <title>ZEDPOS</title>
@@ -45,7 +44,8 @@
                                     <!-- Fullscreen -->
                                     <div class="clb-hamburger btn-round btn-round-light" tabindex="1">
                                         <div class="navbar-menu">
-                                            <a href="{% url 'register' %}" class="btn btn-primary btn-sm d-none d-md-block  "> Ro'yhatdan o'tish </a>
+                                            <a href="{% url 'register' %}" class="btn btn-primary btn-sm d-none d-md-inline  "> Ro'yhatdan o'tish </a>
+                                            <a href="{% url 'login' %}" class="btn btn-primary btn-sm d-none d-md-inline  " style="margin-left: 5px"> Kirish </a>
                                         </div>
 
                                     </div>
