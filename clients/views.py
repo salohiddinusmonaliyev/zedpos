@@ -1,16 +1,20 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import *
 
+@login_required(login_url='/accounts/login/')
 def clients_list(request):
     data = {
         "customers": Client.objects.filter(user=request.user),
     }
     return render(request, 'people/page-list-customers.html', data)
 
+@login_required(login_url='/accounts/login/')
 def customer_delete(request, i):
     Client.objects.get(id=i, user=request.user).delete()
     return redirect("/customers/")
 
+@login_required(login_url='/accounts/login/')
 def debt_payment(request):
     payment = request.POST.get('payment')
     customer = request.POST.get('customer')
@@ -23,7 +27,7 @@ def debt_payment(request):
     CustomerPayment.objects.create(customer=customer_debt, paymnet=payment, comment=comment, user=request.user)
     return redirect('/customers/')
 
-
+@login_required(login_url='/accounts/login/')
 def customer_add(request):
     if request.method=="POST":
         first_name = request.POST.get('first_name')
@@ -34,6 +38,7 @@ def customer_add(request):
         return redirect('/customers/')
     return render(request, "people/page-add-customers.html")
 
+@login_required(login_url='/accounts/login/')
 def customer_history(request, i):
     data = {
         "customers": CustomerPayment.objects.filter(customer_id=i)
