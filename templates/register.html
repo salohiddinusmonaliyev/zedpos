@@ -48,27 +48,29 @@
                         </a>
                         <h3>Create Account</h3>
                         <form action="{% url 'register' %}" method="POST">{% csrf_token %}
-                            <div class="form-group form-box">
-                                {{ form.first_name }}
+                        <p>{{ form }}</p><br>
+                        <div class="form-group form-box">
+{#                                {{ form }}#}
                             </div>
-                            <div class="form-group form-box">
-                                {{ form.last_name }}
-                            </div>
-                            <div class="form-group form-box">
-                                {{ form.shop_name }}
-                            </div>
-                            <div class="form-group form-box">
-                                {{ form.username }}
-                            </div>
-                            <div class="form-group form-box">
-                                {{ form.phone_number }}
-                            </div>
-                            <div class="form-group form-box clearfix">
-                                {{ form.password1 }}
-                            </div>
-                            <div class="form-group form-box clearfix">
-                                {{ form.password2 }}
-                            </div>
+{#                            <div class="form-group form-box">#}
+{#                                {{ form.first_name }}#}
+{#                            </div>#}
+{#                            <div class="form-group form-box">#}
+{#                                {{ form.last_name }}#}
+{#                            </div>#}
+{#                            <div class="form-group form-box">#}
+{#                                {{ form.shop_name }}#}
+{#                            </div>#}
+{##}
+{#                            <div class="form-group form-box">#}
+{#                                {{ form.phone_number }}#}
+{#                            </div>#}
+{#                            <div class="form-group form-box clearfix">#}
+{#                                {{ form.password1 }}#}
+{#                            </div>#}
+{#                            <div class="form-group form-box clearfix">#}
+{#                                {{ form.password2 }}#}
+{#                            </div>#}
                             <div class="form-group">
                                 <button style="background-color: #5c0bd6" type="submit" class="btn btn-lg btn-theme"><span>Register</span></button>
                             </div>

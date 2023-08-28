@@ -10,7 +10,7 @@ class CustomUser(AbstractUser):
     )
     first_name = models.CharField(max_length=200, null=True)
     last_name = models.CharField(max_length=200, null=True)
-    status = models.CharField(choices=status, max_length=100)
+    status = models.CharField(choices=status, max_length=100, default="Unpaid")
     shop_name = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=100, null=True, unique=True)
 

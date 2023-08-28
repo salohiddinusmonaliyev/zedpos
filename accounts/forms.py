@@ -1,16 +1,19 @@
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 from accounts.models import CustomUser
 
 
 class RegisterForm(UserCreationForm):
+    status = forms.CharField(initial='Unpaid', widget=forms.HiddenInput())
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'username','phone_number', 'shop_name', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'phone_number', 'shop_name', 'password1', 'password2', 'status']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.fields['status'].initial = 'Unpaid'
         # Add placeholders for each field
         self.fields['username'].widget.attrs.update({
             'placeholder': 'Enter your username',
