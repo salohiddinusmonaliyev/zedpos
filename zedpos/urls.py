@@ -38,3 +38,4 @@ urlpatterns = [
     path('date-range/', date_range),
     path('accounts/', include('accounts.urls')),
 ]
+
