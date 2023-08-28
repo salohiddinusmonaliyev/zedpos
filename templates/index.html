@@ -220,7 +220,7 @@
                       </a>
                       <ul id="worker" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                               <li class="">
-                                      <a href="/worker/">
+                                      <a href="/accounts/worker/">
                                           <span>List</span>
                                       </a>
                               </li>
@@ -255,12 +255,11 @@
           <form method="post" action="/date-range/" style="position: relative; top: -35px; left: 17px">{% csrf_token %}
               <input name="a" type="date" style="border: 1px solid var(--main-color); border-radius: 5px; position: relative; top: 20px;" value="{{ a }}">
               <input name="b" type="date" style="border: 1px solid var(--main-color); border-radius: 5px; position: relative; top: 20px;" value="{{ b }}">
-{#              <button name="yesterday" style="border: 2px solid var(--main-color); border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: var(--main-color);">Kecha</button>#}
-{#              <button name="today" style="border: 2px solid var(--main-color); border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: var(--main-color);">Bugun</button>#}
-{#              <button name="week" style="border: 2px solid var(--main-color); border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: var(--main-color);">7 kun</button>#}
-{#              <button name="30day" style="border: 2px solid var(--main-color); border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: var(--main-color);">30 kun</button>#}
-{#              <button name="month" style="border: 2px solid var(--main-color); border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: var(--main-color);">Shu oy</button>\#}
-              <button style="border: 2px solid var(--main-color); border-radius: 5px; background-color: var(--main-color); color: white; position: relative; top: 20px; width: 80px; left: 15px" type="submit">Submit</button>
+              <button style="border: 2px solid var(--main-color); border-radius: 5px; background-color: var(--main-color); color: white; position: relative; top: 20px; width: 80px; left: 5px" type="submit">Submit</button>
+
+              <button name="week" value="7" style="border: 2px solid var(--main-color); border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: var(--main-color);">7 kun</button>
+              <button name="30day" value="30" style="border: 2px solid var(--main-color); border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: var(--main-color);">30 kun</button>
+              <button name="year" value="365" style="border: 2px solid var(--main-color); border-radius: 5px; background-color: white; position: relative; top: 20px; width: 80px; left: 35px; color: var(--main-color);">1 yil</button>
           </form>
           <br>
      <div class="container-fluid">

@@ -25,6 +25,7 @@ from sell.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('dashboard/<str:a>/<str:b>/', dashboard, name="dashboard"),
+    path('dashboard/<int:c>/', dashboard, name="dashboard2"),
     path('', dashboard),
     path('product/', include('product.urls')),
     path('customers/', clients_list, name="customers"),

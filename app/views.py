@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.views import View
 
 from dealer.models import Payment
@@ -26,26 +27,32 @@ def calculate_total_cost(lists):
 
 # Create your views here.
 # @login_required(login_url='/accounts/login/')
-def dashboard(request, a=None, b=None):
+def dashboard(request, a=None, b=None, c=None):
     if request.user.is_authenticated:
-        if a==None and b==None:
+        if not (not (a is None) or not (b is None)):
             a = str(datetime.date.today())
             b = str(datetime.date.today())
+        if c is not None:
+            end_date = datetime.date.today()
+            start_date = end_date - datetime.timedelta(days=c)
+            a = str(start_date)
+            b = str(end_date)
+            print(a, b)
         total_price = 0
-        #sales
+        # sales
         sales = Sell.objects.filter(user=request.user)
         sales_count = 0
         for s in sales:
-            if str(s.time.date())>=a and str(s.time.date())<=b:
-                if s.total_price==None:
-                    total_price+=0
+            if a <= str(s.time.date()) <= b:
+                if s.total_price is None:
+                    total_price += 0
                 else:
-                    total_price=int(s.total_price)+int(total_price)
+                    total_price = int(s.total_price) + int(total_price)
                     sales_count = sales_count + 1
-        #kam qolgan
+        # kam qolgan
         kam = Product.objects.filter(is_active=True, quantity__lte=10, user=request.user)
 
-        #products
+        # products
         products = Product.objects.filter(is_active=True, user=request.user)
         products_price = 0
         my_list = []
@@ -53,11 +60,11 @@ def dashboard(request, a=None, b=None):
             products_price = products_price + (p.arrival_price * p.quantity)
             my_list.append(p.count)
 
-        #foyda
+        # foyda
         data = SellItem.objects.filter(user=request.user)
         foyda = 0
         for i in data:
-            if str(i.date.date()) >= a and str(i.date.date()) <= b:
+            if a <= str(i.date.date()) <= b:
                 # print(i.product)
                 product_price = (int(i.quantity) * i.product.price)
                 # print(product_price)
@@ -76,8 +83,8 @@ def dashboard(request, a=None, b=None):
         costs = Cost.objects.filter(user=request.user)
         cost = 0
         for c in costs:
-            if str(c.date.date()) >= a and str(c.date.date()) <= b:
-                cost+=c.cost
+            if a <= str(c.date.date()) <= b:
+                cost += c.cost
 
         # date_list = []
 
@@ -98,7 +105,7 @@ def dashboard(request, a=None, b=None):
         dates = []
         totalprice = []
         for item in calculate_total_cost(lists).values():
-            if item == None:
+            if item is None:
                 totalprice.append(0)
             else:
                 totalprice.append(item)
@@ -108,7 +115,7 @@ def dashboard(request, a=None, b=None):
 
         top_products = Product.objects.filter(is_active=True, user=request.user).order_by('count')[:5]
         # for t in Product.objects.filter().order_by('count')[:5]:
-            # if str(c.date.date()) >= a and str(c.date.date()) <= b:
+        # if str(c.date.date()) >= a and str(c.date.date()) <= b:
 
         # Prepare data for the chart
         labels = [wa.name for wa in top_products]
@@ -118,7 +125,7 @@ def dashboard(request, a=None, b=None):
             "kam": kam,
             "sales": sales,
             "sale_count": sales_count,
-            "total_price": total_price-pay,
+            "total_price": total_price - pay,
             "products": products.count(),
             "products_price": products_price,
             "customers": customers.count(),
@@ -132,23 +139,31 @@ def dashboard(request, a=None, b=None):
             # "chart": calculate_total_cost(lists),
             "data_points": totalprice,
             'data': {'labels': labels,
-                    'values': values,}
+                     'values': values, }
         }
         return render(request, "index.html", data)
     else:
         return render(request, "home.html")
 
+
 def date_range(request):
     if request.method == "POST":
         a = request.POST.get('a')
         b = request.POST.get('b')
-        # yesterday = request.POST.get("yesterday")
-        # today = request.POST.get("today")
-        # week = request.POST.get("week")
-        # day30 = request.POST.get("30day")
-        # month = request.POST.get("month")
-        # current_month = datetime.datetime.now().month
-        # print(current_month)
+
+        week = request.POST.get("week")
+        month = request.POST.get("30day")
+        year = request.POST.get("year")
+        c = 0
+        if week or month or year:
+            if week:
+                c = week
+            elif month:
+                c = month
+            elif year:
+                c = year
+            return redirect(f"/dashboard/{c}/")
+
         return redirect(f"/dashboard/{a}/{b}/")
 
 # class Archive(APIView):

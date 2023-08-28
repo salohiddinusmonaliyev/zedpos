@@ -18,7 +18,7 @@ def worker(request):
         last_name = request.POST.get("last_name")
         p_num = request.POST.get("number")
         Worker.objects.create(first_name=first_name, last_name=last_name, ph_number=p_num, user=request.user)
-        return redirect('/worker/')
+        return redirect('/accounts/worker/')
     return render(request, "people/worker.html", data)
 
 
