@@ -74,7 +74,7 @@
 										</select><br>
 										<br>
                     <label>Paid</label>
-                    <input name="paid" type="text" style="padding: 10px; width: 100%; background:#edf2ff; border: 0.5px solid #5c0bd6; border-radius: 8px;">
+                    <input name="paid" type="text" style="padding: 10px; width: 100%; background:#edf2ff; border: 0.5px solid #3321d7; border-radius: 8px;">
                     <h5 style="display: inline; position: relative; top: 50px;">Total</h5>
 										<h5 style="display: inline; position: absolute; right: 15px;bottom: -40px;">{{ total_price }} UZS</h5>
 									</div>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="col-lg-12 mt-4">
                   <div class="d-flex flex-wrap align-items-ceter justify-content-center">
-                  <button type="submit" id="checkout" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #5c0bd6 ;">
+                  <button type="submit" id="checkout" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #3321d7 ;">
                     <h5 style=" color: white;">Checkout</h5>
                   </button>
                   <a href="/sale/{{ sale }}/delete/" type="submit" class=" btn delete" style="width: 49%; position: relative;left: 10px;display: inline; background-color: red; color: white;">
@@ -117,8 +117,8 @@
                 </div>
               </div>
 				<form method="post" action="/sale/{{sale}}/add/">{% csrf_token %}
-                  <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Code" style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;" autofocus>
-                  <input name="discount" type="text" id="myInput3" placeholder="Discount"  style="border: 2px solid #5c0bd6; border-radius: 4px; margin-bottom: 5px; width: 150px;">
+                  <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Code" style="border: 2px solid #3321d7; border-radius: 4px; margin-bottom: 5px; width: 150px;" autofocus>
+                  <input name="discount" type="text" id="myInput3" placeholder="Discount"  style="border: 2px solid #3321d7; border-radius: 4px; margin-bottom: 5px; width: 150px;">
                   <button type="submit" class="product-btn">Submit</button>
                 </form>
                 <hr>
@@ -307,7 +307,7 @@
                               </a>
                               <input type="text" name="quantity" step="1" max="" value="{{saleitem.quantity}}" class="quantity-field">
                               <a href="/sale/{{ sale }}/plus/{{ saleitem.id }}/" class="button-minus">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5c0bd6" class="bi bi-plus" viewBox="0 0 16 16">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#3321d7" class="bi bi-plus" viewBox="0 0 16 16">
                                   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                 </svg>
                               </a>
@@ -357,21 +357,21 @@
                       <!--												<h6>5.00 UZS</h6>-->
                       <!--											</li>-->
                     <li class="total-value">
-                        <h5 style="color: #5c0bd6;">Total</h5>
-                        <h6 style="color: #5c0bd6;">{{total_price2}} UZS</h6>
+                        <h5 style="color: #3321d7;">Total</h5>
+                        <h6 style="color: #3321d7;">{{total_price2}} UZS</h6>
                       </li>
                       <li class="total-value">
-                        <h5 style="color: #5c0bd6;">Discount</h5>
-                        <h6 style="color: #5c0bd6;">{{discount}} UZS</h6>
+                        <h5 style="color: #3321d7;">Discount</h5>
+                        <h6 style="color: #3321d7;">{{discount}} UZS</h6>
                       </li>
                     <li class="total-value">
-                        <h3 style="color: #5c0bd6;">Total</h3>
-                        <h4 style="color: #5c0bd6;">{{total_price}} UZS</h4>
+                        <h3 style="color: #3321d7;">Total</h3>
+                        <h4 style="color: #3321d7;">{{total_price}} UZS</h4>
                       </li>
                       {% if checkout == True %}
-                      <a href="/sale/{{ sale }}/refresh/{{ total_price }}/" class="btn border add-btn mx-2 d-md-block" style="width: 100%; background-color: #5c0bd6; color: white;">Refresh</a>
+                      <a href="/sale/{{ sale }}/refresh/{{ total_price }}/" class="btn border add-btn mx-2 d-md-block" style="width: 100%; background-color: #3321d7; color: white;">Refresh</a>
                       {% else %}
-						          <a href="#" class="btn border add-btn mx-2 d-md-block" data-toggle="modal" style="width: 100%; background-color: #5c0bd6; color: white;" data-target="#new-order">Checkout</a>
+						          <a href="#" class="btn border add-btn mx-2 d-md-block" data-toggle="modal" style="width: 100%; background-color: #3321d7; color: white;" data-target="#new-order">Checkout</a>
                       {% endif %}
                     </ul>
                   </div>
