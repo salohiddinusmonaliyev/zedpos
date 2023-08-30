@@ -141,7 +141,7 @@ def saleitem_create(request, saleid):
                 saleitems = SellItem.objects.filter(user=request.user)
                 code = request.POST.get("code")
                 # quantity = request.POST.get("quantity")
-                discount = request.POST.get("discount")
+                discount = int(request.POST.get("discount"))
 
                 if discount is None or not discount:
                     discount = 0

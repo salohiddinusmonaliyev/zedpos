@@ -14,7 +14,7 @@ def add(request):
     if request.method=="POST":
         name = request.POST.get("name")
         pnum = str(request.POST.get("pnum"))
-        Dealer.objects.create(name=name, phone_num=pnum, user=request.user)
+        Dealer.objects.create(name=name, phone_num=pnum, user=request.user, debt=0)
         return redirect('/dealers/')
     return render(request, 'people/add-dealers.html')
 
