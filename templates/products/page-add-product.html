@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS | ADD</title>
+      <title>ZEDPOS | Mahsulot qo'shish</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -249,35 +249,35 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Name *</label>
+                                        <label>Nomi *</label>
                                         <input name="name" type="text" class="form-control" placeholder="Enter Name" data-errors="Please Enter Name." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Arrival price *</label>
+                                        <label>Kelgan Narxi *</label>
                                         <input name="incoming" type="text" class="form-control" placeholder="Enter Price" data-errors="Please Enter Price." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Price *</label>
+                                        <label>Narxi *</label>
                                         <input name="price" type="text" class="form-control" placeholder="Enter Price" data-errors="Please Enter Price." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Quantity *</label>
+                                        <label>Miqdori *</label>
                                         <input name="quantity" type="text" class="form-control" placeholder="Enter Quantity" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Measure *</label>
+                                        <label>O'lchov birligi *</label>
                                         <select name="measure" class="form-control">-->
                                             {% for p in measures %}
                                             <option value="{{ p.id }}">{{ p.name }}</option>
@@ -288,7 +288,7 @@
                                 </div>
                             <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Code *</label>
+                                        <label>Kod *</label>
                                         <input name="code" type="text" class="form-control" placeholder="Enter Code" data-errors="Please Enter Code." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -296,7 +296,7 @@
 
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Mahsulot Qo'shish</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
+                            <button type="reset" class="btn btn-danger">Yangilash</button>
                         </form>
                     </div>
                 </div>
