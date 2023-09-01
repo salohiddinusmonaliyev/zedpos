@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>ZEDPOS</title>
+      <title>ZEDPOS | Xarajat kategoriyasi</title>
 
       <!-- Favicon -->
       <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
@@ -239,12 +239,12 @@
                                     <label for="checkbox1" class="mb-0"></label>
                                 </div>
                             </th>
-                            <th>Product</th>
-                            <th>Code</th>
-                            <th>Price</th>
-                            <th>Incoming price</th>
-                            <th>Quantity</th>
-                            <th>Archive</th>
+                            <th>Mahsulot</th>
+                            <th>Kod</th>
+                            <th>Narxi</th>
+                            <th>Kelgan narxi</th>
+                            <th>Miqdor</th>
+                            <th>Arxiv</th>
                         </tr>
                     </thead>
                     <tbody class="ligth-body">
@@ -269,7 +269,7 @@
                             <td>{{ p.quantity }}</td>
                             <form method="post" action="/archive/{{ p.id }}/">{% csrf_token %}
                                 <td>
-                                    <button class="archive-btn">Archive</button>
+                                    <button class="archive-btn">Arxiv</button>
                                 </td>
                             </form>
 

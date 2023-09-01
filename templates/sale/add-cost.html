@@ -234,7 +234,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Add Xarajat</h4>
+                            <h4 class="card-title">Xarajat qo'shish</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -253,14 +253,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Cost *</label>
+                                        <label>Xarajat *</label>
                                         <input name="cost" type="text" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Cost." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Worker *</label>
+                                        <label>Ishchi *</label>
                                         <select class="form-control" name="worker">
                                             {% for w in worker %}
                                             <option value="{{w.id}}">{{ w.first_name }} {{ w.last_name }}</option>
@@ -270,7 +270,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Add</button>
+                            <button type="submit" class="btn btn-primary mr-2">Qo'shish</button>
                             <button type="reset" class="btn btn-danger">Yangilash</button>
                         </form>
                     </div>

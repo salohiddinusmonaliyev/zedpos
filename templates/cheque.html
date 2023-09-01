@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="15">
-    <title>Cheque</title>
+    <title>Chek</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -79,9 +79,9 @@
         <div class="bill-to">
             <strong>
                 {% if cheque.client is None  %}
-                    <p>Customer <span style="position: absolute; right: 5.5%">-----</span></p>
+                    <p>Mijoz <span style="position: absolute; right: 5.5%">-----</span></p>
                 {% else %}
-                <p>Customer <span style="position: absolute; right: 5.5%">{{ cheque.client }}</span></p>
+                <p>Mijoz <span style="position: absolute; right: 5.5%">{{ cheque.client }}</span></p>
                 {% endif %}
             </strong>
             <!-- Add more customer details as needed -->
@@ -90,10 +90,10 @@
         <table class="bill-details">
             <thead>
                 <tr>
-                    <th class="head" style="background-color: black; color: white">Name</th>
-                    <th class="head" style="background-color: black; color: white">Quantity</th>
-                    <th class="head" style="background-color: black; color: white">Price</th>
-                    <th class="head" style="background-color: black; color: white">Total</th>
+                    <th class="head" style="background-color: black; color: white">Nomi</th>
+                    <th class="head" style="background-color: black; color: white">Miqdori</th>
+                    <th class="head" style="background-color: black; color: white">Narxi</th>
+                    <th class="head" style="background-color: black; color: white">Umumiy narxi</th>
                 </tr>
             </thead>
             <tbody>
