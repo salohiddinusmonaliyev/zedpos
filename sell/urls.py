@@ -20,6 +20,5 @@ urlpatterns = [
     path('<int:sale_id>/minus/<int:saleitem_id>/', minus),
     path('<int:sale_id>/plus/<int:saleitem_id>/', plus),
     path('<int:sale_id>/quantity/<int:saleitem_id>/', quantity),
-    path('cheque/<int:pk>/', generate_cheque_pdf),
-    path('refresh/<int:pk>/', refresh_page),
+    # path('cheque/<int:pk>/', generate_cheque_pdf),
 ]

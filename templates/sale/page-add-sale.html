@@ -112,13 +112,12 @@
             <div class="col-lg-7 col-sm-12 tabs_wrapper">
               <div class="page-header">
                 <div class="page-title">
-                  <h4>Products</h4>
-                  <h6>Manage your purchases</h6>
+                  <h4>Mahsulotlar</h4>
                 </div>
               </div>
 				<form method="post" action="/sale/{{sale}}/add/">{% csrf_token %}
-                  <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Code" style="border: 2px solid #3321d7; border-radius: 4px; margin-bottom: 5px; width: 150px;" autofocus>
-                  <input name="discount" type="text" id="myInput3" placeholder="Discount"  style="border: 2px solid #3321d7; border-radius: 4px; margin-bottom: 5px; width: 150px;">
+                  <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Mahsulot kodi" style="border: 2px solid #3321d7; border-radius: 4px; margin-bottom: 5px; width: 150px;" autofocus>
+                  <input name="discount" type="text" id="myInput3" placeholder="1 ta mahsulot uchun chegirma"  style="border: 2px solid #3321d7; border-radius: 4px; margin-bottom: 5px; width: 250px;">
                   <button type="submit" class="product-btn">Submit</button>
                 </form>
                 <hr>
@@ -126,10 +125,10 @@
                 <br>
                 <table class="table" id="myTable" datas-filter-control="true" data-show-search-clear-button="true">
                   <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Kod</th>
+                    <th>Nom</th>
+                    <th>Narx</th>
+                    <th>Miqdor</th>
                   </tr>
                   <tbody>
                     {% for p in products %}
@@ -225,8 +224,7 @@
             <div class="col-lg-5 col-sm-12">
               <div class="order-list">
                 <div class="orderid">
-                  <h4>Order List</h4>
-                  <h5>Transaction id : {{ sale }}</h5>
+                  <h5>Savat raqami : {{ sale }}</h5>
                 </div>
               </div>
               <div class="card card-order">
@@ -234,7 +232,7 @@
                 <div class="split-card"></div>
                 <div class="card-body pt-0">
                   <div class="totalitem">
-                    <h4>Total items : {{ saleitems.count }}</h4>
+                    <h4>Mahsulotlar soni : {{ saleitems.count }}</h4>
                   </div>
                   <div class="product-table">
                     <!--										<ul class="product-lists" style="border-bottom: 1px solid black;">-->
@@ -283,13 +281,13 @@
                     <!--										</ul>-->
                     <table class="table" id="" data-filter-control="true" data-show-search-clear-button="true">
                       <tr>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Discount</th>
-                        <th>Total price</th>
-                        <th>Delete</th>
+                        <th>Kod</th>
+                        <th>Nom</th>
+                        <th>Narx</th>
+                        <th>Miqdor</th>
+                        <th>Chegirma</th>
+                        <th>Umumiy narx</th>
+                        <th>O'chirish</th>
                       </tr>
                       <tbody>
                         {% for saleitem in saleitems %}
@@ -357,15 +355,15 @@
                       <!--												<h6>5.00 UZS</h6>-->
                       <!--											</li>-->
                     <li class="total-value">
-                        <h5 style="color: #3321d7;">Total</h5>
+                        <h5 style="color: #3321d7;">Umumiy</h5>
                         <h6 style="color: #3321d7;">{{total_price2}} UZS</h6>
                       </li>
                       <li class="total-value">
-                        <h5 style="color: #3321d7;">Discount</h5>
+                        <h5 style="color: #3321d7;">Chegirma</h5>
                         <h6 style="color: #3321d7;">{{discount}} UZS</h6>
                       </li>
                     <li class="total-value">
-                        <h3 style="color: #3321d7;">Total</h3>
+                        <h3 style="color: #3321d7;">Umumiy</h3>
                         <h4 style="color: #3321d7;">{{total_price}} UZS</h4>
                       </li>
                       {% if checkout == True %}
@@ -443,16 +441,7 @@
         });
 
     </script>
-    <script>
-        document.getElementById('checkout').addEventListener('click', function() {
-            // Change the URL to the desired URL that you want to open in the new tab
-            var sale = "{{ sale }}";
-            var url = `/sale/refresh/${sale}/`;
 
-            // Open the URL in a new tab
-            window.open(url, '_blank');
-        });
-    </script>
 
     <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
 

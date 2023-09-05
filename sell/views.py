@@ -11,40 +11,40 @@ from django.contrib import messages
 from datetime import datetime
 
 from django.shortcuts import render
-import pdfkit
+# import pdfkit
 from django.http import HttpResponse
 
-@login_required(login_url='/accounts/login/')
-def generate_cheque_pdf(request, pk):
-    # Data to be passed to the Jinja2 template
-    items = SellItem.objects.filter(sell_id_id=pk, user=request.user)
-    total_price = 0
-    for item in items:
-        total_price += (int(item.price)-int(item.discount))*float(item.quantity)
-    cheque_data = {
-        "cheque": Sell.objects.get(id=pk, user=request.user),
-        "items": items,
-        "products": Product.objects.filter(user=request.user).order_by('code'),
-        "clients": Client.objects.filter(user=request.user),
-        "item_total_price": total_price,
-    }
+# @login_required(login_url='/accounts/login/')
+# def generate_cheque_pdf(request, pk):
+#     # Data to be passed to the Jinja2 template
+#     items = SellItem.objects.filter(sell_id_id=pk, user=request.user)
+#     total_price = 0
+#     for item in items:
+#         total_price += (int(item.price)-int(item.discount))*float(item.quantity)
+#     cheque_data = {
+#         "cheque": Sell.objects.get(id=pk, user=request.user),
+#         "items": items,
+#         "products": Product.objects.filter(user=request.user).order_by('code'),
+#         "clients": Client.objects.filter(user=request.user),
+#         "item_total_price": total_price,
+#     }
 
-    # Render the cheque template using Jinja2
-    template_name = 'cheque.html'
-    rendered_template = render(request, template_name, cheque_data)
+#     # Render the cheque template using Jinja2
+#     template_name = 'cheque.html'
+#     rendered_template = render(request, template_name, cheque_data)
 
-    # Generate PDF using pdfkit
-    rendered_content = rendered_template.content.decode('utf-8')
+#     # Generate PDF using pdfkit
+#     rendered_content = rendered_template.content.decode('utf-8')
 
-    # Generate PDF using pdfkit and provide the path to wkhtmltopdf executable
-    config = pdfkit.configuration(wkhtmltopdf='C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe')
-    pdf = pdfkit.from_string(rendered_content, False, configuration=config)
+#     # Generate PDF using pdfkit and provide the path to wkhtmltopdf executable
+#     config = pdfkit.configuration(wkhtmltopdf='C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe')
+#     pdf = pdfkit.from_string(rendered_content, False, configuration=config)
 
-    # Set the Content-Disposition header to open the PDF in a new tab
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'inline; filename="cheque.pdf"'
+#     # Set the Content-Disposition header to open the PDF in a new tab
+#     response = HttpResponse(pdf, content_type='application/pdf')
+#     response['Content-Disposition'] = 'inline; filename="cheque.pdf"'
 
-    return response
+#     return response
 
 
 
@@ -135,30 +135,41 @@ def calculate_sellitem_total_price(price, quantity, discount):
 @login_required(login_url='/accounts/login/')
 def saleitem_create(request, saleid):
     if request.user.status == "Paid":
-        try:
-            if request.method == "POST":
-                sale = Sell.objects.get(id=saleid, user=request.user)
-                saleitems = SellItem.objects.filter(user=request.user)
-                code = request.POST.get("code")
-                # quantity = request.POST.get("quantity")
-                discount = int(request.POST.get("discount"))
+        if request.method == "POST":
+            sale = Sell.objects.get(id=saleid, user=request.user)
+            saleitems = SellItem.objects.filter(user=request.user)
+            code = request.POST.get("code")
+            discount = (request.POST.get("discount"))
+            if discount:
+                discount = int(discount)
+            else:
+                discount = 0
+            product = Product.objects.get(is_active=True, code=code, user=request.user)
 
-                if discount is None or not discount:
-                    discount = 0
-                product = Product.objects.get(is_active=True, code=code, user=request.user)
-                for s in saleitems:
-                    if s.product == product and s.sell_id == sale:
-                        s.quantity += 1
-                        s.total_price = int(s.total_price) + int(product.price-discount)
-                        s.save()
-                        return redirect(f"/sale/add/{saleid}/")
+            existing_sell_item = saleitems.filter(product=product, sell_id=sale).first()
+
+            if existing_sell_item:
+                existing_sell_item.quantity += 1
+                existing_sell_item.total_price += (product.price - discount)
+                existing_sell_item.save()
+            else:
                 total_price = calculate_sellitem_total_price(product.price, 1, discount)
-                SellItem.objects.create(sell_id=sale, total_price=total_price, product=product, price=product.price, date=datetime.now(),
-                                        quantity=1, discount=discount, user=request.user)
-                return redirect(f"/sale/add/{saleid}/")
+                SellItem.objects.create(
+                    sell_id=sale,
+                    total_price=total_price,
+                    product=product,
+                    price=product.price,
+                    date=datetime.now(),
+                    quantity=1,
+                    discount=discount,
+                    user=request.user
+                )
 
-        except:
             return redirect(f"/sale/add/{saleid}/")
+
+
+        # except:
+            # return redirect(f"/sale/add/{saleid}/")
     else:
         return HttpResponse("<h1>Iltimos sayt uchun to'lov qiling. Ma'lumot uchun +998XXXXXXXXX</h1>")
 
@@ -252,13 +263,6 @@ def cost_list(request):
     else:
         return HttpResponse("<h1>Iltimos sayt uchun to'lov qiling. Ma'lumot uchun +998XXXXXXXXX</h1>")
 
-@login_required(login_url='/accounts/login/')
-def refresh_page(request, pk):
-    if request.user.status == "Paid":
-        time.sleep(1)
-        return redirect(f"/sale/cheque/{pk}/")
-    else:
-        return HttpResponse("<h1>Iltimos sayt uchun to'lov qiling. Ma'lumot uchun +998XXXXXXXXX</h1>")
 
 @login_required(login_url='/accounts/login/')
 def cost_create(request):
