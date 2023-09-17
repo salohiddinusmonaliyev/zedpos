@@ -67,8 +67,12 @@
                                 Xush kelibsiz! Bizning POS saytimizga xush kelibsiz. Biz, sizning biznesingizni rivojlantirishda yordam berishni maqsad qilganmiz. Asosiy xizmatlarimiz orasida har bir kerakli narsani topishingiz mumkin
                             </p>
                             <div class="d-flex justify-content-start"  >
-                                <a href="{% url 'register' %}" class="btn btn-primary ">
-                                    Ro'yhatdan o'tish<ion-icon name="arrow-forward"></ion-icon>
+                                <a style="margin-right: 5px" href="{% url 'register' %}" class="btn btn-primary ">
+                                    Ro'yhatdan o'tish <ion-icon name="arrow-forward"></ion-icon>
+                                </a>
+<a></a>
+                                <a href="{% url 'login' %}" class="btn btn-primary ">
+                                     Kirish<ion-icon name="arrow-forward"></ion-icon>
                                 </a>
                             </div><br><br>
                         </div>
@@ -301,11 +305,11 @@
                         <p class="section-desc text-white " >Hoziroq ro'yhatdan o'ting va do'koningizni avtomatlashtiring
 
                         </p>
-                        <a href="{% url 'register' %}" class="btn btn-white"> Ro'yhatdan o'tish </a>
+ 
                     </div>
-                    <div class="col-md-6 d-flex">
-                        <img  class="img_center" src="{% static 'macbook2.jpeg' %}" style="width: 120%; z-index: 1" alt="">
-                    </div>
+                    <a href="https://github.com/salohiddinusmonaliyev/zedpos/releases/download/android/zedpos.apk"><div class="col-md-6 d-flex">
+                        <img  class="img_center" src="{% static 'download.png' %}" style="width: 40%; z-index: 1" alt="">
+                    </div></a>
                     
                 </div>
             </div>
