@@ -5,7 +5,12 @@ from accounts.models import CustomUser
 
 
 class RegisterForm(UserCreationForm):
-    status = forms.CharField(initial='Unpaid', widget=forms.HiddenInput())
+    STATUS_CHOICES = (
+        ('Unpaid', 'Unpaid'),
+        ('Paid', 'Paid'),
+    )
+    
+    status = forms.ChoiceField(choices=STATUS_CHOICES, initial='Unpaid')
     class Meta:
         model = CustomUser
         fields = ['username', 'first_name', 'last_name', 'phone_number', 'shop_name', 'password1', 'password2', 'status']

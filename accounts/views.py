@@ -26,13 +26,17 @@ def register_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
+            user = form.save(commit=False)
+            user.status = 'Unpaid'
+            user.save()
             form.save()
+            print(form, user)
             user = authenticate(request, username=request.POST.get('username'), password=request.POST.get('password1'))
             if user is not None:
                 login(request, user)
                 return redirect('/')
         else:
-            print(form.errors)
+            render(request, "register.html", {"form": form})
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
