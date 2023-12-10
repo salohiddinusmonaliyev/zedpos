@@ -51,7 +51,10 @@ def login_view(request):
             return redirect('/')
         else:
             # Handle invalid login
-            pass
+            context = {
+                "error": "Bunda foydalanuvchi topilmadi!!!"
+            }
+            return render(request, 'login.html', context)
     return render(request, 'login.html')
 
 def logout_view(request):

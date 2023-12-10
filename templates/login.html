@@ -49,6 +49,7 @@
                         </a>
                         <h3>Kirish</h3>
                         <form action="{% url 'login' %}" method="post">{% csrf_token %}
+                            <p style="color: red">{{ error }}</p>
                             <div class="form-group form-box clearfix">
                                 <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username">
                             </div>
@@ -60,7 +61,7 @@
                             </div>
 
 
-                        <p>Akkountingiz yo'qmi? <a href="{% url 'register' %}" class="thembo"> Ro'yhatdan o'tish</a></p>
+                        <p>Hisobingiz yo'qmi? <a href="{% url 'register' %}" class="thembo"> Ro'yhatdan o'tish</a></p>
                     </div>
                 </div>
             </div>
