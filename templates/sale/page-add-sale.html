@@ -65,7 +65,7 @@
 							<div class="col-lg-12">
 								<div class="select-split">
 									<div class="select-group w-100">
-										<label>Customer</label>
+										<label>Mijoz</label>
 										<select name="customer" style="padding: 10px; width: 100%; background:#edf2ff; border:none;">
 											<option>---------</option>
 											{% for c in clients %}
@@ -73,9 +73,9 @@
 											{% endfor %}
 										</select><br>
 										<br>
-                    <label>Paid</label>
-                    <input name="paid" type="text" style="padding: 10px; width: 100%; background:#edf2ff; border: 0.5px solid #3321d7; border-radius: 8px;">
-                    <h5 style="display: inline; position: relative; top: 50px;">Total</h5>
+                    <label>To'landi</label>
+                    <input name="paid" type="text" value="{{ total_price }}" style="padding: 10px; width: 100%; background:#edf2ff; border: 0.5px solid #3321d7; border-radius: 8px;">
+                    <h5 style="display: inline; position: relative; top: 50px;">Umumiy</h5>
 										<h5 style="display: inline; position: absolute; right: 15px;bottom: -40px;">{{ total_price }} UZS</h5>
 									</div>
 								</div>
@@ -86,10 +86,10 @@
                 <div class="col-lg-12 mt-4">
                   <div class="d-flex flex-wrap align-items-ceter justify-content-center">
                   <button type="submit" id="checkout" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #3321d7 ;">
-                    <h5 style=" color: white;">Checkout</h5>
+                    <h5 style=" color: white;">Sotildi</h5>
                   </button>
                   <a href="/sale/{{ sale }}/delete/" type="submit" class=" btn delete" style="width: 49%; position: relative;left: 10px;display: inline; background-color: red; color: white;">
-                    <h5 style=" color: white;">Cancel</h5>
+                    <h5 style=" color: white;">Bekor Qilish</h5>
                   </a><br>
                   </div>
                 </div>
@@ -367,9 +367,9 @@
                         <h4 style="color: #3321d7;">{{total_price}} UZS</h4>
                       </li>
                       {% if checkout == True %}
-                      <a href="/sale/{{ sale }}/refresh/{{ total_price }}/" class="btn border add-btn mx-2 d-md-block" style="width: 100%; background-color: #3321d7; color: white;">Refresh</a>
+                      <a href="/sale/{{ sale }}/refresh/{{ total_price }}/" class="btn border add-btn mx-2 d-md-block" style="width: 100%; background-color: #3321d7; color: white;">Yangilash</a>
                       {% else %}
-						          <a href="#" class="btn border add-btn mx-2 d-md-block" data-toggle="modal" style="width: 100%; background-color: #3321d7; color: white;" data-target="#new-order">Checkout</a>
+						          <a href="#" class="btn border add-btn mx-2 d-md-block" data-toggle="modal" style="width: 100%; background-color: #3321d7; color: white;" data-target="#new-order">Sotildi</a>
                       {% endif %}
                     </ul>
                   </div>
