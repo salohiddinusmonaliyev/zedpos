@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="15">
+    <title>Chek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        .invoice-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .invoice-number {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .invoice-date {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .bill-to {
+            margin-top: 30px;
+            margin-bottom: 20px;
+
+        }
+
+        .bill-details {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+        .head {
+            background-color: black;
+
+        }
+        .bill-details th,
+        .bill-details td {
+
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        .bill-details th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .total-amount {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Add more styles as needed */
+    </style>
+</head>
+<body onload="refreshPage()">
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <div class="invoice-number">Cheque #{{ cheque.id }}</div>
+            <div class="invoice-date">Date: {{ cheque.time }}</div>
+        </div>
+
+        <div class="bill-to">
+            <strong>
+                {% if cheque.client is None  %}
+                    <p>Mijoz <span style="position: absolute; right: 5.5%">-----</span></p>
+                {% else %}
+                <p>Mijoz <span style="position: absolute; right: 5.5%">{{ cheque.client }}</span></p>
+                {% endif %}
+            </strong>
+            <!-- Add more customer details as needed -->
+        </div>
+
+        <table class="bill-details">
+            <thead>
+                <tr>
+                    <th class="head" style="background-color: black; color: white">Nomi</th>
+                    <th class="head" style="background-color: black; color: white">Miqdori</th>
+                    <th class="head" style="background-color: black; color: white">Narxi</th>
+                    <th class="head" style="background-color: black; color: white">Umumiy narxi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }} UZS</td>
+                    <td>{{ item.total_price }} UZS</td>
+                </tr>
+                {% endfor %}
+                <!-- Add more items as needed -->
+            </tbody>
+        </table>
+
+        <div class="total-amount">
+            <p>Total: {{ cheque.total_price }} UZS</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{% static 'zed.png' %}" type="image/x-icon">
+    <!-- ========================================= Css files -->
+    <link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
+    
+    <link rel="stylesheet" href="{% static '/assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/slick-theme.css' %}">
+
+
+    <link rel="stylesheet" href="{% static '/node_modules/remixicon/fonts/remixicon.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/scss/style.css' %}">    <title>ZEDPOS</title>
+</head>
+<body>
+
+    <!-- =========================== header-->
+    <div class="hero ">
+        <!-- ================================= header -->
+        <div class="site-header has_link_dark">
+            <header id="masthead" class="site-header header-3 both-types no-transition">
+                <div class="container">
+                    <div class="header-wrap">
+                        <div class="header-wrap-inner">
+                            <div class="left-part">
+                                <!-- .site-branding -->
+                                <div class="site-branding">
+                                    <div class="site-title">
+                                        <a href='#'>
+                                            <div class="">
+                                                <img src="{% static 'zed.png' %}"  style="border-radius: 20px; width: 40px;" class="svg-logo" alt=""> ZEDPOS
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- ============================ right part -->
+                                <div class="right-part right">
+                                    <!-- Fullscreen -->
+                                    <div class="clb-hamburger btn-round btn-round-light" tabindex="1">
+                                        <div class="navbar-menu">
+                                            <a href="{% url 'register' %}" class="btn btn-primary btn-sm d-none d-md-inline  "> Ro'yhatdan o'tish </a>
+                                            <a href="{% url 'login' %}" class="btn btn-primary btn-sm d-none d-md-inline  " style="margin-left: 5px"> Kirish </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="spacer_header"></div><br>
+        <div class="container">
+                <div class="hero-wrap pb-0">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <h2 class=""  >
+                                Biz bilan ishlasangiz <br> 👉 <span class="typed"></span> 
+                            </h2>
+                            <p class="hero-desc">
+                                Bizning POS saytimizga xush kelibsiz. Biz, sizning biznesingizni rivojlantirishda yordam berishni maqsad qilganmiz. Asosiy xizmatlarimiz orasida har bir kerakli narsani topishingiz mumkin
+                            </p>
+                            <div class="d-flex justify-content-start"  >
+                                <a style="margin-right: 5px" href="{% url 'register' %}" class="btn btn-primary ">
+                                    Ro'yhatdan o'tish
+                                </a>
+<a></a>
+                                <a href="{% url 'login' %}" class="btn btn-primary ">
+                                     Kirish
+                                </a>
+                            </div><br><br>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="">
+                                <img src="{% static 'imac-iphone-macbook.jpeg' %}" style="width: 100%; border-radius: 10px;" alt=""><br><br><br><br><br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <section class="section  pt-0">
+        <div class="container">
+            <div class="row flex vcenter">
+                <div class="col-md-7 order-1 order-lg-0 text-center">
+                   <div class=""  data-aos="zoom-in" >
+                       <img src="{% static 'macbook.jpeg' %}" style="width: 100%;" alt=""><br><br><br><br><br><br>
+                   </div>
+                </div>
+                <div class="col-md-5 order-0 order-lg-1">
+                        <div class="section-head mb-lg-0">
+                            <h5 class="section-title">Nega biz?</h5>
+                            <p class="section-desc">Biz, sizning biznesingiz uchun eng muhim bo'lgan tashrif buyuruvchilar va xaridorlarni birlashtirish va o'zlashtirish tizimini taklif etamiz. Bizning tizim orqali siz:
+
+                                <p>- Mahsulotlarni va xizmatlarni boshqarishni osonlashtirishingiz mumkin.</p>
+                            <p>- Xaridorlarni to'lov variantlari bo'yicha xabardor qilishingiz va ularga xizmat ko'rsatishingiz mumkin.</p>
+<p>- Statistikalar va ma'lumotlar orqali biznesingizni yanada rivojlantirishingiz mumkin.</p>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="section  pt-0">
+        <div class="container">
+            <div class="row flex vcenter">
+
+                <div class="col-md-5 order-0 ">
+                        <div class="section-head mb-lg-0">
+                            <h5 class="section-title">Asosiy Xizmatlarimiz</h5>
+                            <p class="section-desc">Sizning ishni osonlashtirish va foydalanuvchilaringizni qo'llab-quvvatlash maqsadida biz quyidagi asosiy xizmatlarni taqdim etamiz: <br><br>
+- Sotuv va hisob-kitobni avtomatlashtirish<br>
+- Xaridorlar ro'yxati va mijozlar tarixi.<br>
+- Mahsulotlar va xizmatlar inventarizatsiyasi.<br>
+- Narxlarni va chegirmalarni avtomatik yangilash.<br>
+- Oylik hisob-kitob va xaridorlar to'lovlari.<br>
+- Hisobotlar va statistik ma'lumotlar tahlil qilish uchun.<br>
+- Mahsulotlar miqdorini kuzatish va yangilash.<br>
+- Ombordagi mahsulotlar va xizmatlar haqida statistik ma'lumotlar.</p>
+                        </div>
+                </div>
+
+                <div class="col-md-7 order-1 justify-content-center">
+                    <div class=" d-flex justify-content-center"  data-aos="zoom-in" >
+                        <img src="{% static 'iphone.jpeg' %}" style="width: 105%;" alt="">
+                    </div><br><br><br><br>
+                 </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="section is-sm">
+        <div class="container">
+            <div class="bg_back_wrap pt-100 ">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-12">
+                        <div class="heading text-center wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                            <h2 class="text-black mb-16 text-primary">Our values</h2>
+                            <p class="text-18 text-gray mb-0">We strive to redefine the standard of excellence.</p>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="box has-style2 ">
+                                        <div class="box-icon">
+                                            <ion-icon name="beer-outline" role="img" class="md hydrated" aria-label="beer outline"></ion-icon>
+                                        </div>
+                                        <h4 class="box-title"> Snacks included
+    
+                                        </h4>
+                                        <p class="box-desc">
+                                            Create professional short form video with the online video editor that anyone
+                                            can master.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="box has-style2 ">
+                                        <div class="box-icon">
+                                            <ion-icon name="color-wand-outline" role="img" class="md hydrated" aria-label="color wand outline"></ion-icon>
+                                        </div>
+                                        <h4 class="box-title"> Infinite flexibility
+    
+                                        </h4>
+                                        <p class="box-desc">
+                                            Create professional short form video with the online video editor that anyone
+                                            can master.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="box has-style2 ">
+                                        <div class="box-icon">
+                                            <ion-icon name="file-tray-stacked-outline" role="img" class="md hydrated" aria-label="file tray stacked outline"></ion-icon>
+                                        </div>
+                                        <h4 class="box-title"> space anytime
+    
+                                        </h4>
+                                        <p class="box-desc">
+                                            Create professional short form video with the online video editor that anyone
+                                            can master.
+                                        </p>
+                                    </div>
+                                </div>
+
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- =========================== section team -->
+    <!-- <section class="section is-sm pt-0 overflow-hidden">
+        <div class="container">
+            <div class="section-head">
+                <h2 class="section-title is-center text-center">What our customer have to says</h2>
+            </div>
+        </div>
+
+        <div class="reviews_slick block_reviews mb-60">
+            <div class="reviews_box aos-init aos-animate" >
+                <div class="stars">
+                    <img src="/assets/images/logos/reviews.svg" alt="">
+                </div>
+                <p class="quote">
+
+                    I've been patiently waiting for this to arrive after using iokit for a while on my project. This is
+                    fantastic work as usual by Good Themes. Keep up the good work!
+
+                </p>
+                <div class="c-customer-review-meta d-flex justify-content-start align-items-center ">
+                    <div class="user">
+                        <img src="/assets/images/others/avatar_2.png" alt="."
+                            class="avatar avatar-sm rounded-circle"> </div>
+                    <div class="meta pl-20">
+                        <p class="name m-0">Joshua William<p></p>
+                        <p class="m-0">
+                            Verified writer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews_box aos-init aos-animate" >
+                <div class="stars">
+                    <img src="/assets/images/logos/reviews.svg" alt="">
+                </div>
+                <p class="quote">
+
+                    I've been patiently waiting for this to arrive after using iokit for a while on my project. This is
+                    fantastic work as usual by Good Themes. Keep up the good work!
+
+                </p>
+                <div class="c-customer-review-meta d-flex justify-content-start align-items-center ">
+                    <div class="user">
+                        <img src="/assets/images/others/avatar_3.png" alt="."
+                            class="avatar avatar-sm rounded-circle"> </div>
+                    <div class="meta pl-20">
+                        <p class="name m-0">Joshua William<p></p>
+                        <p class="m-0">
+                            Verified writer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews_box aos-init aos-animate" >
+                <div class="stars">
+                    <img src="/assets/images/logos/reviews.svg" alt="">
+                </div>
+                <p class="quote">
+
+                    I've been patiently waiting for this to arrive after using iokit for a while on my project. This is
+                    fantastic work as usual by Good Themes. Keep up the good work!
+
+                </p>
+                <div class="c-customer-review-meta d-flex justify-content-start align-items-center ">
+                    <div class="user">
+                        <img src="/assets/images/others/avatar.png" alt="."
+                            class="avatar avatar-sm rounded-circle"> </div>
+                    <div class="meta pl-20">
+                        <p class="name m-0">Joshua William<p></p>
+                        <p class="m-0">
+                            Verified writer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews_box aos-init aos-animate" >
+                <div class="stars">
+                    <img src="/assets/images/logos/reviews.svg" alt="">
+                </div>
+                <p class="quote">
+
+                    I've been patiently waiting for this to arrive after using iokit for a while on my project. This is
+                    fantastic work as usual by Good Themes. Keep up the good work!
+
+                </p>
+                <div class="c-customer-review-meta d-flex justify-content-start align-items-center ">
+                    <div class="user">
+                        <img src="/assets/images/others/avatar_1.png" alt="."
+                            class="avatar avatar-sm rounded-circle"> </div>
+                    <div class="meta pl-20">
+                        <p class="name m-0">Joshua William<p></p>
+                        <p class="m-0">
+                            Verified writer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section> -->
+
+    <section class="section is-sm pt-0">
+        <div class="container">
+            <div class="app_block">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2 class="text-white section-title">ZEDPOS
+                            </h2><br>
+                        <a href="{% url 'register' %}" class="btn btn-white btn-sm d-none d-md-inline  "> Ro'yhatdan o'tish </a>
+                        <a href="{% url 'login' %}" class="btn btn-white btn-sm d-none d-md-inline  " style="margin-left: 5px"> Kirish </a><br><br>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+            <!-- =========================== Footer-->
+            <footer class="footer has-style1">
+
+
+                <div class="footer-body">
+                    <p class="copyright text-center "> ZEDPOS © 2023-2024</p>
+                </div>
+            </footer>
+
+    <!-- ====================================== js files  -->
+    <script src="{% static '/assets/js/plugins/jQuery.min.js' %}"></script>
+    <script src="{% static '/assets/js/plugins/bootstrap.min.js' %}"></script>
+    
+    <script src="{% static '/assets/js/plugins/slick.min.js' %}"></script>
+    <script src="{% static '/assets/js/plugins/typed.js' %}"></script>
+    
+    
+   
+
+    <script src="{% static '/assets/js/plugins/jquery.counterup.min.js' %}"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    
+    
+    <script src="{% static '/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

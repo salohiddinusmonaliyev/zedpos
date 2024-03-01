@@ -1,0 +1,342 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>ZEDPOS | Mijoz to'lov tarixi</title>
+
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
+      <link rel="stylesheet" href="{% static 'assets/css/backend-plugin.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/backend.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/css.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/vendor/remixicon/fonts/remixicon.css' %}">  </head>
+  <body class="  ">
+    <!-- loader Start -->
+    <div id="loading">
+          <div id="loading-center">
+          </div>
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+<div class="modal fade" id="debt" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="popup text-left">
+              <h4 class="mb-3">New Order</h4>
+              <form method="post" action="/debt-payment/">{% csrf_token %}
+				  <div class="content create-workform bg-body">
+                <div class="pb-3">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="select-split">
+									<div class="select-group w-100">
+										<label>Customer</label>
+										<select name="customer" style="padding: 10px; width: 100%; background:#edf2ff; border:none;">
+											{% for c in customers %}
+												<option value="{{c.id}}">{{ c.first_name }} {{ c.last_name }}</option>
+											{% endfor %}
+										</select><br>
+										<br>
+                                        <label>Payment</label>
+                                        <input name="payment" type="text" style="width: 100%; border: 1px solid var(--main-color); border-radius: 5px;">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="col-lg-12 mt-4">
+                  <div class="d-flex flex-wrap align-items-ceter justify-content-center">
+                  <button type="submit" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: var(--main-color) ;">
+                    <h5 style=" color: white;">Payment</h5>
+                  </button>
+                  </div>
+                </div>
+              </div>
+			  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="iq-sidebar  sidebar-default ">
+          <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
+              <a href="/" class="header-logo">
+                  <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">ZEDPOS</h5>
+              </a>
+              <div class="iq-menu-bt-sidebar ml-0">
+                    <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
+
+              </div>
+          </div>
+
+          <div class="data-scrollbar" data-scroll="1">
+              <nav class="iq-sidebar-menu">
+                  <ul id="iq-sidebar-toggle" class="iq-menu">
+                      <li class="">
+                          <a href="/" class="svg-icon">
+                              <svg  class="svg-icon" id="p-dash1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+                              </svg>
+                              <span class="ml-4">Bosh sahifa</span>
+                          </a>
+                      </li>
+                      <li class=" ">
+                          <a href="#product" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg class="svg-icon" id="p-dash2" width="20" height="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                              </svg>
+                              <span class="ml-4">Mahsulotlar</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                              <li class="">
+                                  <a href="/product/list/">
+                                      <span>Mahsulotlar ro'yhati</span>
+                                  </a>
+                              </li>
+                              
+                              <li class="">
+                                  <a href="/product/archive/">
+                                      <span>Arxiv</span>
+                                  </a>
+                              </li>
+                              <li class="">
+                                <a href="/product/measurement/">
+                                    <span>O'lchov birliklari</span>
+                                </a>
+                            </li>
+                            
+                          </ul>
+                      </li>
+                      
+                      <li class=" ">
+                          <a href="#sale" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg class="svg-icon" id="p-dash4" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                              </svg>
+                              <span class="ml-4">Sotuv</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="sale" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                  <li class="">
+                                          <a href="/sale/list/">
+                                              <span>Sotuvlar Ro'yhati</span>
+                                          </a>
+                                  </li>
+                                  
+                                  <li class="">
+                                          <a href="/sale/return/">
+                                              <span>Qaytarilgan Mahsulotlar</span>
+
+                                          </a>
+                                  </li>
+                                  <li class="">
+                                          <a href="/sale/add/">
+                                              <span>POS</span>
+                                          </a>
+                                  </li>
+                          </ul>
+                      </li>
+                      <li class=" ">
+                          <a href="#cost" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg width="20" height="20" viewBox="0 0 12 16" fill="var(--main-color)" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 14H12V16H0V14ZM6 0L0 6H5V12H7V6H12L6 0Z" fill=""></path>
+</svg>
+                              <span class="ml-4">Xarajat</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="cost" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                  <li class="">
+                                          <a href="/sale/cost-list/">
+                                              <span>Xarajatlar Ro'yhati</span>
+                                          </a>
+                                  </li>
+<!--                                <li class="">-->
+<!--                                          <a href="/cost-categories/">-->
+<!--                                              <span>Category</span>-->
+<!--                                          </a>-->
+<!--                                  </li>-->
+                                  <li class="">
+                                          <a href="/sale/cost-add/">
+                                              <span>Xarajat Qo'shish</span>
+                                          </a>
+                                  </li>
+                          </ul>
+                      </li>
+                      <li class=" ">
+                        <a href="#people" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                            <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span class="ml-4">Mijozlar</span>
+                            <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                            </svg>
+                        </a>
+                        <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                <li class="active">
+                                        <a href="/customers/">
+                                            <span>Mijozlar Ro'yhati</span>
+                                        </a>
+                                </li>
+                                <li class="">
+                                        <a href="/customers-add/">
+                                            Mijoz Qo'shish
+                                        </a>
+                                </li>
+                        </ul>
+
+                    </li>
+
+
+                    <li class=" ">
+                      <a href="#dealer" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="25" height="25" x="0" y="0" viewBox="0 0 100 100" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M94 28a2.55 2.55 0 0 0-2.15-.46L82.26 30c-3.54-.2-14.83-4.54-21.26-7.3l-.13-.05c-8.54-3.07-15.93-2.38-22.11 2-8.22-2.81-18.75 3.12-22 5.15l-8.64-2.22A2.49 2.49 0 0 0 5 30v35a2.5 2.5 0 0 0 2.5 2.5h5.31l22.73 17.92A7.5 7.5 0 0 0 47.62 83a7.56 7.56 0 0 0 3.72 1 7.5 7.5 0 0 0 6.89-4.53 7.44 7.44 0 0 0 3.72 1 7.5 7.5 0 0 0 6.88-4.53A7.48 7.48 0 0 0 80 69.21l5.35-1.71h7.15A2.5 2.5 0 0 0 95 65V30a2.48 2.48 0 0 0-1-2Zm-84 5.2 4.47 1.15L12.68 51l-1.24 11.5H10Zm64.32 37.96a2.55 2.55 0 0 1-3.54 0l-3.53-3.53-14.14-14.15A2.5 2.5 0 0 0 49.57 57l14.15 14.17a2.5 2.5 0 0 1-3.54 3.53l-3.54-3.54L46 60.55a2.5 2.5 0 1 0-3.54 3.54L53.11 74.7a2.5 2.5 0 1 1-3.54 3.53L39 67.63a2.49 2.49 0 0 0-3.53 0 2.45 2.45 0 0 0-.73 1.76 2.49 2.49 0 0 0 .73 1.77l7.07 7.07a2.51 2.51 0 0 1 0 3.54 2.57 2.57 0 0 1-3.54 0 2.09 2.09 0 0 0-.22-.2L16.31 63.89l2.51-23.19.73-6.76c3.18-2 9.39-5.09 14.54-5A39.07 39.07 0 0 0 30 34.62a8.63 8.63 0 0 0 2.54 11.47c3.54 2.42 10 4.67 18-2.24l23.78 23.77a2.52 2.52 0 0 1 0 3.54Zm3.93-6.63a5.34 5.34 0 0 0-.39-.44l-23.8-23.8c1-1.14 2-2.41 3-3.85A2.5 2.5 0 1 0 53 33.56c-4.44 6.29-11.08 12.85-17.6 8.4a3.61 3.61 0 0 1-1-4.8 28.18 28.18 0 0 1 6.26-7.64 2.11 2.11 0 0 0 .23-.19c5-4 11-4.61 18.28-2 1.89.8 14.48 6.13 21.08 7.4l2.2 28.49ZM90 62.5h-2.68l-2.17-28.09L90 33.2Z" data-name="Layer 2" fill="var(--main-color)" data-original="#000000" class=""></path></g></svg>
+
+                          <span class="ml-4">Dillerlar</span>
+                          <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                          </svg>
+                      </a>
+                      <ul id="dealer" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                              <li class="">
+                                      <a href="/dealers/">
+                                          <span>Dillerlar Ro'yhati</span>
+                                      </a>
+                              </li>
+                              <li class="">
+                                      <a href="/dealers/add/">
+                                          <span>Diller Qo'shish</span>
+                                      </a>
+                              </li>
+                      </ul>
+
+                  </li>               
+
+                  <li class=" ">
+                      <a href="#worker" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                          <svg width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M17 28.0126C17.5028 27.8982 19 30 19 30L23.5481 30.0001C24.1387 30.0002 24.5663 30.0002 25.6851 30H29C29 30 30.4972 27.8982 31 28.0126C36.4042 29.2434 42 32.7946 42 36.5699V42H6V36.5699C6 32.7946 11.5958 29.2434 17 28.0126ZM32 34V32H34V34H36V36H34V38H32V36H30V34H32Z" fill="var(--main-color)"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M24 24C28.4183 24 32 20.4183 32 16C32 11.5817 28.4183 8 24 8C19.5817 8 16 11.5817 16 16C16 20.4183 19.5817 24 24 24ZM24 26C29.5228 26 34 21.5228 34 16C34 10.4772 29.5228 6 24 6C18.4772 6 14 10.4772 14 16C14 21.5228 18.4772 26 24 26Z" fill="#333333"/> </svg>
+                          <span class="ml-4">Ishchilar</span>
+                          <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--main-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                          </svg>
+                      </a>
+                      <ul id="worker" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                              <li class="">
+                                      <a href="/accounts/worker/">
+                                          <span>List</span>
+                                      </a>
+                              </li>
+                              
+                      </ul>
+
+                  </li>
+
+                  </ul>
+              </nav>
+          </div>
+          </div>      <div class="iq-top-navbar">
+          <div class="iq-navbar-custom">
+              <nav class="navbar navbar-expand-lg navbar-light p-0">
+                  <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
+                      <i class=" wrapper-menu"><?xml version="1.0" ?><svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M4 12H20M4 18H20" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></i>
+
+                      <a href="../index.html" class="header-logo">
+                          <img src="{% static 'zed.png' %}" class="img-fluid rounded-normal" alt="logo">
+                          <h5 class="logo-title ml-3">ZEDPOS</h5>
+
+                      </a>
+                  </div>
+              </nav>
+          </div>
+      </div>
+      <div class="content-page">
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+                    <div>
+                        <h4 class="mb-3">List</h4>
+                    </div>
+{#    						    <a href="#" class="btn" data-toggle="modal" style="color:white;" data-target="#debt">Debt Repayment</a>#}
+
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="table-responsive rounded mb-3">
+                <table class="data-table table mb-0 tbl-server-info">
+                    <thead class="bg-white text-uppercase">
+                        <tr class="ligth ligth-data">
+                            <th>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox1">
+                                    <label for="checkbox1" class="mb-0"></label>
+                                </div>
+                            </th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Date</th>
+                            <th>Payment</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="ligth-body">
+                    {% for p in customers %}
+                        <tr>
+                            <td>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                    <label for="checkbox2" class="mb-0"></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        {{ p.customer.first_name }}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ p.customer.last_name }}</td>
+                            <td>{{ p.date }}</td>
+                            <td>{{ p.paymnet }}</td>
+                            <td>{{ p.comment }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        <!-- Page end  -->
+    </div>
+
+    <!-- Backend Bundle JavaScript -->
+    <script src="{% static 'assets/js/backend-bundle.min.js' %}"></script>
+
+    <!-- Table Treeview JavaScript -->
+    <script src="{% static 'assets/js/table-treeview.js' %}"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script src="{% static 'assets/js/customizer.js' %}"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script async src="{% static 'assets/js/chart-custom.js' %}"></script>
+
+    <!-- app JavaScript -->
+    <script src="{% static 'assets/js/app.js' %}"></script>
+  </body>
+</html>

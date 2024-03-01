@@ -4,5 +4,5 @@ from .models import *
 
 # Register your models here.
 admin.site.register(Product)
-admin.site.register(Warehouse)
+admin.site.register(AddProduct)
 admin.site.register(Measure)

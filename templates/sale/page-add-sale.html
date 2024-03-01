@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="description" content="ZEDPOS" />
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
+    <meta name="author" content="ZEDPOS" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>ZEDPOS | Sotuv</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}" />
+
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/css.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/owlcarousel/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/owlcarousel/owl.theme.default.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'assets/plugins/select2/css/select2.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-datetimepicker.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/backend-plugin.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/backend.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/css.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/remixicon/fonts/remixicon.css' %}">
+
+  </head>
+
+  <body>
+    <header class="header">
+
+      <h5 style="margin-top: 0.8%; margin-left: 15px"><a href="/">
+          < Home</a>
+      </h5>
+      {% if messages %}
+      {% for m in messages %}
+      <div class="error">{{m}}</div>
+      {% endfor %}
+      {% endif %}
+    </header>
+    <div class="modal fade" id="new-order" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="popup text-left">
+              <h4 class="mb-3">Checkout</h4>
+              <form method="post" action="/sale/{{sale}}/checkout/">{% csrf_token %}
+				  <div class="content create-workform bg-body">
+                <div class="pb-3">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="select-split">
+									<div class="select-group w-100">
+										<label>Mijoz</label>
+										<select name="customer" style="padding: 10px; width: 100%; background:#edf2ff; border:none;">
+											<option>---------</option>
+											{% for c in clients %}
+												<option value="{{c.id}}">{{ c.first_name }} {{ c.last_name }}</option>
+											{% endfor %}
+										</select><br>
+										<br>
+                    <label>To'landi</label>
+                    <input name="paid" type="text" value="{{ total_price }}" style="padding: 10px; width: 100%; background:#edf2ff; border: 0.5px solid #3321d7; border-radius: 8px;">
+                    <h5 style="display: inline; position: relative; top: 50px;">Umumiy</h5>
+										<h5 style="display: inline; position: absolute; right: 15px;bottom: -40px;">{{ total_price }} UZS</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="col-lg-12 mt-4">
+                  <div class="d-flex flex-wrap align-items-ceter justify-content-center">
+                  <button type="submit" id="checkout" class=" btn checkout" style="width: 49%; position: relative; display: inline; background-color: #3321d7 ;">
+                    <h5 style=" color: white;">Sotildi</h5>
+                  </button>
+                  <a href="/sale/{{ sale }}/delete/" type="submit" class=" btn delete" style="width: 49%; position: relative;left: 10px;display: inline; background-color: red; color: white;">
+                    <h5 style=" color: white;">Bekor Qilish</h5>
+                  </a><br>
+                  </div>
+                </div>
+              </div>
+			  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-wrappers">
+
+      <div class="page-wrapper ms-0">
+        <div class="content">
+          <div class="row">
+            <div class="alert">
+
+
+            </div>
+            <div class="col-lg-7 col-sm-12 tabs_wrapper">
+              <div class="page-header">
+                <div class="page-title">
+                  <h4>Mahsulotlar</h4>
+                </div>
+              </div>
+				<form method="post" action="/sale/{{sale}}/add/">{% csrf_token %}
+                  <input name="code" type="text" id="myInput" onkeyup='tableSearch()' placeholder="Mahsulot kodi" style="border: 2px solid #3321d7; border-radius: 4px; margin-bottom: 5px; width: 150px;" autofocus>
+                  <input name="discount" type="text" id="myInput3" placeholder="1 ta mahsulot uchun chegirma"  style="border: 2px solid #3321d7; border-radius: 4px; margin-bottom: 5px; width: 250px;">
+                  <button type="submit" class="product-btn">Submit</button>
+                </form>
+                <hr>
+              <div class="container" style="border-color: black; background-color: white; overflow: auto; height: 600px;">
+                <br>
+                <table class="table" id="myTable" datas-filter-control="true" data-show-search-clear-button="true">
+                  <tr>
+                    <th>Kod</th>
+                    <th>Nom</th>
+                    <th>Narx</th>
+                    <th>Miqdor</th>
+                  </tr>
+                  <tbody>
+                    {% for p in products %}
+                    <tr>
+                      {% for m in message %}
+                      {% endfor %}
+                      <td>{{ p.code }}</td>
+                      <td>{{ p.name }}</td>
+                      <td>{{ p.price }} UZS</td>
+                      <td>{{ p.quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                    {#			<tr>#}
+                    {#                <td>1001</td>#}
+                    {#                <td>Product 2</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1002</td>#}
+                    {#                <td>Product 3</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1003</td>#}
+                    {#                <td>Product 4</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1004</td>#}
+                    {#                <td>Product 5</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1005</td>#}
+                    {#                <td>Product 6</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1006</td>#}
+                    {#                <td>Product 7</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1007</td>#}
+                    {#                <td>Product 8</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1008</td>#}
+                    {#                <td>Product 9</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1009</td>#}
+                    {#                <td>Product 10</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1010</td>#}
+                    {#                <td>Product 11</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1011</td>#}
+                    {#                <td>Product 12</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1012</td>#}
+                    {#                <td>Product 13</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1013</td>#}
+                    {#                <td>Product 14</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1014</td>#}
+                    {#                <td>Product 15</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                    {#            <tr>#}
+                    {#                <td>1015</td>#}
+                    {#                <td>Product 16</td>#}
+                    {#                <td>10 UZS</td>#}
+                    {#            </tr>#}
+                  </tbody>
+                </table>
+              </div>
+              <hr>
+            </div>
+            <div class="col-lg-5 col-sm-12">
+              <div class="order-list">
+                <div class="orderid">
+                  <h5>Savat raqami : {{ sale }}</h5>
+                </div>
+              </div>
+              <div class="card card-order">
+
+                <div class="split-card"></div>
+                <div class="card-body pt-0">
+                  <div class="totalitem">
+                    <h4>Mahsulotlar soni : {{ saleitems.count }}</h4>
+                  </div>
+                  <div class="product-table">
+                    <!--										<ul class="product-lists" style="border-bottom: 1px solid black;">-->
+                    <!--											<li>-->
+                    <!--												<div class="productimg" style="height: 0px">-->
+                    <!--													<div class="productcontet">-->
+                    <!--														<h4 style="margin-top: 0px">-->
+                    <!--															Product 1-->
+                    <!--															<a href="javascript:void(0);" class="ms-2" data-bs-toggle="modal" data-bs-target="#edit"><img src="assets/img/icons/edit-5.svg" alt="img" /></a>-->
+                    <!--														</h4>-->
+                    <!--													</div>-->
+                    <!--												</div>-->
+                    <!--											</li>-->
+                    <!--											<li>3000.00</li>-->
+                    <!--											<li>-->
+                    <!--												<a class="confirm-text" href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">-->
+                    <!--<path d="M18.4903 5.60839C18.4736 5.60839 18.4486 5.60839 18.4236 5.60839C14.0153 5.16673 9.61529 5.00006 5.25695 5.44173L3.55695 5.60839C3.20695 5.64173 2.89862 5.39173 2.86529 5.04173C2.83195 4.69173 3.08195 4.39173 3.42362 4.35839L5.12362 4.19173C9.55695 3.74173 14.0486 3.91673 18.5486 4.35839C18.8903 4.39173 19.1403 4.70006 19.107 5.04173C19.082 5.36673 18.807 5.60839 18.4903 5.60839Z" fill="#EA5455"/>-->
+                    <!--<path d="M8.07386 4.76675C8.04053 4.76675 8.00719 4.76675 7.96553 4.75842C7.63219 4.70008 7.39886 4.37508 7.45719 4.04175L7.64053 2.95008C7.77386 2.15008 7.95719 1.04175 9.89886 1.04175H12.0822C14.0322 1.04175 14.2155 2.19175 14.3405 2.95841L14.5239 4.04175C14.5822 4.38342 14.3489 4.70842 14.0155 4.75842C13.6739 4.81675 13.3489 4.58342 13.2989 4.25008L13.1155 3.16675C12.9989 2.44175 12.9739 2.30008 12.0905 2.30008H9.90719C9.02386 2.30008 9.00719 2.41675 8.88219 3.15841L8.69053 4.24175C8.64053 4.55008 8.37386 4.76675 8.07386 4.76675Z" fill="#EA5455"/>-->
+                    <!--<path d="M13.6652 18.9584H8.31523C5.4069 18.9584 5.29023 17.3501 5.19856 16.0501L4.6569 7.6584C4.6319 7.31673 4.89856 7.01673 5.24023 6.99173C5.59023 6.97506 5.8819 7.2334 5.9069 7.57506L6.44856 15.9667C6.54023 17.2334 6.57356 17.7084 8.31523 17.7084H13.6652C15.4152 17.7084 15.4486 17.2334 15.5319 15.9667L16.0736 7.57506C16.0986 7.2334 16.3986 6.97506 16.7402 6.99173C17.0819 7.01673 17.3486 7.3084 17.3236 7.6584L16.7819 16.0501C16.6902 17.3501 16.5736 18.9584 13.6652 18.9584Z" fill="#EA5455"/>-->
+                    <!--<path d="M12.3736 14.375H9.59863C9.25697 14.375 8.97363 14.0917 8.97363 13.75C8.97363 13.4083 9.25697 13.125 9.59863 13.125H12.3736C12.7153 13.125 12.9986 13.4083 12.9986 13.75C12.9986 14.0917 12.7153 14.375 12.3736 14.375Z" fill="#EA5455"/>-->
+                    <!--<path d="M13.0739 11.0417H8.90723C8.56556 11.0417 8.28223 10.7584 8.28223 10.4167C8.28223 10.0751 8.56556 9.79175 8.90723 9.79175H13.0739C13.4156 9.79175 13.6989 10.0751 13.6989 10.4167C13.6989 10.7584 13.4156 11.0417 13.0739 11.0417Z" fill="#EA5455"/>-->
+                    <!--</svg></a>-->
+                    <!--											</li>-->
+                    <!--										</ul>-->
+                    <!--										<ul class="product-lists" style="border-bottom: 1px solid black;">-->
+                    <!--											<li>-->
+                    <!--												<div class="productimg" style="height: 10px">-->
+                    <!--													<div class="productcontet">-->
+                    <!--														<h4 style="margin-top: 5px">-->
+                    <!--															Product 2-->
+                    <!--															<a href="javascript:void(0);" class="ms-2" data-bs-toggle="modal" data-bs-target="#edit"><img src="assets/img/icons/edit-5.svg" alt="img" /></a>-->
+                    <!--														</h4>-->
+                    <!--													</div>-->
+                    <!--												</div>-->
+                    <!--											</li>-->
+                    <!--											<li>3000.00</li>-->
+                    <!--											<li>-->
+                    <!--												<a class="confirm-text" href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">-->
+                    <!--<path d="M18.4903 5.60839C18.4736 5.60839 18.4486 5.60839 18.4236 5.60839C14.0153 5.16673 9.61529 5.00006 5.25695 5.44173L3.55695 5.60839C3.20695 5.64173 2.89862 5.39173 2.86529 5.04173C2.83195 4.69173 3.08195 4.39173 3.42362 4.35839L5.12362 4.19173C9.55695 3.74173 14.0486 3.91673 18.5486 4.35839C18.8903 4.39173 19.1403 4.70006 19.107 5.04173C19.082 5.36673 18.807 5.60839 18.4903 5.60839Z" fill="#EA5455"/>-->
+                    <!--<path d="M8.07386 4.76675C8.04053 4.76675 8.00719 4.76675 7.96553 4.75842C7.63219 4.70008 7.39886 4.37508 7.45719 4.04175L7.64053 2.95008C7.77386 2.15008 7.95719 1.04175 9.89886 1.04175H12.0822C14.0322 1.04175 14.2155 2.19175 14.3405 2.95841L14.5239 4.04175C14.5822 4.38342 14.3489 4.70842 14.0155 4.75842C13.6739 4.81675 13.3489 4.58342 13.2989 4.25008L13.1155 3.16675C12.9989 2.44175 12.9739 2.30008 12.0905 2.30008H9.90719C9.02386 2.30008 9.00719 2.41675 8.88219 3.15841L8.69053 4.24175C8.64053 4.55008 8.37386 4.76675 8.07386 4.76675Z" fill="#EA5455"/>-->
+                    <!--<path d="M13.6652 18.9584H8.31523C5.4069 18.9584 5.29023 17.3501 5.19856 16.0501L4.6569 7.6584C4.6319 7.31673 4.89856 7.01673 5.24023 6.99173C5.59023 6.97506 5.8819 7.2334 5.9069 7.57506L6.44856 15.9667C6.54023 17.2334 6.57356 17.7084 8.31523 17.7084H13.6652C15.4152 17.7084 15.4486 17.2334 15.5319 15.9667L16.0736 7.57506C16.0986 7.2334 16.3986 6.97506 16.7402 6.99173C17.0819 7.01673 17.3486 7.3084 17.3236 7.6584L16.7819 16.0501C16.6902 17.3501 16.5736 18.9584 13.6652 18.9584Z" fill="#EA5455"/>-->
+                    <!--<path d="M12.3736 14.375H9.59863C9.25697 14.375 8.97363 14.0917 8.97363 13.75C8.97363 13.4083 9.25697 13.125 9.59863 13.125H12.3736C12.7153 13.125 12.9986 13.4083 12.9986 13.75C12.9986 14.0917 12.7153 14.375 12.3736 14.375Z" fill="#EA5455"/>-->
+                    <!--<path d="M13.0739 11.0417H8.90723C8.56556 11.0417 8.28223 10.7584 8.28223 10.4167C8.28223 10.0751 8.56556 9.79175 8.90723 9.79175H13.0739C13.4156 9.79175 13.6989 10.0751 13.6989 10.4167C13.6989 10.7584 13.4156 11.0417 13.0739 11.0417Z" fill="#EA5455"/>-->
+                    <!--</svg></a>-->
+                    <!--											</li>-->
+                    <!--										</ul>-->
+                    <table class="table" id="" data-filter-control="true" data-show-search-clear-button="true">
+                      <tr>
+                        <th>Kod</th>
+                        <th>Nom</th>
+                        <th>Narx</th>
+                        <th>Miqdor</th>
+                        <th>Chegirma</th>
+                        <th>Umumiy narx</th>
+                        <th>O'chirish</th>
+                      </tr>
+                      <tbody>
+                        {% for saleitem in saleitems %}
+                        <tr>
+                          <td>{{saleitem.product.code}}</td>
+                          <td>{{saleitem.product.name}}</td>
+                          <td>{{ saleitem.product.price }}</td>
+                        <td>
+                            <div class="input-group">
+                              <form action="/sale/{{ sale }}/quantity/{{ saleitem.id }}/" method="post">{% csrf_token %}
+                                  <a href="/sale/{{ sale }}/minus/{{ saleitem.id }}/" class="button-minus">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                              </a>
+                              <input type="text" name="quantity" step="1" max="" value="{{saleitem.quantity}}" class="quantity-field">
+                              <a href="/sale/{{ sale }}/plus/{{ saleitem.id }}/" class="button-minus">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#3321d7" class="bi bi-plus" viewBox="0 0 16 16">
+                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                              </a>
+                              </form>
+                            </div>
+                        </td>
+{#                            {% set points = 5 %} {% set multiplier = 10 %}#}
+{#                            {% widthratio 10 1 5 %}#}
+{#                        {% widthratio 50 10 1 %}#}
+{#                        {{ 100|add:"+10" }}#}
+                        <td>{% widthratio saleitem.quantity 1 saleitem.discount %}</td>
+                        <td>{% for sale in sale_item %}
+                            {% for id in sale.keys %}
+                                {% if saleitem.id == id %}
+                                    {% for item in sale.values %}
+                                        {{ item }}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}</td>
+                            <td><a class="" href="/sale/{{ sale }}/delete/{{saleitem.id}}/"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                                <path d="M18.4903 5.60839C18.4736 5.60839 18.4486 5.60839 18.4236 5.60839C14.0153 5.16673 9.61529 5.00006 5.25695 5.44173L3.55695 5.60839C3.20695 5.64173 2.89862 5.39173 2.86529 5.04173C2.83195 4.69173 3.08195 4.39173 3.42362 4.35839L5.12362 4.19173C9.55695 3.74173 14.0486 3.91673 18.5486 4.35839C18.8903 4.39173 19.1403 4.70006 19.107 5.04173C19.082 5.36673 18.807 5.60839 18.4903 5.60839Z" fill="#EA5455" />
+                                <path d="M8.07386 4.76675C8.04053 4.76675 8.00719 4.76675 7.96553 4.75842C7.63219 4.70008 7.39886 4.37508 7.45719 4.04175L7.64053 2.95008C7.77386 2.15008 7.95719 1.04175 9.89886 1.04175H12.0822C14.0322 1.04175 14.2155 2.19175 14.3405 2.95841L14.5239 4.04175C14.5822 4.38342 14.3489 4.70842 14.0155 4.75842C13.6739 4.81675 13.3489 4.58342 13.2989 4.25008L13.1155 3.16675C12.9989 2.44175 12.9739 2.30008 12.0905 2.30008H9.90719C9.02386 2.30008 9.00719 2.41675 8.88219 3.15841L8.69053 4.24175C8.64053 4.55008 8.37386 4.76675 8.07386 4.76675Z" fill="#EA5455" />
+                                <path d="M13.6652 18.9584H8.31523C5.4069 18.9584 5.29023 17.3501 5.19856 16.0501L4.6569 7.6584C4.6319 7.31673 4.89856 7.01673 5.24023 6.99173C5.59023 6.97506 5.8819 7.2334 5.9069 7.57506L6.44856 15.9667C6.54023 17.2334 6.57356 17.7084 8.31523 17.7084H13.6652C15.4152 17.7084 15.4486 17.2334 15.5319 15.9667L16.0736 7.57506C16.0986 7.2334 16.3986 6.97506 16.7402 6.99173C17.0819 7.01673 17.3486 7.3084 17.3236 7.6584L16.7819 16.0501C16.6902 17.3501 16.5736 18.9584 13.6652 18.9584Z" fill="#EA5455" />
+                                <path d="M12.3736 14.375H9.59863C9.25697 14.375 8.97363 14.0917 8.97363 13.75C8.97363 13.4083 9.25697 13.125 9.59863 13.125H12.3736C12.7153 13.125 12.9986 13.4083 12.9986 13.75C12.9986 14.0917 12.7153 14.375 12.3736 14.375Z" fill="#EA5455" />
+                                <path d="M13.0739 11.0417H8.90723C8.56556 11.0417 8.28223 10.7584 8.28223 10.4167C8.28223 10.0751 8.56556 9.79175 8.90723 9.79175H13.0739C13.4156 9.79175 13.6989 10.0751 13.6989 10.4167C13.6989 10.7584 13.4156 11.0417 13.0739 11.0417Z" fill="#EA5455" />
+                              </svg></a></td>
+                        </tr>
+                        </tr>
+
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="split-card"></div>
+                <div class="card-body pt-0 pb-2">
+                  <div class="setvalue">
+                    <ul>
+                      <!--											<li>-->
+                      <!--												<h5>Subtotal</h5>-->
+                      <!--												<h6>55.00 UZS</h6>-->
+                      <!--											</li>-->
+                      <!--											<li>-->
+                      <!--												<h5>Tax</h5>-->
+                      <!--												<h6>5.00 UZS</h6>-->
+                      <!--											</li>-->
+                    <li class="total-value">
+                        <h5 style="color: #3321d7;">Umumiy</h5>
+                        <h6 style="color: #3321d7;">{{total_price2}} UZS</h6>
+                      </li>
+                      <li class="total-value">
+                        <h5 style="color: #3321d7;">Chegirma</h5>
+                        <h6 style="color: #3321d7;">{{discount}} UZS</h6>
+                      </li>
+                    <li class="total-value">
+                        <h3 style="color: #3321d7;">Umumiy</h3>
+                        <h4 style="color: #3321d7;">{{total_price}} UZS</h4>
+                      </li>
+                      {% if checkout == True %}
+                      <a href="/sale/{{ sale }}/refresh/{{ total_price }}/" class="btn border add-btn mx-2 d-md-block" style="width: 100%; background-color: #3321d7; color: white;">Yangilash</a>
+                      {% else %}
+						          <a href="#" class="btn border add-btn mx-2 d-md-block" data-toggle="modal" style="width: 100%; background-color: #3321d7; color: white;" data-target="#new-order">Sotildi</a>
+                      {% endif %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="application/javascript">
+      function tableSearch() {
+        let input, filter, table, tr, td, txtValue;
+
+        //Intialising Variables
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (let i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+
+      }
+    </script>
+    <script>
+        function incrementValue(e) {
+          e.preventDefault();
+          var fieldName = $(e.target).data('field');
+          var parent = $(e.target).closest('div');
+          var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+          if (!isNaN(currentVal)) {
+            parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+          } else {
+            parent.find('input[name=' + fieldName + ']').val(0);
+          }
+        }
+
+        function decrementValue(e) {
+          e.preventDefault();
+          var fieldName = $(e.target).data('field');
+          var parent = $(e.target).closest('div');
+          var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+          if (!isNaN(currentVal) && currentVal > 0) {
+            parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+          } else {
+            parent.find('input[name=' + fieldName + ']').val(0);
+          }
+        }
+
+        $('.input-group').on('click', '.button-plus', function(e) {
+          incrementValue(e);
+        });
+
+        $('.input-group').on('click', '.button-minus', function(e) {
+          decrementValue(e);
+        });
+
+    </script>
+
+
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+    <script src="{% static 'assets/js/feather.min.js' %}"></script>
+
+    <script src="{% static 'assets/js/jquery.slimscroll.min.j' %}s"></script>
+
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'assets/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/js/dataTables.bootstrap4.min.js' %}"></script>
+
+    <script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+
+    <script src="{% static 'assets/plugins/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <script src="{% static 'assets/plugins/sweetalert/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/sweetalert/sweetalerts.min.js' %}"></script>
+
+    <script src="{% static 'assets/js/script.js' %}"></script>
+    <script src="{% static 'assets/js/backend-bundle.min.js' %}"></script>
+
+    <!-- Table Treeview JavaScript -->
+    <script src="{% static 'assets/js/table-treeview.js' %}"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script src="{% static 'assets/js/customizer.js' %}"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script async src="{% static 'assets/js/chart-custom.js' %}"></script>
+
+    <!-- app JavaScript -->
+    <script src="{% static 'assets/js/app.js' %}"></script>
+  </body>
+
+</html>
